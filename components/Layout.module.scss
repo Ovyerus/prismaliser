@@ -1,0 +1,8 @@
+.grid {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "nav nav"
+    "left right";
+}
