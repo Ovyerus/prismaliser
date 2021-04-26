@@ -1,4 +1,6 @@
+import Editor from "@monaco-editor/react";
 import { DMMF } from "@prisma/generator-helper";
+// import monaco from "monaco-editor";
 import React, { useState } from "react";
 import { useDebounce } from "react-use";
 import useFetch from "use-http";
@@ -7,9 +9,36 @@ import Layout from "~/components/Layout";
 
 const initial = `
 model User {
-  id String @id
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email String @unique
+  name String?
+  role Role @default(USER)
+  posts Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean @default(false)
+  title String @db.VarChar(255)
+  author User? @relation(fields: [authorId], references: [id])
+  authorId Int?
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 `.trim();
+
+// TODO: rewrite Prisma's textmate file to whatever this is.
+// monaco.languages.register({ id: "prisma" });
+// monaco.languages.setMonarchTokensProvider("prisma", {
+//   tokenizer: {},
+
+// });
 
 const IndexPage = () => {
   const [text, setText] = useState(initial);
@@ -32,24 +61,34 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <section className="flex flex-col items-start relative">
-        <textarea
-          className="w-full h-full resize-none p-4 font-mono overflow-auto bg-gray-100"
+      <section className="flex flex-col items-start relative border-r-2">
+        <Editor
+          height="100%"
+          language="graphql"
+          theme="light"
+          loading="Loading..."
+          options={{
+            minimap: { enabled: false },
+            smoothScrolling: true,
+            cursorSmoothCaretAnimation: true,
+          }}
           value={text}
-          onChange={(ev) => setText(ev.target.value)}
+          onChange={(val) => setText(val)}
         />
         <button
           className="bg-indigo-400 text-white py-2 px-3 rounded-lg absolute left-4 bottom-4"
           onClick={format}
         >
-          format!!
+          Format
         </button>
         {/* TODO: faster speen */}
         {loading && (
           <div className="w-4 h-4 border-blue-500 border-2 border-l-0 border-b-0 absolute right-4 bottom-4 rounded-full animate-spin" />
         )}
       </section>
-      <pre className="overflow-auto">{JSON.stringify(data, null, 4)}</pre>
+      <pre className="overflow-auto border-l-2">
+        {JSON.stringify(data, null, 4)}
+      </pre>
     </Layout>
   );
 };
