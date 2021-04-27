@@ -1,5 +1,7 @@
+import cc from "classcat";
 import React from "react";
-import { Handle } from "react-flow-renderer";
+import { Handle, Position } from "react-flow-renderer";
+import { EnumNodeData } from "~/util/types";
 
 import styles from "./Node.module.scss";
 
@@ -28,15 +30,17 @@ const EnumNode = ({ data }: EnumNodeProps) => (
         </tr>
       ))}
     </tbody>
+
+    <Handle
+      className={cc([styles.handle, styles.bottom])}
+      type="source"
+      position={Position.Bottom}
+    />
   </table>
 );
 
 export interface EnumNodeProps {
-  data: {
-    name: string;
-    dbName?: string | null;
-    values: string[];
-  };
+  data: EnumNodeData;
 }
 
 export default EnumNode;

@@ -1,5 +1,6 @@
 import { getDMMF } from "@prisma/sdk";
 import { NextApiRequest, NextApiResponse } from "next";
+import stripAnsi from "strip-ansi";
 
 import util from "util";
 
@@ -13,6 +14,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     res.json(dmmf.datamodel);
   } catch (err) {
-    res.status(400).json({ message: "todo" });
+    const message = stripAnsi(err.message);
+    res.status(400).json({ message });
   }
 }

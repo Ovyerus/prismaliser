@@ -13,7 +13,9 @@ module.exports = {
   },
   variants: {
     extend: {
+      backgroundColor: ["hover"],
       borderWidth: ["first"],
+      boxShadow: ["hover"],
     },
   },
   plugins: [],

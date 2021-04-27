@@ -59,10 +59,9 @@ const IndexPage = () => {
   const [text, setText] = useState(initial);
   const [schemaError, setSchemaError] = useState(null);
   const [data, setData] = useState<DMMF.Datamodel | null>(null);
-  const elements = useMemo(() => {
-    console.log(data);
-    return data ? mapDatamodelToNodes(data) : [];
-  }, [data]);
+  const elements = useMemo(() => (data ? mapDatamodelToNodes(data) : []), [
+    data,
+  ]);
   const { post, response, loading, error } = useFetch("/api");
 
   const submit = async () => {
@@ -90,12 +89,13 @@ const IndexPage = () => {
             minimap: { enabled: false },
             smoothScrolling: true,
             cursorSmoothCaretAnimation: true,
+            scrollBeyondLastLine: false,
           }}
           value={text}
           onChange={(val) => setText(val)}
         />
         <button
-          className="bg-indigo-400 text-white py-2 px-3 rounded-lg absolute left-4 bottom-4"
+          className="bg-indigo-400 hover:bg-indigo-500 text-white py-2 px-3 rounded-lg absolute left-4 bottom-4 shadow-md hover:shadow-lg transition"
           onClick={format}
         >
           Format

@@ -5,3 +5,23 @@
     }
   }
 }
+
+.handle {
+  @apply border-4 h-4 w-4 bg-gray-700 #{!important};
+
+  &.bottom {
+    @apply -bottom-2 #{!important};
+  }
+
+  &.left {
+    left: calc(-2px - theme("spacing.2")) !important;
+  }
+
+  &.right {
+    right: calc(-2px - theme("spacing.2")) !important;
+  }
+
+  &.top {
+    @apply -top-2 #{!important};
+  }
+}

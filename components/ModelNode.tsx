@@ -1,7 +1,19 @@
+import cc from "classcat";
 import React from "react";
-import { Handle } from "react-flow-renderer";
+import { Handle, Position } from "react-flow-renderer";
+import { ModelNodeData } from "~/util/types";
 
 import styles from "./Node.module.scss";
+
+type ColumnData = ModelNodeData["columns"][number];
+
+const hasLeftHandle = ({ kind, isList, isRequired }: ColumnData) =>
+  // TODO: is dependent
+  kind === "enum" || (kind === "object" && !isList && !isRequired);
+
+const hasRightHandle = ({ kind, isList, isRequired }: ColumnData) =>
+  // TODO: is owner
+  kind === "object" && (isList || isRequired);
 
 const ModelNode = ({ data }: ModelNodeProps) => (
   <table
@@ -22,32 +34,44 @@ const ModelNode = ({ data }: ModelNodeProps) => (
       </tr>
     </thead>
     <tbody>
-      {data.columns.map(({ name, type, defaultValue }) => (
+      {data.columns.map((col, i) => (
         <tr className={styles.row}>
-          <td className="p-2 border-t-2 border-r-2 border-gray-300 font-mono font-semibold">
-            {name}
+          <td className="border-t-2 border-r-2 border-gray-300 font-mono font-semibold">
+            <div className="p-2 relative">
+              {col.name}
+              {hasLeftHandle(col) && (
+                <Handle
+                  className={cc([styles.handle, styles.left])}
+                  type="target"
+                  id={`${data.name}-${col.relationName || col.name}`}
+                  position={Position.Left}
+                />
+              )}
+            </div>
           </td>
-          <td className="p-2 border-t-2 border-r-2 border-gray-300">{type}</td>
-          <td className="p-2 border-t-2 border-gray-300 font-mono">
-            {defaultValue || ""}
+          <td className="p-2 border-t-2 border-r-2 border-gray-300 font-mono">
+            {col.type}
+          </td>
+          <td className="border-t-2 border-gray-300 font-mono">
+            <div className="p-2 relative">
+              {col.defaultValue || ""}
+              {hasRightHandle(col) && (
+                <Handle
+                  className={cc([styles.handle, styles.right])}
+                  type="source"
+                  id={`${data.name}-${col.relationName}`}
+                  position={Position.Right}
+                />
+              )}
+            </div>
           </td>
         </tr>
       ))}
     </tbody>
   </table>
 );
-
 export interface ModelNodeProps {
-  data: {
-    name: string;
-    dbName?: string | null;
-    columns: Array<{
-      name: string;
-      type: string;
-      defaultValue?: string | null;
-    }>;
-    // relations: []
-  };
+  data: ModelNodeData;
 }
 
 export default ModelNode;
