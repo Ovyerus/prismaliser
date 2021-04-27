@@ -5,7 +5,7 @@ const Nav = () => (
     className="w-full p-4 bg-gray-600 text-white"
     style={{ gridArea: "nav" }}
   >
-    hello world
+    Prismaliser
   </nav>
 );
 

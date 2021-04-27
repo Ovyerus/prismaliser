@@ -3,7 +3,7 @@
   max-height: 100vh;
   overflow-y: hidden;
   grid-template-rows: auto 1fr;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
   grid-template-areas:
     "nav nav"
     "left right";

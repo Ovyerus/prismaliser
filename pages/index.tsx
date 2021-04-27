@@ -1,12 +1,22 @@
 import Editor from "@monaco-editor/react";
 import { DMMF } from "@prisma/generator-helper";
 // import monaco from "monaco-editor";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import ReactFlow, {
+  Background,
+  BackgroundVariant,
+  Controls,
+  Elements,
+} from "react-flow-renderer";
 import { useDebounce } from "react-use";
 import useFetch from "use-http";
+import EnumNode from "~/components/EnumNode";
 
 import Layout from "~/components/Layout";
+import ModelNode, { ModelNodeProps } from "~/components/ModelNode";
+import { mapDatamodelToNodes } from "~/util";
 
+// TODO: test what is generated from many-to-many
 const initial = `
 model User {
   id Int @id @default(autoincrement())
@@ -33,6 +43,11 @@ enum Role {
 }
 `.trim();
 
+const elementTypes = {
+  model: ModelNode,
+  enum: EnumNode,
+};
+
 // TODO: rewrite Prisma's textmate file to whatever this is.
 // monaco.languages.register({ id: "prisma" });
 // monaco.languages.setMonarchTokensProvider("prisma", {
@@ -43,7 +58,11 @@ enum Role {
 const IndexPage = () => {
   const [text, setText] = useState(initial);
   const [schemaError, setSchemaError] = useState(null);
-  const [data, setData] = useState<DMMF.Document | null>(null);
+  const [data, setData] = useState<DMMF.Datamodel | null>(null);
+  const elements = useMemo(() => {
+    console.log(data);
+    return data ? mapDatamodelToNodes(data) : [];
+  }, [data]);
   const { post, response, loading, error } = useFetch("/api");
 
   const submit = async () => {
@@ -87,7 +106,18 @@ const IndexPage = () => {
         )}
       </section>
       <pre className="overflow-auto border-l-2">
-        {JSON.stringify(data, null, 4)}
+        <ReactFlow elements={elements} nodeTypes={elementTypes}>
+          <Background
+            variant={BackgroundVariant.Dots}
+            gap={24}
+            size={2}
+            color="currentColor"
+            className="text-gray-200"
+          />
+          <Controls />
+        </ReactFlow>
+        {/* TODO: add a toggleable "debug" view that shows the raw data */}
+        {/* {JSON.stringify(data, null, 4)} */}
       </pre>
     </Layout>
   );
