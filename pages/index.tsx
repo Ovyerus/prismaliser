@@ -106,7 +106,7 @@ const IndexPage = () => {
         )}
       </section>
       <pre className="overflow-auto border-l-2">
-        <ReactFlow elements={elements} nodeTypes={elementTypes}>
+        <ReactFlow elements={elements} nodeTypes={elementTypes} minZoom={0.1}>
           <Background
             variant={BackgroundVariant.Dots}
             gap={24}

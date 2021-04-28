@@ -7,13 +7,11 @@ import styles from "./Node.module.scss";
 
 type ColumnData = ModelNodeData["columns"][number];
 
-const hasLeftHandle = ({ kind, isList, isRequired }: ColumnData) =>
-  // TODO: is dependent
-  kind === "enum" || (kind === "object" && !isList && !isRequired);
+const isTarget = ({ kind, relationFromFields }: ColumnData) =>
+  kind === "enum" || (kind === "object" && !relationFromFields.length);
 
-const hasRightHandle = ({ kind, isList, isRequired }: ColumnData) =>
-  // TODO: is owner
-  kind === "object" && (isList || isRequired);
+const isSource = ({ kind, relationFromFields }: ColumnData) =>
+  kind === "object" && !!relationFromFields.length;
 
 const ModelNode = ({ data }: ModelNodeProps) => (
   <table
@@ -39,7 +37,7 @@ const ModelNode = ({ data }: ModelNodeProps) => (
           <td className="border-t-2 border-r-2 border-gray-300 font-mono font-semibold">
             <div className="p-2 relative">
               {col.name}
-              {hasLeftHandle(col) && (
+              {isTarget(col) && (
                 <Handle
                   className={cc([styles.handle, styles.left])}
                   type="target"
@@ -55,7 +53,7 @@ const ModelNode = ({ data }: ModelNodeProps) => (
           <td className="border-t-2 border-gray-300 font-mono">
             <div className="p-2 relative">
               {col.defaultValue || ""}
-              {hasRightHandle(col) && (
+              {isSource(col) && (
                 <Handle
                   className={cc([styles.handle, styles.right])}
                   type="source"

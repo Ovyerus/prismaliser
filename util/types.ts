@@ -14,6 +14,8 @@ export interface ModelNodeData {
     isList: boolean;
     isRequired: boolean;
     relationName?: string | null;
+    relationFromFields?: string[] | null;
+    relationToFields?: string[] | null;
     defaultValue?: string | null;
   }>;
 }
