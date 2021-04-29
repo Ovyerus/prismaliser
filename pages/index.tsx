@@ -1,20 +1,19 @@
-import Editor from "@monaco-editor/react";
+import Editor, { useMonaco } from "@monaco-editor/react";
 import { DMMF } from "@prisma/generator-helper";
-// import monaco from "monaco-editor";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
   Controls,
-  Elements,
 } from "react-flow-renderer";
 import { useDebounce } from "react-use";
 import useFetch from "use-http";
 import EnumNode from "~/components/EnumNode";
 
 import Layout from "~/components/Layout";
-import ModelNode, { ModelNodeProps } from "~/components/ModelNode";
+import ModelNode from "~/components/ModelNode";
 import { mapDatamodelToNodes } from "~/util";
+import * as prismaLanguage from "~/util/prisma-language";
 
 // TODO: test what is generated from many-to-many
 const initial = `
@@ -62,7 +61,7 @@ const IndexPage = () => {
   const elements = useMemo(() => (data ? mapDatamodelToNodes(data) : []), [
     data,
   ]);
-  const { post, response, loading, error } = useFetch("/api");
+  const monaco = useMonaco();
 
   const submit = async () => {
     const resp = await post({ schema: text });
@@ -77,14 +76,29 @@ const IndexPage = () => {
 
   useDebounce(submit, 1000, [text]);
 
+  useEffect(() => {
+    if (monaco) {
+      monaco.languages.register({ id: "prisma" });
+      monaco.languages.setLanguageConfiguration(
+        "prisma",
+        prismaLanguage.config
+      );
+      monaco.languages.setMonarchTokensProvider(
+        "prisma",
+        prismaLanguage.language
+      );
+    }
+  });
+
   return (
     <Layout>
       <section className="flex flex-col items-start relative border-r-2">
         <Editor
           height="100%"
-          language="graphql"
+          language="prisma"
           theme="light"
           loading="Loading..."
+          path="schema.prisma"
           options={{
             minimap: { enabled: false },
             smoothScrolling: true,

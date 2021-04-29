@@ -32,8 +32,8 @@ const ModelNode = ({ data }: ModelNodeProps) => (
       </tr>
     </thead>
     <tbody>
-      {data.columns.map((col, i) => (
-        <tr className={styles.row}>
+      {data.columns.map((col) => (
+        <tr key={col.name} className={styles.row}>
           <td className="border-t-2 border-r-2 border-gray-300 font-mono font-semibold">
             <div className="p-2 relative">
               {col.name}

@@ -25,7 +25,7 @@ const EnumNode = ({ data }: EnumNodeProps) => (
     </thead>
     <tbody>
       {data.values.map((val) => (
-        <tr className={styles.row}>
+        <tr key={val} className={styles.row}>
           <td className="p-2 border-t-2 border-gray-300 font-mono">{val}</td>
         </tr>
       ))}
