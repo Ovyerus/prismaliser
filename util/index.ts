@@ -1,9 +1,10 @@
 import { DMMF } from "@prisma/generator-helper";
 import { groupBy, pick } from "rambda";
 import { Edge, Elements, Node } from "react-flow-renderer";
-import { EnumNodeData, ModelNodeData } from "./types";
+import { EnumNodeData, ModelNodeData, SchemaError } from "./types";
 
 type FieldWithTable = DMMF.Field & { table: string };
+const errRegex = /^Error validating.*?: (.+?)\n  -->  schema\.prisma:(\d+)\n/;
 
 const mapEnumToNode = ({
   name,
@@ -127,3 +128,10 @@ export const mapDatamodelToNodes = (
   ...data.enums.map(mapEnumToNode),
   ...gatherEdges(data.models),
 ];
+
+export const parseDMMFError = (error: string): SchemaError[] =>
+  error
+    .split("error: ")
+    .slice(1)
+    .map((msg) => msg.match(errRegex).slice(1))
+    .map(([reason, row]) => ({ reason, row }));

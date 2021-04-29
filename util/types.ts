@@ -1,3 +1,8 @@
+export interface SchemaError {
+  reason: string;
+  row: string;
+}
+
 export interface EnumNodeData {
   name: string;
   dbName?: string | null;

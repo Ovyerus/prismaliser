@@ -1,5 +1,6 @@
 import Editor, { useMonaco } from "@monaco-editor/react";
-import { DMMF } from "@prisma/generator-helper";
+import type { DMMF } from "@prisma/generator-helper";
+import type { editor } from "monaco-editor";
 import React, { useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Background,
@@ -14,6 +15,7 @@ import Layout from "~/components/Layout";
 import ModelNode from "~/components/ModelNode";
 import { mapDatamodelToNodes } from "~/util";
 import * as prismaLanguage from "~/util/prisma-language";
+import type { SchemaError } from "~/util/types";
 
 // TODO: test what is generated from many-to-many
 const initial = `
@@ -47,26 +49,23 @@ const elementTypes = {
   enum: EnumNode,
 };
 
-// TODO: rewrite Prisma's textmate file to whatever this is.
-// monaco.languages.register({ id: "prisma" });
-// monaco.languages.setMonarchTokensProvider("prisma", {
-//   tokenizer: {},
-
-// });
-
 const IndexPage = () => {
   const [text, setText] = useState(initial);
-  const [schemaError, setSchemaError] = useState(null);
+  const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
   const [data, setData] = useState<DMMF.Datamodel | null>(null);
   const elements = useMemo(() => (data ? mapDatamodelToNodes(data) : []), [
     data,
   ]);
+  const { post, response, loading } = useFetch("/api");
   const monaco = useMonaco();
 
   const submit = async () => {
     const resp = await post({ schema: text });
-    console.log(error);
-    if (response.ok) setData(resp);
+
+    if (response.ok) {
+      setData(resp);
+      setSchemaErrors([]);
+    } else setSchemaErrors(resp.errors);
   };
 
   const format = async () => {
@@ -90,6 +89,22 @@ const IndexPage = () => {
     }
   });
 
+  useEffect(() => {
+    if (!monaco) return;
+
+    const markers = schemaErrors.map<editor.IMarkerData>((err) => ({
+      message: err.reason,
+      startLineNumber: Number(err.row),
+      endLineNumber: Number(err.row),
+      startColumn: 0,
+      endColumn: 9999,
+      severity: 8,
+    }));
+    const [model] = monaco.editor.getModels();
+
+    monaco.editor.setModelMarkers(model, "prismaliser", markers);
+  }, [schemaErrors]);
+
   return (
     <Layout>
       <section className="flex flex-col items-start relative border-r-2">
@@ -108,6 +123,8 @@ const IndexPage = () => {
           value={text}
           onChange={(val) => setText(val)}
         />
+        {/* <div>{JSON.stringify(schemaErrors)}</div> */}
+
         <button
           className="bg-indigo-400 hover:bg-indigo-500 text-white py-2 px-3 rounded-lg absolute left-4 bottom-4 shadow-md hover:shadow-lg transition"
           onClick={format}
