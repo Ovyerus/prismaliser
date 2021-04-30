@@ -4,7 +4,7 @@ import { Edge, Elements, Node } from "react-flow-renderer";
 import { EnumNodeData, ModelNodeData, SchemaError } from "./types";
 
 type FieldWithTable = DMMF.Field & { table: string };
-const errRegex = /^Error validating.*?: (.+?)\n  -->  schema\.prisma:(\d+)\n/;
+const errRegex = /^(?:Error validating.*?:)?(.+?)\n  -->  schema\.prisma:(\d+)\n/;
 
 const mapEnumToNode = ({
   name,
@@ -75,8 +75,9 @@ const generateEnumEdge = (col: FieldWithTable): Edge => ({
   targetHandle: `${col.table}-${col.name}`,
 });
 
+// TODO: custom relation edge types for distinguishing 1-1, 1-n, m-n.
 const generateRelationEdge = (col: FieldWithTable): Edge => ({
-  id: `e${col.table}-${col.name}-${col.type}`,
+  id: `e${col.table}-${col.relationName}-${col.type}`,
   source: col.type,
   target: col.table,
   type: "smoothstep",
@@ -85,7 +86,10 @@ const generateRelationEdge = (col: FieldWithTable): Edge => ({
   label: col.relationName,
 });
 
-// TODO: custom relation names don't seem to be working?
+// TODO: changing the names of relations seems to not work. React Flow gives a
+// "couldn't create edge for target handle id: User-obama; edge id: eUser-obama-Post"
+// warning and the edge doesn't appear, but looking at the data it all seems to be correct.
+// No idea why :/
 const gatherEdges = (models: DMMF.Model[]): Edge[] => {
   const columns = models
     .map(
