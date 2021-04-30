@@ -35,6 +35,7 @@ const EnumNode = ({ data }: EnumNodeProps) => (
       className={cc([styles.handle, styles.bottom])}
       type="source"
       position={Position.Bottom}
+      isConnectable={false}
     />
   </table>
 );

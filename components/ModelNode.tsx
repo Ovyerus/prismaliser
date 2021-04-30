@@ -39,10 +39,12 @@ const ModelNode = ({ data }: ModelNodeProps) => (
               {col.name}
               {isTarget(col) && (
                 <Handle
+                  key={`${data.name}-${col.relationName || col.name}`}
                   className={cc([styles.handle, styles.left])}
                   type="target"
                   id={`${data.name}-${col.relationName || col.name}`}
                   position={Position.Left}
+                  isConnectable={false}
                 />
               )}
             </div>
@@ -55,10 +57,12 @@ const ModelNode = ({ data }: ModelNodeProps) => (
               {col.defaultValue || ""}
               {isSource(col) && (
                 <Handle
+                  key={`${data.name}-${col.relationName}`}
                   className={cc([styles.handle, styles.right])}
                   type="source"
                   id={`${data.name}-${col.relationName}`}
                   position={Position.Right}
+                  isConnectable={false}
                 />
               )}
             </div>

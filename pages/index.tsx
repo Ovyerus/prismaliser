@@ -7,7 +7,7 @@ import ReactFlow, {
   BackgroundVariant,
   Controls,
 } from "react-flow-renderer";
-import { useDebounce } from "react-use";
+import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
 import EnumNode from "~/components/EnumNode";
 
@@ -17,7 +17,7 @@ import { mapDatamodelToNodes } from "~/util";
 import * as prismaLanguage from "~/util/prisma-language";
 import type { SchemaError } from "~/util/types";
 
-// TODO: test what is generated from many-to-many
+// TODO: infer hidden relation table for m-m relationships
 const initial = `
 model User {
   id Int @id @default(autoincrement())
@@ -50,7 +50,11 @@ const elementTypes = {
 };
 
 const IndexPage = () => {
-  const [text, setText] = useState(initial);
+  const [storedText, setStoredText] = useLocalStorage(
+    "prismaliser.text",
+    initial
+  );
+  const [text, setText] = useState(storedText);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
   const [data, setData] = useState<DMMF.Datamodel | null>(null);
   const elements = useMemo(() => (data ? mapDatamodelToNodes(data) : []), [
@@ -60,12 +64,14 @@ const IndexPage = () => {
   const monaco = useMonaco();
 
   const submit = async () => {
+    setStoredText(text);
     const resp = await post({ schema: text });
 
     if (response.ok) {
       setData(resp);
       setSchemaErrors([]);
-    } else setSchemaErrors(resp.errors);
+    } else if (resp.errors) setSchemaErrors(resp.errors);
+    else console.error(resp);
   };
 
   const format = async () => {
@@ -131,7 +137,6 @@ const IndexPage = () => {
         >
           Format
         </button>
-        {/* TODO: faster speen */}
         {loading && (
           <div className="w-4 h-4 border-blue-500 border-2 border-l-0 border-b-0 absolute right-4 bottom-4 rounded-full animate-spin" />
         )}
@@ -147,7 +152,7 @@ const IndexPage = () => {
           />
           <Controls />
         </ReactFlow>
-        {/* TODO: add a toggleable "debug" view that shows the raw data */}
+        {/* TODO: add a toggleable "debug" view that shows the raw data? */}
         {/* {JSON.stringify(data, null, 4)} */}
       </pre>
     </Layout>
