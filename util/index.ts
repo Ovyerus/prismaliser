@@ -85,6 +85,7 @@ const generateRelationEdge = (col: FieldWithTable): Edge => ({
   label: col.relationName,
 });
 
+// TODO: custom relation names don't seem to be working?
 const gatherEdges = (models: DMMF.Model[]): Edge[] => {
   const columns = models
     .map(
