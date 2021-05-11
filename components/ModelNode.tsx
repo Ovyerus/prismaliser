@@ -7,11 +7,23 @@ import styles from "./Node.module.scss";
 
 type ColumnData = ModelNodeData["columns"][number];
 
-const isTarget = ({ kind, relationFromFields }: ColumnData) =>
-  kind === "enum" || (kind === "object" && !relationFromFields.length);
+const isTarget = ({
+  kind,
+  isList,
+  relationFromFields,
+  relationName,
+  relationType,
+}: ColumnData) =>
+  kind === "enum" ||
+  ((relationType === "1-n" || relationType === "m-n") && !isList) ||
+  (relationType === "1-1" && !relationFromFields?.length) ||
+  // Fallback for implicit m-n tables (maybe they should act like the child in a
+  // 1-n instead)
+  (kind === "scalar" && !!relationName);
 
-const isSource = ({ kind, relationFromFields }: ColumnData) =>
-  kind === "object" && !!relationFromFields.length;
+const isSource = ({ isList, relationFromFields, relationType }: ColumnData) =>
+  ((relationType === "1-n" || relationType === "m-n") && isList) ||
+  (relationType === "1-1" && !!relationFromFields?.length);
 
 const ModelNode = ({ data }: ModelNodeProps) => (
   <table
@@ -57,10 +69,10 @@ const ModelNode = ({ data }: ModelNodeProps) => (
               {col.defaultValue || ""}
               {isSource(col) && (
                 <Handle
-                  key={`${data.name}-${col.relationName}`}
+                  key={`${data.name}-${col.relationName}-${col.name}`}
                   className={cc([styles.handle, styles.right])}
                   type="source"
-                  id={`${data.name}-${col.relationName}`}
+                  id={`${data.name}-${col.relationName}-${col.name}`}
                   position={Position.Right}
                   isConnectable={false}
                 />

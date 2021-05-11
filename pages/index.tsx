@@ -48,8 +48,8 @@ const elementTypes = {
   model: ModelNode,
   enum: EnumNode,
 };
-
 const IndexPage = () => {
+  // TODO: perhaps add multiple save states? and save positions too
   const [storedText, setStoredText] = useLocalStorage(
     "prismaliser.text",
     initial
@@ -57,9 +57,10 @@ const IndexPage = () => {
   const [text, setText] = useState(storedText);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
   const [data, setData] = useState<DMMF.Datamodel | null>(null);
-  const elements = useMemo(() => (data ? mapDatamodelToNodes(data) : []), [
-    data,
-  ]);
+  const elements = useMemo(
+    () => (data ? mapDatamodelToNodes(data) : []),
+    [data]
+  );
   const { post, response, loading } = useFetch("/api");
   const monaco = useMonaco();
 

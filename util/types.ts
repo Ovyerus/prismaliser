@@ -1,3 +1,5 @@
+export type RelationType = "1-1" | "1-n" | "m-n";
+
 export interface SchemaError {
   reason: string;
   row: string;
@@ -22,5 +24,6 @@ export interface ModelNodeData {
     relationFromFields?: string[] | null;
     relationToFields?: string[] | null;
     defaultValue?: string | null;
+    relationType?: RelationType | null;
   }>;
 }
