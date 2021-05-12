@@ -9,6 +9,7 @@ import ReactFlow, {
 } from "react-flow-renderer";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
+import RelationEdge from "~/components/RelationEdge";
 import EnumNode from "~/components/EnumNode";
 
 import Layout from "~/components/Layout";
@@ -17,7 +18,6 @@ import { mapDatamodelToNodes } from "~/util";
 import * as prismaLanguage from "~/util/prisma-language";
 import type { SchemaError } from "~/util/types";
 
-// TODO: infer hidden relation table for m-m relationships
 const initial = `
 model User {
   id Int @id @default(autoincrement())
@@ -44,10 +44,15 @@ enum Role {
 }
 `.trim();
 
-const elementTypes = {
+const nodeTypes = {
   model: ModelNode,
   enum: EnumNode,
 };
+
+const edgeTypes = {
+  relation: RelationEdge,
+};
+
 const IndexPage = () => {
   // TODO: perhaps add multiple save states? and save positions too
   const [storedText, setStoredText] = useLocalStorage(
@@ -143,7 +148,12 @@ const IndexPage = () => {
         )}
       </section>
       <pre className="overflow-auto border-l-2">
-        <ReactFlow elements={elements} nodeTypes={elementTypes} minZoom={0.1}>
+        <ReactFlow
+          elements={elements}
+          edgeTypes={edgeTypes}
+          nodeTypes={nodeTypes}
+          minZoom={0.1}
+        >
           <Background
             variant={BackgroundVariant.Dots}
             gap={24}
@@ -153,6 +163,46 @@ const IndexPage = () => {
           />
           <Controls />
         </ReactFlow>
+        <svg width="0" height="0">
+          <defs>
+            <marker
+              id="prismaliser-one"
+              markerWidth="12.5"
+              markerHeight="12.5"
+              viewBox="-10 -10 20 20"
+              orient="auto-start-reverse"
+              refX="0"
+              refY="0"
+            >
+              <polyline
+                className="stroke-current text-gray-400"
+                strokeWidth="3"
+                strokeLinecap="square"
+                fill="none"
+                points="-10,-8 -10,8"
+              />
+            </marker>
+
+            <marker
+              id="prismaliser-many"
+              markerWidth="12.5"
+              markerHeight="12.5"
+              viewBox="-10 -10 20 20"
+              orient="auto-start-reverse"
+              refX="0"
+              refY="0"
+            >
+              <polyline
+                className="stroke-current text-gray-400"
+                strokeLinejoin="round"
+                strokeLinecap="square"
+                strokeWidth="1.5"
+                fill="none"
+                points="0,-8 -10,0 0,8"
+              />
+            </marker>
+          </defs>
+        </svg>
         {/* TODO: add a toggleable "debug" view that shows the raw data? */}
         {/* {JSON.stringify(data, null, 4)} */}
       </pre>

@@ -10,6 +10,9 @@ module.exports = {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
     },
+    fill: {
+      none: "none",
+    },
   },
   variants: {
     extend: {

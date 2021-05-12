@@ -27,3 +27,7 @@ export interface ModelNodeData {
     relationType?: RelationType | null;
   }>;
 }
+
+export interface RelationEdgeData {
+  relationType: RelationType;
+}

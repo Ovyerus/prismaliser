@@ -91,8 +91,9 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
 ]): Edge[] => {
   const base = {
     id: `e${relationName}`,
-    type: "smoothstep",
+    type: "relation",
     label: relationName,
+    data: { relationType: type },
   };
 
   if (type === "m-n")
