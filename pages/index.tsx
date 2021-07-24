@@ -1,20 +1,12 @@
 import Editor, { useMonaco } from "@monaco-editor/react";
 import type { DMMF } from "@prisma/generator-helper";
 import type { editor } from "monaco-editor";
-import React, { useEffect, useMemo, useState } from "react";
-import ReactFlow, {
-  Background,
-  BackgroundVariant,
-  Controls,
-} from "react-flow-renderer";
+import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
-import RelationEdge from "~/components/RelationEdge";
-import EnumNode from "~/components/EnumNode";
+import FlowView from "~/components/FlowView";
 
 import Layout from "~/components/Layout";
-import ModelNode from "~/components/ModelNode";
-import { mapDatamodelToNodes } from "~/util";
 import * as prismaLanguage from "~/util/prisma-language";
 import type { SchemaError } from "~/util/types";
 
@@ -44,28 +36,15 @@ enum Role {
 }
 `.trim();
 
-const nodeTypes = {
-  model: ModelNode,
-  enum: EnumNode,
-};
-
-const edgeTypes = {
-  relation: RelationEdge,
-};
-
 const IndexPage = () => {
-  // TODO: perhaps add multiple save states? and save positions too
+  // TODO: multiple save states, and saving node positions as well.
   const [storedText, setStoredText] = useLocalStorage(
     "prismaliser.text",
     initial
   );
   const [text, setText] = useState(storedText);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
-  const [data, setData] = useState<DMMF.Datamodel | null>(null);
-  const elements = useMemo(
-    () => (data ? mapDatamodelToNodes(data) : []),
-    [data]
-  );
+  const [dmmf, setDMMF] = useState<DMMF.Datamodel | null>(null);
   const { post, response, loading } = useFetch("/api");
   const monaco = useMonaco();
 
@@ -74,7 +53,7 @@ const IndexPage = () => {
     const resp = await post({ schema: text });
 
     if (response.ok) {
-      setData(resp);
+      setDMMF(resp);
       setSchemaErrors([]);
     } else if (resp.errors) setSchemaErrors(resp.errors);
     else console.error(resp);
@@ -119,7 +98,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <section className="flex flex-col items-start relative border-r-2">
+      <section className="relative flex flex-col items-start border-r-2">
         <Editor
           height="100%"
           language="prisma"
@@ -138,71 +117,17 @@ const IndexPage = () => {
         {/* <div>{JSON.stringify(schemaErrors)}</div> */}
 
         <button
-          className="bg-indigo-400 hover:bg-indigo-500 text-white py-2 px-3 rounded-lg absolute left-4 bottom-4 shadow-md hover:shadow-lg transition"
+          className="absolute px-3 py-2 text-white transition bg-indigo-400 rounded-lg shadow-md hover:bg-indigo-500 left-4 bottom-4 hover:shadow-lg"
           onClick={format}
         >
           Format
         </button>
         {loading && (
-          <div className="w-4 h-4 border-blue-500 border-2 border-l-0 border-b-0 absolute right-4 bottom-4 rounded-full animate-spin" />
+          <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
         )}
       </section>
       <pre className="overflow-auto border-l-2">
-        <ReactFlow
-          elements={elements}
-          edgeTypes={edgeTypes}
-          nodeTypes={nodeTypes}
-          minZoom={0.1}
-        >
-          <Background
-            variant={BackgroundVariant.Dots}
-            gap={24}
-            size={2}
-            color="currentColor"
-            className="text-gray-200"
-          />
-          <Controls />
-        </ReactFlow>
-        <svg width="0" height="0">
-          <defs>
-            <marker
-              id="prismaliser-one"
-              markerWidth="12.5"
-              markerHeight="12.5"
-              viewBox="-10 -10 20 20"
-              orient="auto-start-reverse"
-              refX="0"
-              refY="0"
-            >
-              <polyline
-                className="stroke-current text-gray-400"
-                strokeWidth="3"
-                strokeLinecap="square"
-                fill="none"
-                points="-10,-8 -10,8"
-              />
-            </marker>
-
-            <marker
-              id="prismaliser-many"
-              markerWidth="12.5"
-              markerHeight="12.5"
-              viewBox="-10 -10 20 20"
-              orient="auto-start-reverse"
-              refX="0"
-              refY="0"
-            >
-              <polyline
-                className="stroke-current text-gray-400"
-                strokeLinejoin="round"
-                strokeLinecap="square"
-                strokeWidth="1.5"
-                fill="none"
-                points="0,-8 -10,0 0,8"
-              />
-            </marker>
-          </defs>
-        </svg>
+        <FlowView dmmf={dmmf} />
         {/* TODO: add a toggleable "debug" view that shows the raw data? */}
         {/* {JSON.stringify(data, null, 4)} */}
       </pre>
