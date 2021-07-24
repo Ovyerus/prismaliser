@@ -12,28 +12,28 @@
     "start": "next start"
   },
   "dependencies": {
-    "@monaco-editor/react": "^4.1.3",
-    "@prisma/sdk": "^2.21.2",
+    "@monaco-editor/react": "^4.2.1",
+    "@prisma/sdk": "^2.27.0",
     "classcat": "^5.0.3",
-    "next": "^10.1.3",
-    "rambda": "^6.7.0",
+    "next": "^11.0.1",
+    "rambda": "^6.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-flow-renderer": "^9.5.3",
+    "react-flow-renderer": "^9.6.5",
     "react-use": "^17.2.4",
-    "sass": "^1.32.11",
+    "sass": "^1.36.0",
     "strip-ansi": "6",
-    "use-http": "^1.0.20"
+    "use-http": "^1.0.21"
   },
   "devDependencies": {
     "@prisma/generator-helper": "^2.21.2",
-    "@types/node": "^14.14.41",
-    "@types/react": "^17.0.3",
-    "autoprefixer": "^10.2.5",
-    "monaco-editor": "^0.23.0",
-    "postcss": "^8.2.12",
+    "@types/node": "^16.4.1",
+    "@types/react": "^17.0.14",
+    "autoprefixer": "^10.3.1",
+    "monaco-editor": "^0.26.1",
+    "postcss": "^8.3.6",
     "postcss-nested": "^5.0.5",
-    "tailwindcss": "^2.1.2",
-    "typescript": "^4.2.4"
+    "tailwindcss": "^2.2.7",
+    "typescript": "^4.3.5"
   }
 }
