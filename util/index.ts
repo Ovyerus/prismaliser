@@ -1,4 +1,4 @@
-import { DMMF } from "@prisma/generator-helper";
+import type { DMMF } from "@prisma/generator-helper";
 import { groupBy, map, pipe } from "rambda";
 import { Edge, Elements, Node } from "react-flow-renderer";
 import {

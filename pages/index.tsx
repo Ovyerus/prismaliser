@@ -88,7 +88,7 @@ const IndexPage = () => {
         <EditorView value={text} onChange={(val) => setText(val)} />
 
         <button
-          className="absolute px-3 py-2 text-white transition bg-indigo-400 rounded-lg shadow-md hover:bg-indigo-500 left-4 bottom-4 hover:shadow-lg"
+          className="absolute left-4 bottom-4 button floating"
           onClick={format}
         >
           Format
