@@ -4,10 +4,10 @@ import type { editor } from "monaco-editor";
 import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
+import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
 
 import Layout from "~/components/Layout";
-import * as prismaLanguage from "~/util/prisma-language";
 import type { SchemaError } from "~/util/types";
 
 const initial = `
@@ -67,20 +67,6 @@ const IndexPage = () => {
   useDebounce(submit, 1000, [text]);
 
   useEffect(() => {
-    if (monaco) {
-      monaco.languages.register({ id: "prisma" });
-      monaco.languages.setLanguageConfiguration(
-        "prisma",
-        prismaLanguage.config
-      );
-      monaco.languages.setMonarchTokensProvider(
-        "prisma",
-        prismaLanguage.language
-      );
-    }
-  });
-
-  useEffect(() => {
     if (!monaco) return;
 
     const markers = schemaErrors.map<editor.IMarkerData>((err) => ({
@@ -94,27 +80,12 @@ const IndexPage = () => {
     const [model] = monaco.editor.getModels();
 
     monaco.editor.setModelMarkers(model, "prismaliser", markers);
-  }, [schemaErrors]);
+  }, [monaco, schemaErrors]);
 
   return (
     <Layout>
       <section className="relative flex flex-col items-start border-r-2">
-        <Editor
-          height="100%"
-          language="prisma"
-          theme="light"
-          loading="Loading..."
-          path="schema.prisma"
-          options={{
-            minimap: { enabled: false },
-            smoothScrolling: true,
-            cursorSmoothCaretAnimation: true,
-            scrollBeyondLastLine: false,
-          }}
-          value={text}
-          onChange={(val) => setText(val)}
-        />
-        {/* <div>{JSON.stringify(schemaErrors)}</div> */}
+        <EditorView value={text} onChange={(val) => setText(val)} />
 
         <button
           className="absolute px-3 py-2 text-white transition bg-indigo-400 rounded-lg shadow-md hover:bg-indigo-500 left-4 bottom-4 hover:shadow-lg"
