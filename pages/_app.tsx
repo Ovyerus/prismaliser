@@ -16,8 +16,8 @@ const App = ({ Component, pageProps }: AppProps) => (
       <meta property="og:title" content="Prismaliser" />
       <meta property="og:description" content="Visualise your Prisma schema!" />
       <meta property="og:image" content="/img/banner.png" />
-      <meta property="og:image:height" content="1000" />
-      <meta property="og:image:width" content="500" />
+      <meta property="og:image:width" content="1000" />
+      <meta property="og:image:height" content="500" />
       <meta
         property="og:image:alt"
         content="Visualise your Prisma schema - Prismaliser"
