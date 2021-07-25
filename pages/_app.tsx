@@ -10,6 +10,11 @@ const App = ({ Component, pageProps }: AppProps) => (
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       <title>Prismaliser</title>
       <meta name="description" content="Visualise your Prisma schema!" />
+      <meta
+        name="keywords"
+        content="Prisma, GraphQL, Schema, Visualisation, Graph, Database, Design"
+      />
+      <meta name="theme-color" content="#6366F1" />
       {/* OpenGraph */}
       <meta property="og:type" content="object" />
       <meta property="og:site_name" content="Prismaliser" />
