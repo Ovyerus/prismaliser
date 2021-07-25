@@ -35,7 +35,11 @@ const App = ({ Component, pageProps }: AppProps) => (
         property="twitter:description"
         content="Visualise your Prisma schema!"
       />
-      <meta property="twitter:image" content="/img/banner.png" />
+      {/* TEMP hardcoding */}
+      <meta
+        property="twitter:image"
+        content="https://prismaliser.ovy.cloud/img/banner.png"
+      />
       <meta
         property="twitter:image:alt"
         content="Visualise your Prisma schema - Prismaliser"
