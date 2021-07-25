@@ -45,6 +45,24 @@ yarn install  # or `npm install`
 yarn dev  # or `npm run dev`
 ```
 
+## Roadmap
+
+This is a list of what I've currently got planned for the future. I'm open to
+accepting PRs for any of these, but I'd prefer it if you could first open an
+issue regarding it so we can discuss it/make sure there's not multiple people
+working on the same thing.
+
+I'm also open to PRs for other features not listed here, but also please open a
+corresponding issue to discuss it, just like above.
+
+- [ ] Multi-history support (user defined saves).
+- [ ] Sharing a schema with other users via a generated link (similar to
+      TypeScript's [playground](https://www.typescriptlang.org/play/)).
+- [ ] Saving node positions across page resets.
+- [ ] Autocomplete for the editor (very big, Monaco is a bit fiddly at times,
+      would probably need to do some looking at the VSCode plugin for Prisma to
+      figure out some stuff).
+
 ## License
 
 Prismaliser is licensed under the MIT License - see the [LICENSE](LICENSE) file
