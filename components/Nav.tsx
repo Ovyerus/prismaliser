@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react";
 import github from "@iconify/icons-simple-icons/github";
 import prisma from "@iconify/icons-simple-icons/prisma";
 import twitter from "@iconify/icons-simple-icons/twitter";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import React from "react";
 
@@ -12,7 +12,7 @@ const Nav = () => (
   >
     <Image src="/svg/logo.svg" alt="Prismaliser" width={200} height={20} />
 
-    <div className="flex-1"></div>
+    <div className="flex-1" />
 
     <div className="flex items-center gap-4">
       <a

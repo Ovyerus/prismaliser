@@ -4,7 +4,6 @@ import ReactFlow, {
   Background,
   BackgroundVariant,
   Controls,
-  Node,
 } from "react-flow-renderer";
 
 import EnumNode from "~/components/EnumNode";
@@ -27,8 +26,6 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
     [dmmf]
   );
 
-  const onNodeDragStop = (_, node: Node) => {};
-
   return (
     <>
       <ReactFlow
@@ -36,7 +33,6 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.1}
-        onNodeDragStop={onNodeDragStop}
       >
         <Background
           variant={BackgroundVariant.Dots}

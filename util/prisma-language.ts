@@ -47,7 +47,7 @@ export const language: languages.IMonarchLanguage = {
   symbols: /[=!?:]+/,
 
   // Prisma doesn't mention any string escapes, so just leaving this as default from graphql.
-  escapes: /\\(?:["\\\/bfnrt]|u[0-9A-Fa-f]{4})/,
+  escapes: /\\(?:["\\/bfnrt]|u[0-9A-Fa-f]{4})/,
 
   // The main tokenizer for our languages
   tokenizer: {
@@ -76,7 +76,7 @@ export const language: languages.IMonarchLanguage = {
 
       // to show class names nicely
       [
-        /[A-Z][\w\$]*/,
+        /[A-Z][\w$]*/,
         {
           cases: {
             "@typeKeywords": "keyword",
@@ -89,13 +89,13 @@ export const language: languages.IMonarchLanguage = {
       { include: "@whitespace" },
 
       // delimiters and operators
-      [/[{}()\[\]]/, "@brackets"],
+      [/[{}()[\]]/, "@brackets"],
       [/@symbols/, { cases: { "@operators": "operator", "@default": "" } }],
 
-      [/@\s*[a-zA-Z_\$][\w\$]*/, { token: "annotation" }],
+      [/@\s*[a-zA-Z_$][\w$]*/, { token: "annotation" }],
 
       // numbers
-      [/\d*\.\d+([eE][\-+]?\d+)?/, "number.float"],
+      [/\d*\.\d+([eE][-+]?\d+)?/, "number.float"],
       [/0[xX][0-9a-fA-F]+/, "number.hex"],
       [/\d+/, "number"],
 

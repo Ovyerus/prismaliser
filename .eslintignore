@@ -1,3 +1,4 @@
 next-env.d.ts
 .next
 .eslintrc.js
+next.config.js

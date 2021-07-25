@@ -5,6 +5,7 @@ import {
   getEdgeCenter,
   getSmoothStepPath,
 } from "react-flow-renderer";
+
 import { RelationEdgeData } from "~/util/types";
 
 const RelationEdge = ({
@@ -53,7 +54,7 @@ const RelationEdge = ({
     />
   ) : null;
 
-  const { relationType } = data;
+  const { relationType } = data!;
   const [markerStart, markerEnd] = {
     "m-n": ["url(#prismaliser-many)", "url(#prismaliser-many)"],
     "1-n": ["url(#prismaliser-many)", "url(#prismaliser-one)"],
@@ -66,7 +67,7 @@ const RelationEdge = ({
   return (
     <>
       <path
-        className="stroke-2 stroke-current fill-none text-gray-400"
+        className="text-gray-400 stroke-current stroke-2 fill-none"
         d={path}
         markerStart={markerStart}
         markerEnd={markerEnd}

@@ -1,6 +1,7 @@
 import type { DMMF } from "@prisma/generator-helper";
-import { groupBy, map, pipe } from "rambda";
+import { groupBy } from "rambda";
 import { Edge, Elements, Node } from "react-flow-renderer";
+
 import {
   EnumNodeData,
   ModelNodeData,
@@ -9,7 +10,10 @@ import {
 } from "./types";
 
 type FieldWithTable = DMMF.Field & { tableName: string };
-type Relation = { type: RelationType; fields: readonly FieldWithTable[] };
+interface Relation {
+  type: RelationType;
+  fields: readonly FieldWithTable[];
+}
 
 const errRegex =
   /^(?:Error validating.*?:)?(.+?)\n  -->  schema\.prisma:(\d+)\n/;
@@ -61,7 +65,9 @@ const generateModelNode = (
         relationName,
         relationFromFields,
         relationToFields,
-        relationType: relations[relationName]?.type,
+        relationType: (
+          (relationName && relations[relationName]) as Relation | undefined
+        )?.type,
         // `isList` and `isRequired` are mutually exclusive as per the spec
         type: type + (isList ? "[]" : !isRequired ? "?" : ""),
         defaultValue: !hasDefaultValue
@@ -70,7 +76,7 @@ const generateModelNode = (
           ? // JSON.stringify gives us the quotes to show it's a string.
             // Not a perfect thing but it works ¯\_(ツ)_/¯
             `${def.name}(${def.args.map((x) => JSON.stringify(x)).join(", ")})`
-          : def.toString(),
+          : def!.toString(),
       })
     ),
   },
@@ -106,7 +112,7 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
       targetHandle: `_${relationName}-${letters[i]}`,
     }));
   else if (type === "1-n") {
-    const source = fields.find((x) => x.isList);
+    const source = fields.find((x) => x.isList)!;
 
     return [
       {
@@ -134,7 +140,7 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
 
 export const mapDatamodelToNodes = (
   data: DMMF.Datamodel
-): Elements<ModelNodeData | EnumNodeData> => {
+): Elements<EnumNodeData | ModelNodeData> => {
   const filterFields = (kind: DMMF.FieldKind) =>
     data.models.flatMap(({ name: tableName, fields }) =>
       fields
@@ -145,27 +151,24 @@ export const mapDatamodelToNodes = (
   const relationFields = filterFields("object");
   const enumFields = filterFields("enum");
 
-  const relations = pipe<
-    FieldWithTable[],
-    { readonly [key: string]: readonly FieldWithTable[] },
-    Array<[string, readonly FieldWithTable[]]>,
-    ReadonlyArray<[string, Relation]>,
-    { readonly [key: string]: Relation }
-  >(
-    groupBy((col) => col.relationName),
-    Object.entries,
-    map(([key, [one, two]]) => {
-      if (one.isList && two.isList)
-        return [key, { type: "m-n", fields: [one, two] }];
-      else if (one.isList || two.isList)
-        return [key, { type: "1-n", fields: [one, two] }];
-      else return [key, { type: "1-1", fields: [one, two] }];
-    }),
-    Object.fromEntries
-  )(relationFields);
+  // `pipe` typing broke so I have to do this for now. Reeeeaaaally fucking need
+  // that pipeline operator.
+  const intermediate1: { readonly [key: string]: readonly FieldWithTable[] } =
+    groupBy((col) => col.relationName!, relationFields);
+  const intermediate2: ReadonlyArray<[string, Relation]> = Object.entries(
+    intermediate1
+  ).map(([key, [one, two]]) => {
+    if (one.isList && two.isList)
+      return [key, { type: "m-n", fields: [one, two] }];
+    else if (one.isList || two.isList)
+      return [key, { type: "1-n", fields: [one, two] }];
+    else return [key, { type: "1-1", fields: [one, two] }];
+  });
+  const relations: { readonly [key: string]: Relation } =
+    Object.fromEntries(intermediate2);
 
   const implicitManyToMany = Object.entries(relations)
-    .filter(([_, { type }]) => type === "m-n")
+    .filter(([, { type }]) => type === "m-n")
     .map(
       ([relationName, { fields }]) =>
         ({
@@ -185,7 +188,7 @@ export const mapDatamodelToNodes = (
             // this is gonna break on composite ids i think lol
             type: data.models
               .find((m) => m.name === field.type)
-              .fields.find((x) => x.isId).type,
+              ?.fields.find((x) => x.isId)?.type,
           })),
         } as DMMF.Model)
     );
@@ -204,5 +207,5 @@ export const parseDMMFError = (error: string): SchemaError[] =>
   error
     .split("error: ")
     .slice(1)
-    .map((msg) => msg.match(errRegex).slice(1))
+    .map((msg) => msg.match(errRegex)!.slice(1))
     .map(([reason, row]) => ({ reason, row }));

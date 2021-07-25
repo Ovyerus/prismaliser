@@ -1,12 +1,12 @@
-import Editor, { useMonaco } from "@monaco-editor/react";
+import { useMonaco } from "@monaco-editor/react";
 import type { DMMF } from "@prisma/generator-helper";
 import type { editor } from "monaco-editor";
 import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
+
 import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
-
 import Layout from "~/components/Layout";
 import type { SchemaError } from "~/util/types";
 
@@ -42,7 +42,7 @@ const IndexPage = () => {
     "prismaliser.text",
     initial
   );
-  const [text, setText] = useState(storedText);
+  const [text, setText] = useState(storedText!);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
   const [dmmf, setDMMF] = useState<DMMF.Datamodel | null>(null);
   const { post, response, loading } = useFetch("/api");
@@ -85,7 +85,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <section className="relative flex flex-col items-start border-r-2">
-        <EditorView value={text} onChange={(val) => setText(val)} />
+        <EditorView value={text} onChange={(val) => setText(val!)} />
 
         <button
           className="absolute left-4 bottom-4 button floating"

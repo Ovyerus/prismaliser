@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
+import React, { useEffect } from "react";
 
 import * as prismaLanguage from "~/util/prisma-language";
 
@@ -41,7 +41,7 @@ const EditorView = ({ value, onChange }: EditorViewProps) => {
 
 export interface EditorViewProps {
   value: string;
-  onChange: (text: string) => void;
+  onChange: (text?: string) => void;
 }
 
 export default EditorView;

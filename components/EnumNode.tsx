@@ -1,9 +1,10 @@
 import cc from "classcat";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { EnumNodeData } from "~/util/types";
 
 import styles from "./Node.module.scss";
+
+import { EnumNodeData } from "~/util/types";
 
 const EnumNode = ({ data }: EnumNodeProps) => (
   <table

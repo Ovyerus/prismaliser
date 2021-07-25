@@ -1,9 +1,10 @@
 import cc from "classcat";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { ModelNodeData } from "~/util/types";
 
 import styles from "./Node.module.scss";
+
+import { ModelNodeData } from "~/util/types";
 
 type ColumnData = ModelNodeData["columns"][number];
 
