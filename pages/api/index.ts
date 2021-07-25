@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import stripAnsi from "strip-ansi";
 
 import { parseDMMFError } from "~/util";
+import { ErrorTypes } from "~/util/types";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST")
@@ -15,8 +16,19 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     res.json(dmmf.datamodel);
   } catch (err) {
     const message = stripAnsi(err.message);
-    const errors = parseDMMFError(message);
+    let errors: any;
+    let errType: ErrorTypes;
 
-    res.status(400).json({ errors });
+    if (message.includes("error: ")) {
+      errors = parseDMMFError(message);
+      errType = ErrorTypes.Prisma;
+    } else {
+      console.error(err);
+
+      errors = message;
+      errType = ErrorTypes.Other;
+    }
+
+    res.status(400).json({ errors, type: errType });
   }
 }

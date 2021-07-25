@@ -31,3 +31,8 @@ export interface ModelNodeData {
 export interface RelationEdgeData {
   relationType: RelationType;
 }
+
+export enum ErrorTypes {
+  Prisma,
+  Other,
+}

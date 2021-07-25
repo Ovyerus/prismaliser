@@ -8,7 +8,7 @@ import useFetch from "use-http";
 import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
 import Layout from "~/components/Layout";
-import type { SchemaError } from "~/util/types";
+import { ErrorTypes, SchemaError } from "~/util/types";
 
 const initial = `
 model User {
@@ -55,7 +55,7 @@ const IndexPage = () => {
     if (response.ok) {
       setDMMF(resp);
       setSchemaErrors([]);
-    } else if (resp.errors) setSchemaErrors(resp.errors);
+    } else if (resp.type === ErrorTypes.Prisma) setSchemaErrors(resp.errors);
     else console.error(resp);
   };
 
