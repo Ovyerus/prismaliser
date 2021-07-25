@@ -11,7 +11,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       <title>Prismaliser</title>
       <meta name="description" content="Visualise your Prisma schema!" />
       {/* OpenGraph */}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="object" />
       <meta property="og:site_name" content="Prismaliser" />
       <meta property="og:title" content="Prismaliser" />
       <meta property="og:description" content="Visualise your Prisma schema!" />
@@ -23,6 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => (
         content="Visualise your Prisma schema - Prismaliser"
       />
       {/* Other social media */}
+      <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:creator" content="@ovyerus" />
       <meta property="twitter:title" content="Prismaliser" />
       <meta
