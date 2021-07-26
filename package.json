@@ -17,7 +17,7 @@
     "@iconify/icons-simple-icons": "^1.1.34",
     "@iconify/react": "^1.1.4",
     "@monaco-editor/react": "^4.2.1",
-    "@prisma/sdk": "^2.27.0",
+    "@prisma/sdk": "2.23.0",
     "classcat": "^5.0.3",
     "next": "^11.0.1",
     "rambda": "^6.8.2",
