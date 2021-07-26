@@ -14,8 +14,8 @@ schema (many-to-many, one-to-many, one-to-one), similar to an
 
 Prisma is a fully open-source Next.js application and is easily self-hostable if
 you wish to, but a hosted version is also available at
-[primaliser.ovy.cloud](https://primaliser.ovy.cloud) if you just want to use it
-instead.
+[prismaliser.ovy.cloud](https://prismaliser.ovy.cloud) if you just want to use
+it instead.
 
 ## Installation
 
