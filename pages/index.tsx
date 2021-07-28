@@ -11,6 +11,15 @@ import Layout from "~/components/Layout";
 import { ErrorTypes, SchemaError } from "~/util/types";
 
 const initial = `
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
 model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
