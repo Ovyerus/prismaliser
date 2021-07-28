@@ -1,6 +1,6 @@
 {
   "name": "prismaliser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visualise your Prisma Schema as an ER digram.",
   "main": "index.js",
   "author": "Ovyerus <iamovyerus@gmail.com>",
