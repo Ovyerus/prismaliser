@@ -26,7 +26,7 @@
     "react-flow-renderer": "^9.6.6",
     "react-use": "^17.2.4",
     "sass": "^1.36.0",
-    "strip-ansi": "6",
+    "strip-ansi": "7",
     "use-http": "^1.0.22"
   },
   "devDependencies": {
