@@ -114,10 +114,10 @@
   resolved "https://registry.yarnpkg.com/@iconify/icons-simple-icons/-/icons-simple-icons-1.1.34.tgz#d2b67b13c382d8f1771b754c271333e3694d03d5"
   integrity sha512-F8/RzRjFB8YHFZHTQ9HgmvVeH89hVpYr29JoaYoq7MlsPK1BNGFXNoc0IWn1PLQQqM8yXCDT6YOEYMn+5KRknA==
 
-"@iconify/react@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-1.1.4.tgz#c778eddbaf196e55705d0bedff00d039dc1de8d3"
-  integrity sha512-oxq8IMOq8q3nKGiDHbQPC8FcFuBsKve68JWBo140d5LRnj0bv5TB/FE/y01ZSvEZ7PlI2HIrnb2qivPN8kTDgw==
+"@iconify/react@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-3.0.1.tgz#ce2cb3f4a2b6aab5f7af082c833d869b6fb43182"
+  integrity sha512-yUskSSR80JzRSWcqNsBAG9AN802XzZgHsex8mTOkMLYcPQC3fk1XwK17ulnY5vf692OafhGCAMccR8TWKFaGdw==
 
 "@monaco-editor/loader@^1.1.1":
   version "1.1.1"
