@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "rebaseWhen": "behind-base-branch",
+  "ignoreDeps": ["react", "react-dom"],
+  "timezone": "Europe/Berlin",
+  "schedule": ["every weekend"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["@prisma/*"],
+      "matchPackageNames": ["prisma"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Prisma Dependencies",
+      "groupSlug": "prisma-deps",
+      "schedule": ["after 6pm on Tuesday"]
+    }
+  ]
+}
