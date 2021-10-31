@@ -4,7 +4,7 @@ import { toUrlSafeB64 } from "~/util";
 
 const CopyButton = ({ input }: CopyButtonProps) => {
   const [showCopied, setShowCopied] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout>(null);
+  const timerRef: React.MutableRefObject<NodeJS.Timeout | null> = useRef(null);
 
   const copy = () => {
     const params = new URLSearchParams({ code: toUrlSafeB64(input) });
