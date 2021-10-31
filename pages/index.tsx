@@ -9,6 +9,7 @@ import CopyButton from "~/components/CopyButton";
 import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
 import Layout from "~/components/Layout";
+import { fromUrlSafeB64 } from "~/util";
 import { ErrorTypes, SchemaError } from "~/util/types";
 
 const initial = `
@@ -77,6 +78,7 @@ const IndexPage = () => {
   useDebounce(submit, 1000, [text]);
 
   useEffect(() => {
+    // Set error squiggles in the editor if we have any
     if (!monaco) return;
 
     const markers = schemaErrors.map<editor.IMarkerData>((err) => ({
@@ -91,6 +93,19 @@ const IndexPage = () => {
 
     monaco.editor.setModelMarkers(model, "prismaliser", markers);
   }, [monaco, schemaErrors]);
+
+  useEffect(() => {
+    // Populate state from a shared link if one is present
+    const params = new URLSearchParams(location.search);
+
+    if (params.has("code")) {
+      const code = params.get("code")!;
+      const decoded = fromUrlSafeB64(code);
+
+      setStoredText(decoded);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout>
