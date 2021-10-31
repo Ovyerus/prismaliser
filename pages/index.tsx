@@ -5,9 +5,11 @@ import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
 
+import CopyButton from "~/components/CopyButton";
 import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
 import Layout from "~/components/Layout";
+import { fromUrlSafeB64 } from "~/util";
 import { ErrorTypes, SchemaError } from "~/util/types";
 
 const initial = `
@@ -76,6 +78,7 @@ const IndexPage = () => {
   useDebounce(submit, 1000, [text]);
 
   useEffect(() => {
+    // Set error squiggles in the editor if we have any
     if (!monaco) return;
 
     const markers = schemaErrors.map<editor.IMarkerData>((err) => ({
@@ -91,17 +94,32 @@ const IndexPage = () => {
     monaco.editor.setModelMarkers(model, "prismaliser", markers);
   }, [monaco, schemaErrors]);
 
+  useEffect(() => {
+    // Populate state from a shared link if one is present
+    const params = new URLSearchParams(location.search);
+
+    if (params.has("code")) {
+      const code = params.get("code")!;
+      const decoded = fromUrlSafeB64(code);
+
+      setStoredText(decoded);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Layout>
       <section className="relative flex flex-col items-start border-r-2">
         <EditorView value={text} onChange={(val) => setText(val!)} />
 
-        <button
-          className="absolute left-4 bottom-4 button floating"
-          onClick={format}
-        >
-          Format
-        </button>
+        <div className="absolute flex gap-2 left-4 bottom-4">
+          <CopyButton input={text} />
+
+          <button className="button floating" onClick={format}>
+            Format
+          </button>
+        </div>
+
         {loading && (
           <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
         )}

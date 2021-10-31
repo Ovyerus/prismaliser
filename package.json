@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@prisma/generator-helper": "^3.0.0",
-    "@types/node": "^16.4.4",
-    "@types/react": "^17.0.15",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "autoprefixer": "^10.3.1",
