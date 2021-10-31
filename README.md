@@ -56,7 +56,7 @@ I'm also open to PRs for other features not listed here, but also please open a
 corresponding issue to discuss it, just like above.
 
 - [ ] Multi-history support (user defined saves).
-- [ ] Sharing a schema with other users via a generated link (similar to
+- [x] Sharing a schema with other users via a generated link (similar to
       TypeScript's [playground](https://www.typescriptlang.org/play/)).
 - [ ] Saving node positions across page resets.
 - [ ] Autocomplete for the editor (very big, Monaco is a bit fiddly at times,
