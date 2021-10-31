@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && find libquery node_modules/",
     "start": "next start",
     "lint": "eslint --ext ts,tsx .",
     "lint:fix": "eslint --ext ts,tsx --fix ."
