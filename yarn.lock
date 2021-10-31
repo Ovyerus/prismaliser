@@ -204,6 +204,14 @@
     debug "4.3.2"
     ms "^2.1.3"
 
+"@prisma/debug@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-3.3.0.tgz#2a8cd7dbdc643f1f3d8efd958e6100740d3f3d23"
+  integrity sha512-1Xk67BScNKxqsWfMm1taR/Y71jC3FjYmVfkLkdXbxU0lUCyd4Dw8x1OCZXo4N4ceU8MhjwVCTvKj1SQniJmatQ==
+  dependencies:
+    "@types/debug" "4.1.7"
+    ms "2.1.3"
+
 "@prisma/engine-core@2.28.0":
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/@prisma/engine-core/-/engine-core-2.28.0.tgz#9e1dcd11b88c55e48af292c272258a10cba8391f"
@@ -250,7 +258,7 @@
     temp-dir "^2.0.0"
     tempy "^1.0.0"
 
-"@prisma/generator-helper@2.28.0", "@prisma/generator-helper@^2.28.0":
+"@prisma/generator-helper@2.28.0":
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-2.28.0.tgz#5444f3c5bf8334f234ba25ca3c2360408e7a1495"
   integrity sha512-KaDFroGSVfDJBQRoKdXmDvP93Ukj3gI9DVjtABlQFl5FII4VCtsOix76VK+h/Hej4p0yrU6LCCU24Jmw4Enksg==
@@ -259,6 +267,16 @@
     "@types/cross-spawn" "^6.0.1"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"
+
+"@prisma/generator-helper@^3.0.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-3.3.0.tgz#a8a69aa713bccba824ad106c892d9974efee41b3"
+  integrity sha512-JWIlaslU43LcjbKHdchoVIRtqUV/P9UfoiDmpw2737h3MXe71gIUY0nie2JVUFtMUh8+jYiolVGcgltOtRpwjg==
+  dependencies:
+    "@prisma/debug" "3.3.0"
+    "@types/cross-spawn" "6.0.2"
+    chalk "4.1.2"
+    cross-spawn "7.0.3"
 
 "@prisma/get-platform@2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27":
   version "2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27"
@@ -328,7 +346,7 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@types/cross-spawn@^6.0.1":
+"@types/cross-spawn@6.0.2", "@types/cross-spawn@^6.0.1":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@types/cross-spawn/-/cross-spawn-6.0.2.tgz#168309de311cd30a2b8ae720de6475c2fbf33ac7"
   integrity sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==
@@ -550,6 +568,13 @@
     "@types/d3-transition" "*"
     "@types/d3-zoom" "*"
 
+"@types/debug@4.1.7":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.7.tgz#7cc0ea761509124709b8b2d1090d8f6c17aadb82"
+  integrity sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==
+  dependencies:
+    "@types/ms" "*"
+
 "@types/geojson@*":
   version "7946.0.7"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
@@ -572,6 +597,11 @@
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.8.tgz#edf1bf1dbf4e04413ca8e5b17b3b7d7d54b59818"
   integrity sha512-YSBPTLTVm2e2OoQIDYx8HaeWJ5tTToLH67kXR7zYNGupXMEHa2++G8k+DczX2cFVgalypqtyZIcU19AFcmOpmg==
+
+"@types/ms@*":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
+  integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*":
   version "14.14.41"
@@ -1195,6 +1225,14 @@ chalk@4.1.1, chalk@^4.0.0, chalk@^4.1.1:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chalk@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
+  integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 checkpoint-client@1.1.20:
   version "1.1.20"
   resolved "https://registry.yarnpkg.com/checkpoint-client/-/checkpoint-client-1.1.20.tgz#c869eeba84130ea3e5660b1fd71440981b5df8f5"
@@ -1445,7 +1483,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-spawn@7.0.3, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
