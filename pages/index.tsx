@@ -102,7 +102,7 @@ const IndexPage = () => {
       const code = params.get("code")!;
       const decoded = fromUrlSafeB64(code);
 
-      setStoredText(decoded);
+      setText(decoded);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

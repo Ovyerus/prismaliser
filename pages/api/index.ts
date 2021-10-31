@@ -18,7 +18,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     res.json(dmmf.datamodel);
   } catch (err) {
-    const message = stripAnsi(err.message);
+    const message = stripAnsi((err as Error).message);
     let errors: any;
     let errType: ErrorTypes;
 
