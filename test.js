@@ -10,7 +10,7 @@ async function* walk(dir) {
 }
 
 async function main() {
-  for await (const file of walk("node_modules")) {
+  for await (const file of walk("node_modules/@prisma/engines")) {
     console.log(file);
   }
 }
