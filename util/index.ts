@@ -69,7 +69,7 @@ const generateModelNode = (
           (relationName && relations[relationName]) as Relation | undefined
         )?.type,
         // `isList` and `isRequired` are mutually exclusive as per the spec
-        type: type + (isList ? "[]" : !isRequired ? "?" : ""),
+        type: (type as string) + (isList ? "[]" : !isRequired ? "?" : ""),
         defaultValue: !hasDefaultValue
           ? null
           : typeof def === "object"
@@ -83,11 +83,11 @@ const generateModelNode = (
 });
 
 const generateEnumEdge = (col: FieldWithTable): Edge => ({
-  id: `e${col.tableName}-${col.name}-${col.type}`,
-  source: col.type,
+  id: `e${col.tableName}-${col.name}-${col.type as string}`,
+  source: col.type as string,
   target: col.tableName,
   type: "smoothstep",
-  sourceHandle: col.type,
+  sourceHandle: col.type as string,
   targetHandle: `${col.tableName}-${col.name}`,
 });
 
@@ -105,7 +105,7 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
   if (type === "m-n")
     return fields.map((col, i) => ({
       ...base,
-      id: `e${relationName}-${col.tableName}-${col.type}`,
+      id: `e${relationName}-${col.tableName}-${col.type as string}`,
       source: col.tableName,
       target: `_${relationName}`,
       sourceHandle: `${col.tableName}-${col.relationName}-${col.name}`,
@@ -118,9 +118,9 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
       {
         ...base,
         source: source.tableName,
-        target: source.type,
+        target: source.type as string,
         sourceHandle: `${source.tableName}-${relationName}-${source.name}`,
-        targetHandle: `${source.type}-${relationName}`,
+        targetHandle: `${source.type as string}-${relationName}`,
       },
     ];
   } else
@@ -128,9 +128,9 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
       {
         ...base,
         source: fields[0].tableName,
-        target: fields[0].type,
+        target: fields[0].type as string,
         sourceHandle: `${fields[0].tableName}-${relationName}-${fields[0].name}`,
-        targetHandle: `${fields[0].type}-${relationName}`,
+        targetHandle: `${fields[0].type as string}-${relationName}`,
       },
     ];
 };
