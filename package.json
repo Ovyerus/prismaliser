@@ -20,7 +20,7 @@
     "@prisma/sdk": "^3.8.1",
     "classcat": "^5.0.3",
     "next": "^12.0.9",
-    "rambda": "^6.9.0",
+    "rambda": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-flow-renderer": "^9.7.3",
