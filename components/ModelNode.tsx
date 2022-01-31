@@ -28,13 +28,13 @@ const isSource = ({ isList, relationFromFields, relationType }: ColumnData) =>
 
 const ModelNode = ({ data }: ModelNodeProps) => (
   <table
-    className="border-2 border-black bg-white font-sans border-separate rounded-lg"
+    className="font-sans bg-white border-2 border-separate border-black rounded-lg"
     style={{ minWidth: 200, maxWidth: 500, borderSpacing: 0 }}
   >
     <thead>
       <tr>
         <th
-          className="border-b-2 border-black bg-gray-200 p-2 font-extrabold rounded-t-md"
+          className="p-2 font-extrabold bg-gray-200 border-b-2 border-black rounded-t-md"
           colSpan={4}
         >
           {data.name}
@@ -47,8 +47,8 @@ const ModelNode = ({ data }: ModelNodeProps) => (
     <tbody>
       {data.columns.map((col) => (
         <tr key={col.name} className={styles.row}>
-          <td className="border-t-2 border-r-2 border-gray-300 font-mono font-semibold">
-            <div className="p-2 relative">
+          <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
+            <div className="relative p-2">
               {col.name}
               {isTarget(col) && (
                 <Handle
@@ -62,11 +62,11 @@ const ModelNode = ({ data }: ModelNodeProps) => (
               )}
             </div>
           </td>
-          <td className="p-2 border-t-2 border-r-2 border-gray-300 font-mono">
+          <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300">
             {col.type}
           </td>
-          <td className="border-t-2 border-gray-300 font-mono">
-            <div className="p-2 relative">
+          <td className="font-mono border-t-2 border-gray-300">
+            <div className="relative p-2">
               {col.defaultValue || ""}
               {isSource(col) && (
                 <Handle
