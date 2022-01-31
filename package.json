@@ -43,7 +43,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "monaco-editor": "^0.29.1",
+    "monaco-editor": "^0.31.0",
     "postcss": "^8.3.11",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.4.1",
