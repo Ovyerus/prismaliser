@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://prismaliser.ovy.cloud">
+  <a href="https://prismaliser.app">
     <img src=".resources/readme-banner.svg" alt="Visualise your Prisma schema - Prismaliser">
   </a>
 </p>
@@ -14,8 +14,7 @@ schema (many-to-many, one-to-many, one-to-one), similar to an
 
 Prisma is a fully open-source Next.js application and is easily self-hostable if
 you wish to, but a hosted version is also available at
-[prismaliser.ovy.cloud](https://prismaliser.ovy.cloud) if you just want to use
-it instead.
+[prismaliser.app](https://prismaliser.app) if you just want to use it instead.
 
 ## Installation
 

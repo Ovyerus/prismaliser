@@ -38,7 +38,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       {/* TEMP hardcoding */}
       <meta
         property="twitter:image"
-        content="https://prismaliser.ovy.cloud/img/banner.png"
+        content="https://prismaliser.app/img/banner.png"
       />
       <meta
         property="twitter:image:alt"
