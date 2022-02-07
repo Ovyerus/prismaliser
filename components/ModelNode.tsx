@@ -31,7 +31,7 @@ const ModelNode = ({ data }: ModelNodeProps) => (
     className="font-sans bg-white border-2 border-separate border-black rounded-lg"
     style={{ minWidth: 200, maxWidth: 500, borderSpacing: 0 }}
   >
-    <thead>
+    <thead title={data.documentation}>
       <tr>
         <th
           className="p-2 font-extrabold bg-gray-200 border-b-2 border-black rounded-t-md"
@@ -46,7 +46,7 @@ const ModelNode = ({ data }: ModelNodeProps) => (
     </thead>
     <tbody>
       {data.columns.map((col) => (
-        <tr key={col.name} className={styles.row}>
+        <tr key={col.name} className={styles.row} title={col.documentation}>
           <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
             <div className="relative p-2">
               {col.name}

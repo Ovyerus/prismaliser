@@ -8,16 +8,19 @@ export interface SchemaError {
 export interface EnumNodeData {
   name: string;
   dbName?: string | null;
+  documentation?: string;
   values: string[];
 }
 
 export interface ModelNodeData {
   name: string;
   dbName?: string | null;
+  documentation?: string;
   columns: Array<{
     name: string;
     type: string;
     kind: string;
+    documentation?: string;
     isList: boolean;
     isRequired: boolean;
     relationName?: string | null;

@@ -22,6 +22,7 @@ const letters = ["A", "B"];
 const generateEnumNode = ({
   name,
   dbName,
+  documentation,
   values,
 }: DMMF.DatamodelEnum): Node<EnumNodeData> => ({
   id: name,
@@ -30,13 +31,14 @@ const generateEnumNode = ({
   data: {
     name,
     dbName,
+    documentation,
     values: values.map(({ name }) => name),
   },
 });
 
 // TODO: figure out a good way to random spread the nodes
 const generateModelNode = (
-  { name, dbName, fields }: DMMF.Model,
+  { name, dbName, documentation, fields }: DMMF.Model,
   relations: { readonly [key: string]: Relation }
 ): Node<ModelNodeData> => ({
   id: name,
@@ -45,11 +47,13 @@ const generateModelNode = (
   data: {
     name,
     dbName,
+    documentation,
     columns: fields.map(
       ({
         name,
         type,
         kind,
+        documentation,
         isList,
         relationName,
         relationFromFields,
@@ -60,6 +64,7 @@ const generateModelNode = (
       }) => ({
         name,
         kind,
+        documentation,
         isList,
         isRequired,
         relationName,
