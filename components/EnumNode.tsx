@@ -11,7 +11,7 @@ const EnumNode = ({ data }: EnumNodeProps) => (
     className="font-sans bg-white border-2 border-separate border-black rounded-lg"
     style={{ minWidth: 200, maxWidth: 500, borderSpacing: 0 }}
   >
-    <thead>
+    <thead title={data.documentation}>
       <tr>
         <th
           className="p-2 font-extrabold border-b-2 border-black bg-emerald-200 rounded-t-md"
