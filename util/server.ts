@@ -11,4 +11,12 @@ export const fixPrisma = () => {
     process.cwd(),
     "node_modules/@prisma/engines/prisma-fmt-rhel-openssl-1.0.x"
   );
+  path.join(
+    process.cwd(),
+    "node_modules/@prisma/sdk/libquery_engine-rhel-openssl-1.0.x.so.node"
+  );
+  path.join(
+    process.cwd(),
+    "node_modules/@prisma/sdk/prisma-fmt-rhel-openssl-1.0.x"
+  );
 };
