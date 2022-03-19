@@ -3,10 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import stripAnsi from "strip-ansi";
 
 import { parseDMMFError } from "~/util";
-import { fixPrisma } from "~/util/server";
 import { ErrorTypes } from "~/util/types";
-
-fixPrisma();
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST")
