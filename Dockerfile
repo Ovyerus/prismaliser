@@ -5,7 +5,7 @@ WORKDIR /build
 # Docker is hell and won't respect the `!` lines in dockerignore for some reason :D
 COPY .yarn/plugins ./.yarn/plugins
 COPY .yarn/releases ./.yarn/releases
-COPY .yarn/sdks ./.yarn/sdks
+# COPY .yarn/sdks ./.yarn/sdks
 # COPY .yarn/patches ./.yarn/patches
 # COPY .yarn/versions ./.yarn/versions
 
