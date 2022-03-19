@@ -9,7 +9,8 @@ import ReactFlow, {
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
-import { mapDatamodelToNodes } from "~/util";
+import { dmmfToElements } from "~/util/dmmfToElements";
+import { DMMFToElementsResult } from "~/util/types";
 
 const nodeTypes = {
   model: ModelNode,
@@ -21,15 +22,22 @@ const edgeTypes = {
 };
 
 const FlowView = ({ dmmf }: FlowViewProps) => {
-  const elements = useMemo(
-    () => (dmmf ? mapDatamodelToNodes(dmmf) : []),
+  // TODO: move to controlled nodes/edges, and change this to generate a NodeChanges[] as a diff so that positions gets preserved.
+  // Will be more complex but gives us better control over how they're handled, and makes storing locations EZ.
+  // https://reactflow.dev/docs/guides/migrate-to-v10/#11-controlled-nodes-and-edges
+  const { nodes, edges } = useMemo(
+    () =>
+      dmmf
+        ? dmmfToElements(dmmf)
+        : ({ nodes: [], edges: [] } as DMMFToElementsResult),
     [dmmf]
   );
 
   return (
     <>
       <ReactFlow
-        elements={elements}
+        defaultNodes={nodes}
+        defaultEdges={edges}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.1}

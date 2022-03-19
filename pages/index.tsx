@@ -48,7 +48,7 @@ enum Role {
 `.trim();
 
 const IndexPage = () => {
-  // TODO: multiple save states, and saving node positions as well.
+  // TODO: multiple save states.
   const [storedText, setStoredText] = useLocalStorage(
     "prismaliser.text",
     initial

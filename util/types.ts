@@ -1,3 +1,5 @@
+import { Edge, Node } from "react-flow-renderer";
+
 export type RelationType = "1-1" | "1-n" | "m-n";
 
 export interface SchemaError {
@@ -38,4 +40,9 @@ export interface RelationEdgeData {
 export enum ErrorTypes {
   Prisma,
   Other,
+}
+
+export interface DMMFToElementsResult {
+  nodes: Array<Node<EnumNodeData> | Node<ModelNodeData>>;
+  edges: Edge[];
 }
