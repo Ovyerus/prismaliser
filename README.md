@@ -33,8 +33,7 @@ yarn start  # or `npm start`
 ```
 
 The latter command can be run in anything like PM2, systemd or any other process
-daemon of your choice (I may include a Dockerfile if there's enough demand for
-it for some reason).
+daemon of your choice.
 
 Or if you're looking to run it for development purposes, you can use the
 following commands instead:
@@ -42,6 +41,22 @@ following commands instead:
 ```bash
 yarn install  # or `npm install`
 yarn dev  # or `npm run dev`
+```
+
+### Docker
+
+A
+[Docker image](https://github.com/Ovyerus/prismaliser/pkgs/container/prismaliser)
+is also available if that's more your thing.
+
+```bash
+$ docker run -p 3000:3000 ghcr.io/ovyerus/prismaliser
+```
+
+or if you wanna live on the edge and run the dev branch
+
+```bash
+$ docker run -p 3000:3000 ghcr.io/ovyerus/prismaliser:dev
 ```
 
 ## Roadmap
