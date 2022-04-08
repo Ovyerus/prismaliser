@@ -293,6 +293,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:3.12.0":
+  version: 3.12.0
+  resolution: "@prisma/debug@npm:3.12.0"
+  dependencies:
+    "@types/debug": 4.1.7
+    ms: 2.1.3
+    strip-ansi: 6.0.1
+  checksum: 42b8f329d58e195df5db67fd0475ebf582d22b69a601269cf37b9a98b0f51c6a13c245e4656856df0c7fe8e69d9c20a2b254d5a6291268584bae47687196c490
+  languageName: node
+  linkType: hard
+
 "@prisma/engine-core@npm:3.11.0":
   version: 3.11.0
   resolution: "@prisma/engine-core@npm:3.11.0"
@@ -346,7 +357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:3.11.0, @prisma/generator-helper@npm:~3.11.0":
+"@prisma/generator-helper@npm:3.11.0":
   version: 3.11.0
   resolution: "@prisma/generator-helper@npm:3.11.0"
   dependencies:
@@ -355,6 +366,18 @@ __metadata:
     chalk: 4.1.2
     cross-spawn: 7.0.3
   checksum: 1ec5e20e1083a52f5736266669f3fd9a704e897c07b499d5c30574de587dcc9c734f4b44f857658f2e3c1a49774357a689c7e23b1f62164b6f041159b6dd873d
+  languageName: node
+  linkType: hard
+
+"@prisma/generator-helper@npm:~3.12.0":
+  version: 3.12.0
+  resolution: "@prisma/generator-helper@npm:3.12.0"
+  dependencies:
+    "@prisma/debug": 3.12.0
+    "@types/cross-spawn": 6.0.2
+    chalk: 4.1.2
+    cross-spawn: 7.0.3
+  checksum: bf521fbef3c38b6383d91c53c26c884de68fab8ba3d23b91c8e35a9f8fc57ccdde4523009a39f6b734238dc8dcc82a38d586ba67fe7e673f3a23ac1c1db35e5d
   languageName: node
   linkType: hard
 
@@ -3882,7 +3905,7 @@ __metadata:
     "@iconify/icons-simple-icons": ^1.2.5
     "@iconify/react": ^3.2.0
     "@monaco-editor/react": ^4.3.1
-    "@prisma/generator-helper": ~3.11.0
+    "@prisma/generator-helper": ~3.12.0
     "@prisma/sdk": ~3.11.0
     "@types/node": ^17.0.21
     "@types/react": ^17.0.40
