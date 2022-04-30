@@ -83,7 +83,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/icons-simple-icons@npm:^1.2.5":
+"@iconify/icons-simple-icons@npm:^1.2.10":
   version: 1.2.10
   resolution: "@iconify/icons-simple-icons@npm:1.2.10"
   dependencies:
@@ -92,7 +92,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/react@npm:^3.2.0":
+"@iconify/react@npm:^3.2.1":
   version: 3.2.1
   resolution: "@iconify/react@npm:3.2.1"
   checksum: 3c8f74506403b9a8166443c4ec04736aace0fd3ee27572501954c8a505e65893c0c06f5fdf55c5207c3564f3be5c870f71d87a474f5b93eb3d3c1347312b47aa
@@ -117,7 +117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@monaco-editor/react@npm:^4.3.1":
+"@monaco-editor/react@npm:^4.4.4":
   version: 4.4.4
   resolution: "@monaco-editor/react@npm:4.4.4"
   dependencies:
@@ -490,10 +490,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^17.0.21":
+"@types/node@npm:*":
   version: 17.0.30
   resolution: "@types/node@npm:17.0.30"
   checksum: b3cd2db6474aae3ddac5a312f340f6e4ca200429371e62cb74698fe7f23d7414d0200f643204ddfaa797846328539359e3797d7f2baaf3cdd643b159cf53baa6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^16.11.32":
+  version: 16.11.32
+  resolution: "@types/node@npm:16.11.32"
+  checksum: 21f1bcd4f47a443f8a78a58b6ca3488dd9418c71b1185ba067d02222047fb194a3bfba244c32259bcb0cae4d55870b43a908b1f2832ec4aa4f31158f809625fe
   languageName: node
   linkType: hard
 
@@ -511,7 +518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.40":
+"@types/react@npm:^17.0.44":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -536,7 +543,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.15.0":
+"@typescript-eslint/eslint-plugin@npm:^5.21.0":
   version: 5.21.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.21.0"
   dependencies:
@@ -559,7 +566,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.15.0":
+"@typescript-eslint/parser@npm:^5.21.0":
   version: 5.21.0
   resolution: "@typescript-eslint/parser@npm:5.21.0"
   dependencies:
@@ -920,7 +927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.4":
+"autoprefixer@npm:^10.4.5":
   version: 10.4.5
   resolution: "autoprefixer@npm:10.4.5"
   dependencies:
@@ -1779,7 +1786,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-typescript@npm:^2.5.0":
+"eslint-import-resolver-typescript@npm:^2.7.1":
   version: 2.7.1
   resolution: "eslint-import-resolver-typescript@npm:2.7.1"
   dependencies:
@@ -1805,7 +1812,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.25.4":
+"eslint-plugin-import@npm:^2.26.0":
   version: 2.26.0
   resolution: "eslint-plugin-import@npm:2.26.0"
   dependencies:
@@ -1843,7 +1850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:^4.3.0":
+"eslint-plugin-react-hooks@npm:^4.5.0":
   version: 4.5.0
   resolution: "eslint-plugin-react-hooks@npm:4.5.0"
   peerDependencies:
@@ -1921,7 +1928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.11.0":
+"eslint@npm:^8.14.0":
   version: 8.14.0
   resolution: "eslint@npm:8.14.0"
   dependencies:
@@ -3354,7 +3361,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^12.1.0":
+"next@npm:^12.1.5":
   version: 12.1.5
   resolution: "next@npm:12.1.5"
   dependencies:
@@ -3943,7 +3950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.6.0":
+"prettier@npm:^2.6.2":
   version: 2.6.2
   resolution: "prettier@npm:2.6.2"
   bin:
@@ -3963,37 +3970,37 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prismaliser@workspace:."
   dependencies:
-    "@iconify/icons-simple-icons": ^1.2.5
-    "@iconify/react": ^3.2.0
-    "@monaco-editor/react": ^4.3.1
+    "@iconify/icons-simple-icons": ^1.2.10
+    "@iconify/react": ^3.2.1
+    "@monaco-editor/react": ^4.4.4
     "@prisma/generator-helper": ~3.13.0
     "@prisma/sdk": ~3.13.0
-    "@types/node": ^17.0.21
-    "@types/react": ^17.0.40
-    "@typescript-eslint/eslint-plugin": ^5.15.0
-    "@typescript-eslint/parser": ^5.15.0
-    autoprefixer: ^10.4.4
+    "@types/node": ^16.11.32
+    "@types/react": ^17.0.44
+    "@typescript-eslint/eslint-plugin": ^5.21.0
+    "@typescript-eslint/parser": ^5.21.0
+    autoprefixer: ^10.4.5
     classcat: ^5.0.3
-    eslint: ^8.11.0
+    eslint: ^8.14.0
     eslint-config-clarity: ^0.6.1
-    eslint-import-resolver-typescript: ^2.5.0
-    eslint-plugin-import: ^2.25.4
+    eslint-import-resolver-typescript: ^2.7.1
+    eslint-plugin-import: ^2.26.0
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.29.4
-    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-react-hooks: ^4.5.0
     monaco-editor: ^0.33.0
-    next: ^12.1.0
+    next: ^12.1.5
     postcss: ^8.4.12
-    prettier: ^2.6.0
+    prettier: ^2.6.2
     rambda: ^7.0.3
     react: ^17.0.2
     react-dom: ^17.0.2
-    react-flow-renderer: ^10.0.3
+    react-flow-renderer: ^10.1.2
     react-use: ^17.3.2
-    sass: ^1.49.9
-    strip-ansi: 6
-    tailwindcss: ^3.0.23
-    typescript: ^4.6.2
+    sass: ^1.51.0
+    strip-ansi: 6.0.1
+    tailwindcss: ^3.0.24
+    typescript: ^4.6.4
     use-http: ^1.0.26
   languageName: unknown
   linkType: soft
@@ -4104,7 +4111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-flow-renderer@npm:^10.0.3":
+"react-flow-renderer@npm:^10.1.2":
   version: 10.1.2
   resolution: "react-flow-renderer@npm:10.1.2"
   dependencies:
@@ -4424,7 +4431,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.49.9":
+"sass@npm:^1.51.0":
   version: 1.51.0
   resolution: "sass@npm:1.51.0"
   dependencies:
@@ -4771,7 +4778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:6, strip-ansi@npm:6.0.1, strip-ansi@npm:^6.0.0, strip-ansi@npm:^6.0.1":
+"strip-ansi@npm:6.0.1, strip-ansi@npm:^6.0.0, strip-ansi@npm:^6.0.1":
   version: 6.0.1
   resolution: "strip-ansi@npm:6.0.1"
   dependencies:
@@ -4866,7 +4873,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.23":
+"tailwindcss@npm:^3.0.24":
   version: 3.0.24
   resolution: "tailwindcss@npm:3.0.24"
   dependencies:
@@ -5118,7 +5125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.2":
+"typescript@npm:^4.6.4":
   version: 4.6.4
   resolution: "typescript@npm:4.6.4"
   bin:
@@ -5128,7 +5135,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.6.4
   resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
   bin:
