@@ -35,7 +35,7 @@ COPY --from=builder /build/package.json ./package.json
 
 COPY --from=builder /build/.next/standalone ./
 COPY --from=builder /build/.next/static ./.next/static
-RUN echo $(ls -a ./node_modules/@prisma/engines)
+
 EXPOSE 3000
 ENV PORT 3000
 
