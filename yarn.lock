@@ -291,6 +291,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:3.15.0":
+  version: 3.15.0
+  resolution: "@prisma/debug@npm:3.15.0"
+  dependencies:
+    "@types/debug": 4.1.7
+    debug: 4.3.4
+    strip-ansi: 6.0.1
+  checksum: f0f950231c0ce02c1bb25e0060b0918a19485c24e55f92d386f492237efc89da2c7caa96aa5193e611268152dae124dae60d17cf87e72ac70b4370e594ae69bc
+  languageName: node
+  linkType: hard
+
 "@prisma/engine-core@npm:3.13.0":
   version: 3.13.0
   resolution: "@prisma/engine-core@npm:3.13.0"
@@ -344,7 +355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:3.13.0, @prisma/generator-helper@npm:~3.13.0":
+"@prisma/generator-helper@npm:3.13.0":
   version: 3.13.0
   resolution: "@prisma/generator-helper@npm:3.13.0"
   dependencies:
@@ -353,6 +364,18 @@ __metadata:
     chalk: 4.1.2
     cross-spawn: 7.0.3
   checksum: 41746a741e825f1e6b545de2dfbe90672474f33cd4905680aee91d8558e31ff1b1b574f106d7ad0442ff8164d9c3a040ac6c373b6dc6504c32356c780597f082
+  languageName: node
+  linkType: hard
+
+"@prisma/generator-helper@npm:~3.15.0":
+  version: 3.15.0
+  resolution: "@prisma/generator-helper@npm:3.15.0"
+  dependencies:
+    "@prisma/debug": 3.15.0
+    "@types/cross-spawn": 6.0.2
+    chalk: 4.1.2
+    cross-spawn: 7.0.3
+  checksum: ceb4cef4e84210077298f2608f90124f7c8da4135a4026078762f7e16c8ec7fb1ec0ce7868b6190a1bcc726929d4f42879869898f2faf51afed565d9e25760fe
   languageName: node
   linkType: hard
 
@@ -1469,7 +1492,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
+"debug@npm:4, debug@npm:4.3.4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -3973,7 +3996,7 @@ __metadata:
     "@iconify/icons-simple-icons": ^1.2.10
     "@iconify/react": ^3.2.1
     "@monaco-editor/react": ^4.4.4
-    "@prisma/generator-helper": ~3.13.0
+    "@prisma/generator-helper": ~3.15.0
     "@prisma/sdk": ~3.13.0
     "@types/node": ^16.11.32
     "@types/react": ^17.0.44
