@@ -78,7 +78,12 @@ const generateModelNode = (
           : typeof def === "object"
           ? // JSON.stringify gives us the quotes to show it's a string.
             // Not a perfect thing but it works ¯\_(ツ)_/¯
-            `${def.name}(${def.args.map((x) => JSON.stringify(x)).join(", ")})`
+            // TODO: handle array type?
+            `${(def as DMMF.FieldDefault).name}(${(
+              def as DMMF.FieldDefault
+            ).args
+              .map((x) => JSON.stringify(x))
+              .join(", ")})`
           : def!.toString(),
       })
     ),

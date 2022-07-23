@@ -1,4 +1,4 @@
-import { formatSchema } from "@prisma/sdk";
+import { formatSchema } from "@prisma/internals";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {

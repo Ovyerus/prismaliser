@@ -1,4 +1,4 @@
-import { getDMMF } from "@prisma/sdk";
+import { getDMMF } from "@prisma/internals";
 import { NextApiRequest, NextApiResponse } from "next";
 import stripAnsi from "strip-ansi";
 
