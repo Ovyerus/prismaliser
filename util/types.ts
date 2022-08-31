@@ -8,6 +8,7 @@ export interface SchemaError {
 }
 
 export interface EnumNodeData {
+  type: "enum";
   name: string;
   dbName?: string | null;
   documentation?: string;
@@ -15,12 +16,14 @@ export interface EnumNodeData {
 }
 
 export interface ModelNodeData {
+  type: "model";
   name: string;
   dbName?: string | null;
   documentation?: string;
   columns: Array<{
     name: string;
     type: string;
+    displayType: string;
     kind: string;
     documentation?: string;
     isList: boolean;

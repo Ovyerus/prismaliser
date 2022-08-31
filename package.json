@@ -19,6 +19,7 @@
     "@monaco-editor/react": "^4.4.5",
     "@prisma/internals": "^4.1.0",
     "classcat": "^5.0.3",
+    "elkjs": "^0.8.2",
     "next": "^12.2.3",
     "rambda": "^7.1.4",
     "react": "^17.0.2",

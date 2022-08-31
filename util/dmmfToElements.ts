@@ -1,4 +1,5 @@
 import type { DMMF } from "@prisma/generator-helper";
+import { ElkNode } from "elkjs";
 import { groupBy } from "rambda";
 import { Edge, Node } from "react-flow-renderer";
 
@@ -17,78 +18,92 @@ interface Relation {
 
 const letters = ["A", "B"];
 
-const generateEnumNode = ({
-  name,
-  dbName,
-  documentation,
-  values,
-}: DMMF.DatamodelEnum): Node<EnumNodeData> => ({
-  id: name,
-  type: "enum",
-  position: { x: 0, y: 0 },
-  data: {
-    name,
-    dbName,
-    documentation,
-    values: values.map(({ name }) => name),
-  },
-});
+const generateEnumNode = (
+  { name, dbName, documentation, values }: DMMF.DatamodelEnum,
+  layout: ElkNode | null
+): Node<EnumNodeData> => {
+  const positionedNode = layout?.children?.find(
+    (layoutNode) => layoutNode.id === name
+  );
+
+  return {
+    id: name,
+    type: "enum",
+    position: { x: positionedNode?.x || 0, y: positionedNode?.y || 0 },
+    width: positionedNode?.width,
+    height: positionedNode?.height,
+    data: {
+      type: "enum",
+      name,
+      dbName,
+      documentation,
+      values: values.map(({ name }) => name),
+    },
+  };
+};
 
 // TODO: figure out a good way to random spread the nodes
 const generateModelNode = (
   { name, dbName, documentation, fields }: DMMF.Model,
-  relations: { readonly [key: string]: Relation }
-): Node<ModelNodeData> => ({
-  id: name,
-  type: "model",
-  position: { x: 250, y: 25 },
-  data: {
-    name,
-    dbName,
-    documentation,
-    columns: fields.map(
-      ({
-        name,
-        type,
-        kind,
-        documentation,
-        isList,
-        relationName,
-        relationFromFields,
-        relationToFields,
-        isRequired,
-        hasDefaultValue,
-        default: def,
-      }) => ({
-        name,
-        kind,
-        documentation,
-        isList,
-        isRequired,
-        relationName,
-        relationFromFields,
-        relationToFields,
-        relationType: (
-          (relationName && relations[relationName]) as Relation | undefined
-        )?.type,
-        // `isList` and `isRequired` are mutually exclusive as per the spec
-        type: type + (isList ? "[]" : !isRequired ? "?" : ""),
-        defaultValue: !hasDefaultValue
-          ? null
-          : typeof def === "object"
-          ? // JSON.stringify gives us the quotes to show it's a string.
-            // Not a perfect thing but it works ¯\_(ツ)_/¯
-            // TODO: handle array type?
-            `${(def as DMMF.FieldDefault).name}(${(
-              def as DMMF.FieldDefault
-            ).args
-              .map((x) => JSON.stringify(x))
-              .join(", ")})`
-          : def!.toString(),
-      })
-    ),
-  },
-});
+  relations: { readonly [key: string]: Relation },
+  layout: ElkNode | null
+): Node<ModelNodeData> => {
+  const positionedNode = layout?.children?.find(
+    (layoutNode) => layoutNode.id === name
+  );
+
+  return {
+    id: name,
+    type: "model",
+    position: { x: positionedNode?.x || 250, y: positionedNode?.y || 25 },
+    data: {
+      type: "model",
+      name,
+      dbName,
+      documentation,
+      columns: fields.map(
+        ({
+          name,
+          type,
+          kind,
+          documentation,
+          isList,
+          relationName,
+          relationFromFields,
+          relationToFields,
+          isRequired,
+          hasDefaultValue,
+          default: def,
+        }) => ({
+          name,
+          kind,
+          documentation,
+          isList,
+          isRequired,
+          relationName,
+          relationFromFields,
+          relationToFields,
+          relationType: (
+            (relationName && relations[relationName]) as Relation | undefined
+          )?.type,
+          // `isList` and `isRequired` are mutually exclusive as per the spec
+          displayType: type + (isList ? "[]" : !isRequired ? "?" : ""),
+          type,
+          defaultValue: !hasDefaultValue
+            ? null
+            : typeof def === "object"
+            ? // JSON.stringify gives us the quotes to show it's a string.
+              // Not a perfect thing but it works ¯\_(ツ)_/¯
+              // TODO: handle array type?
+              `${def.name}(${def.args
+                .map((x) => JSON.stringify(x))
+                .join(", ")})`
+            : def!.toString(),
+        })
+      ),
+    },
+  };
+};
 
 const generateEnumEdge = (col: FieldWithTable): Edge => ({
   id: `e${col.tableName}-${col.name}-${col.type}`,
@@ -146,7 +161,10 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
 // TODO: renaming relations sometimes makes the edge disappear. Might be a memo
 // issue, need to look into it a bit better at some point.
 
-export const dmmfToElements = (data: DMMF.Datamodel): DMMFToElementsResult => {
+export const dmmfToElements = (
+  data: DMMF.Datamodel,
+  layout: ElkNode | null
+): DMMFToElementsResult => {
   const filterFields = (kind: DMMF.FieldKind) =>
     data.models.flatMap(({ name: tableName, fields }) =>
       fields
@@ -201,9 +219,9 @@ export const dmmfToElements = (data: DMMF.Datamodel): DMMFToElementsResult => {
 
   return {
     nodes: [
-      ...data.enums.map(generateEnumNode),
+      ...data.enums.map((enumData) => generateEnumNode(enumData, layout)),
       ...[...data.models, ...implicitManyToMany].map((model) =>
-        generateModelNode(model, relations)
+        generateModelNode(model, relations, layout)
       ),
     ],
     edges: [
