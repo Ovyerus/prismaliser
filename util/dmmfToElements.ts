@@ -27,6 +27,7 @@ const generateEnumNode = ({
   type: "enum",
   position: { x: 0, y: 0 },
   data: {
+    type: "enum",
     name,
     dbName,
     documentation,
@@ -43,6 +44,7 @@ const generateModelNode = (
   type: "model",
   position: { x: 250, y: 25 },
   data: {
+    type: "model",
     name,
     dbName,
     documentation,
@@ -72,7 +74,8 @@ const generateModelNode = (
           (relationName && relations[relationName]) as Relation | undefined
         )?.type,
         // `isList` and `isRequired` are mutually exclusive as per the spec
-        type: type + (isList ? "[]" : !isRequired ? "?" : ""),
+        displayType: type + (isList ? "[]" : !isRequired ? "?" : ""),
+        type,
         defaultValue: !hasDefaultValue
           ? null
           : typeof def === "object"
