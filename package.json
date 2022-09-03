@@ -30,7 +30,7 @@
     "use-http": "^1.0.26"
   },
   "devDependencies": {
-    "@prisma/generator-helper": "~4.1.0",
+    "@prisma/generator-helper": "~4.3.0",
     "@types/node": "^16.11.45",
     "@types/react": "^17.0.47",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
