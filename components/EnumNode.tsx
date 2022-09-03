@@ -32,9 +32,12 @@ const EnumNode = ({ data }: EnumNodeProps) => {
         </tr>
       </thead>
       <tbody
-        className={`flex flex-col overflow-hidden ${
-          data.values.length > MAX_VALUES && !expanded && "max-h-[500px]"
-        }`}
+        className={cc([
+          "flex",
+          "flex-col",
+          "overflow-hidden",
+          { "max-h-[500px]": !expanded && data.values.length > MAX_VALUES },
+        ])}
       >
         {data.values.map((val) => (
           <tr key={val} className={styles.row}>
