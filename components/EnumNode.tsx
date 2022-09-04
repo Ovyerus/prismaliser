@@ -41,7 +41,7 @@ const EnumNode = ({ data }: EnumNodeProps) => {
       >
         {data.values.map((val) => (
           <tr key={val} className={styles.row}>
-            <td className="p-2 font-mono border-t-2 border-gray-300 flex">
+            <td className="flex p-2 font-mono border-t-2 border-gray-300">
               {val}
             </td>
           </tr>
@@ -52,7 +52,8 @@ const EnumNode = ({ data }: EnumNodeProps) => {
           <tr>
             <td className="flex">
               <button
-                className="rounded bg-blue-200 font-semibold py-2 px-4 w-full"
+                type="button"
+                className="w-full px-4 py-2 font-semibold bg-blue-200 rounded"
                 onClick={() => setExpanded(!expanded)}
               >
                 {expanded ? "Fold" : "Expand"}

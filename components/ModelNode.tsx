@@ -44,8 +44,8 @@ const ModelNode = ({ data }: ModelNodeProps) => {
 
       if (!node) return;
 
-      const x = node.position.x + node.width / 2;
-      const y = node.position.y + node.height / 2;
+      const x = node.position.x + node.width! / 2;
+      const y = node.position.y + node.height! / 2;
       const zoom = getZoom();
 
       setCenter(x, y, { zoom, duration: 1000 });
@@ -76,10 +76,13 @@ const ModelNode = ({ data }: ModelNodeProps) => {
         {data.columns.map((col) => (
           <tr key={col.name} className={styles.row} title={col.documentation}>
             <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
-              <div
-                className={`relative p-2 ${
-                  (isTarget(col) || isSource(col)) && "cursor-pointer"
-                }`}
+              <button
+                type="button"
+                className={cc([
+                  "relative",
+                  "p-2",
+                  { "cursor-pointer": isTarget(col) || isSource(col) },
+                ])}
                 onClick={() => {
                   if (!isTarget(col) && !isSource(col)) return;
 
@@ -97,7 +100,7 @@ const ModelNode = ({ data }: ModelNodeProps) => {
                     isConnectable={false}
                   />
                 )}
-              </div>
+              </button>
             </td>
             <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300">
               {col.displayType}

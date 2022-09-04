@@ -1,4 +1,4 @@
-import type { DMMF } from "@prisma/generator-helper";
+/* eslint-disable react/no-unknown-property */
 import React, { useMemo } from "react";
 import ReactFlow, {
   Background,
@@ -11,6 +11,8 @@ import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
 import { dmmfToElements } from "~/util/dmmfToElements";
 import { DMMFToElementsResult } from "~/util/types";
+
+import type { DMMF } from "@prisma/generator-helper";
 
 const nodeTypes = {
   model: ModelNode,
