@@ -1,6 +1,4 @@
 import { useMonaco } from "@monaco-editor/react";
-import type { DMMF } from "@prisma/generator-helper";
-import type { editor } from "monaco-editor";
 import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
 import useFetch from "use-http";
@@ -11,6 +9,9 @@ import FlowView from "~/components/FlowView";
 import Layout from "~/components/Layout";
 import { fromUrlSafeB64 } from "~/util";
 import { ErrorTypes, SchemaError } from "~/util/types";
+
+import type { DMMF } from "@prisma/generator-helper";
+import type { editor } from "monaco-editor";
 
 const initial = `
 datasource db {
@@ -115,14 +116,14 @@ const IndexPage = () => {
         <div className="absolute flex gap-2 left-4 bottom-4">
           <CopyButton input={text} />
 
-          <button className="button floating" onClick={format}>
+          <button type="button" className="button floating" onClick={format}>
             Format
           </button>
         </div>
 
-        {loading && (
+        {loading ? (
           <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
-        )}
+        ) : null}
       </section>
       <pre className="overflow-auto border-l-2">
         <FlowView dmmf={dmmf} />

@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import type { DMMF } from "@prisma/generator-helper";
 import { ElkNode } from "elkjs/lib/elk.bundled";
 import React, { useCallback, useMemo, useState } from "react";
 import ReactFlow, {
@@ -15,6 +14,8 @@ import RelationEdge from "~/components/RelationEdge";
 import { dmmfToElements } from "~/util/dmmfToElements";
 import { resetLayout } from "~/util/layout";
 import { DMMFToElementsResult } from "~/util/types";
+
+import type { DMMF } from "@prisma/generator-helper";
 
 const nodeTypes = {
   model: ModelNode,

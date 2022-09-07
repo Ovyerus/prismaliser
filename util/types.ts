@@ -40,10 +40,12 @@ export interface RelationEdgeData {
   relationType: RelationType;
 }
 
+/* eslint-disable @typescript-eslint/prefer-enum-initializers */
 export enum ErrorTypes {
   Prisma,
   Other,
 }
+/* eslint-enable */
 
 export interface DMMFToElementsResult {
   nodes: Array<Node<EnumNodeData> | Node<ModelNodeData>>;

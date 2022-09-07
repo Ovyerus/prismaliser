@@ -1,4 +1,3 @@
-import type { DMMF } from "@prisma/generator-helper";
 import { ElkNode } from "elkjs";
 import { groupBy } from "rambda";
 import { Edge, Node } from "react-flow-renderer";
@@ -9,6 +8,8 @@ import {
   ModelNodeData,
   RelationType,
 } from "./types";
+
+import type { DMMF } from "@prisma/generator-helper";
 
 type FieldWithTable = DMMF.Field & { tableName: string };
 interface Relation {
@@ -42,10 +43,9 @@ const generateEnumNode = (
   };
 };
 
-// TODO: figure out a good way to random spread the nodes
 const generateModelNode = (
   { name, dbName, documentation, fields }: DMMF.Model,
-  relations: { readonly [key: string]: Relation },
+  relations: Readonly<Record<string, Relation>>,
   layout: ElkNode | null
 ): Node<ModelNodeData> => {
   const positionedNode = layout?.children?.find(
@@ -160,7 +160,6 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
 
 // TODO: renaming relations sometimes makes the edge disappear. Might be a memo
 // issue, need to look into it a bit better at some point.
-
 export const dmmfToElements = (
   data: DMMF.Datamodel,
   layout: ElkNode | null
@@ -177,7 +176,7 @@ export const dmmfToElements = (
 
   // `pipe` typing broke so I have to do this for now. Reeeeaaaally fucking need
   // that pipeline operator.
-  const intermediate1: { readonly [key: string]: readonly FieldWithTable[] } =
+  const intermediate1: Readonly<Record<string, readonly FieldWithTable[]>> =
     groupBy((col) => col.relationName!, relationFields);
   const intermediate2: ReadonlyArray<[string, Relation]> = Object.entries(
     intermediate1
@@ -188,7 +187,7 @@ export const dmmfToElements = (
       return [key, { type: "1-n", fields: [one, two] }];
     else return [key, { type: "1-1", fields: [one, two] }];
   });
-  const relations: { readonly [key: string]: Relation } =
+  const relations: Readonly<Record<string, Relation>> =
     Object.fromEntries(intermediate2);
 
   const implicitManyToMany = Object.entries(relations)
