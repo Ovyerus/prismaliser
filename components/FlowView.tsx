@@ -62,7 +62,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         />
         <Controls>
           <ControlButton title="Reset layout" onClick={refreshLayout}>
-            <Icon icon="simple-line-icons:refresh" />
+            <Icon icon="icon-park-outline:chart-graph" />
           </ControlButton>
         </Controls>
       </ReactFlow>

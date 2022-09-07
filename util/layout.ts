@@ -1,4 +1,4 @@
-import Elk, { ElkNode, ElkPrimitiveEdge } from "elkjs/lib/elk.bundled";
+import Elk, { ElkExtendedEdge, ElkNode } from "elkjs/lib/elk.bundled";
 import { Edge, Node } from "react-flow-renderer";
 
 import { EnumNodeData, ModelNodeData } from "./types";
@@ -15,6 +15,7 @@ const elk = new Elk({
 const MAX_ENUM_HEIGHT = 600;
 const FIELD_HEIGHT = 50;
 const CHAR_BASED_WIDTH = 10;
+const MIN_WIDTH = 100;
 
 const calculateHeight = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
   if (node.data.type === "enum") {
@@ -29,13 +30,15 @@ const calculateHeight = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
 };
 
 const calculateWidth = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
-  if (node.data.type === "enum")
-    return (
+  if (node.data.type === "enum") {
+    const width =
       node.data.values.reduce(
         (acc, curr) => (acc < curr.length ? curr.length : acc),
         node.data.name.length + (node.data.dbName?.length || 0)
-      ) * CHAR_BASED_WIDTH
-    );
+      ) * CHAR_BASED_WIDTH;
+
+    return Math.max(width, MIN_WIDTH);
+  }
 
   const headerLength = node.data.name.length + (node.data.dbName?.length || 0);
 
@@ -54,9 +57,12 @@ const calculateWidth = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
 
   const columnsLength = nameLength + typeLength + defaultValueLength;
 
-  return headerLength > columnsLength
-    ? headerLength * CHAR_BASED_WIDTH
-    : columnsLength * CHAR_BASED_WIDTH;
+  const width =
+    headerLength > columnsLength
+      ? headerLength * CHAR_BASED_WIDTH
+      : columnsLength * CHAR_BASED_WIDTH;
+
+  return Math.max(width, MIN_WIDTH);
 };
 
 export const resetLayout = async (
@@ -64,7 +70,7 @@ export const resetLayout = async (
   edges: Edge[]
 ) => {
   const elkNodes: ElkNode[] = [];
-  const elkEdges: ElkPrimitiveEdge[] = [];
+  const elkEdges: ElkExtendedEdge[] = [];
 
   nodes.forEach((node) => {
     elkNodes.push({
@@ -76,8 +82,8 @@ export const resetLayout = async (
   edges.forEach((edge) => {
     elkEdges.push({
       id: edge.id,
-      target: edge.target,
-      source: edge.source,
+      targets: [edge.target],
+      sources: [edge.source],
     });
   });
 
