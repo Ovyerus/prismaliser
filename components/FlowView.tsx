@@ -61,7 +61,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
           className="text-gray-200"
         />
         <Controls>
-          <ControlButton title="Reset layout" onClick={refreshLayout}>
+          <ControlButton title="Disperse nodes" onClick={refreshLayout}>
             <Icon icon="icon-park-outline:chart-graph" />
           </ControlButton>
         </Controls>
