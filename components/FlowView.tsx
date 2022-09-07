@@ -12,7 +12,7 @@ import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
 import { dmmfToElements } from "~/util/dmmfToElements";
-import { resetLayout } from "~/util/layout";
+import { getLayout } from "~/util/layout";
 import { DMMFToElementsResult } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
@@ -40,7 +40,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
   );
 
   const refreshLayout = useCallback(async () => {
-    const layout = await resetLayout(nodes, edges);
+    const layout = await getLayout(nodes, edges);
     setLayout(layout);
   }, [nodes, edges]);
 

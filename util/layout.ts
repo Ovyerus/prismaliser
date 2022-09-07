@@ -14,30 +14,46 @@ const elk = new Elk({
 
 const MAX_ENUM_HEIGHT = 600;
 const FIELD_HEIGHT = 50;
-const CHAR_BASED_WIDTH = 10;
-const MIN_WIDTH = 100;
+const CHAR_WIDTH = 10;
+const MIN_SIZE = 100;
+const MARGIN = 50;
 
+/** Normalises dimension to be at least MIN_SIZE plus MARGIN on both sides */
+const normalizeSize = (value: number) => Math.max(value, MIN_SIZE) + MARGIN * 2;
+
+/**
+ * Calculates node height based on number of fields.
+ * For enums max height is MAX_ENUM_HEIGHT being height of a folded enum values
+ */
 const calculateHeight = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
   if (node.data.type === "enum") {
     const fieldsHeight = node.data.values.length * FIELD_HEIGHT;
-    return fieldsHeight > MAX_ENUM_HEIGHT
-      ? MAX_ENUM_HEIGHT
-      : fieldsHeight + FIELD_HEIGHT;
+    const height =
+      fieldsHeight > MAX_ENUM_HEIGHT
+        ? MAX_ENUM_HEIGHT
+        : fieldsHeight + FIELD_HEIGHT;
+
+    return normalizeSize(height);
   }
 
   const fieldsHeight = node.data.columns.length * FIELD_HEIGHT;
-  return fieldsHeight + FIELD_HEIGHT;
+  const heightWithTitle = fieldsHeight + FIELD_HEIGHT;
+
+  return normalizeSize(heightWithTitle);
 };
 
+/**
+ * Calculates node width based on column text lengths (CHAR_WIDTH per character in a text field)
+ */
 const calculateWidth = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
   if (node.data.type === "enum") {
     const width =
       node.data.values.reduce(
         (acc, curr) => (acc < curr.length ? curr.length : acc),
         node.data.name.length + (node.data.dbName?.length || 0)
-      ) * CHAR_BASED_WIDTH;
+      ) * CHAR_WIDTH;
 
-    return Math.max(width, MIN_WIDTH);
+    return normalizeSize(width);
   }
 
   const headerLength = node.data.name.length + (node.data.dbName?.length || 0);
@@ -59,13 +75,13 @@ const calculateWidth = (node: Node<EnumNodeData> | Node<ModelNodeData>) => {
 
   const width =
     headerLength > columnsLength
-      ? headerLength * CHAR_BASED_WIDTH
-      : columnsLength * CHAR_BASED_WIDTH;
+      ? headerLength * CHAR_WIDTH
+      : columnsLength * CHAR_WIDTH;
 
-  return Math.max(width, MIN_WIDTH);
+  return normalizeSize(width);
 };
 
-export const resetLayout = async (
+export const getLayout = async (
   nodes: Array<Node<EnumNodeData> | Node<ModelNodeData>>,
   edges: Edge[]
 ) => {
@@ -79,6 +95,7 @@ export const resetLayout = async (
       height: calculateHeight(node),
     });
   });
+
   edges.forEach((edge) => {
     elkEdges.push({
       id: edge.id,
