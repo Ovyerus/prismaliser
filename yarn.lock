@@ -2053,6 +2053,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"elkjs@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "elkjs@npm:0.8.2"
+  checksum: ed615c485fa4ac1e858af509df24fdc9f61f2c6576df5f79f6a31c733fda69f235f53cd36af037aa9d2b8a935cb4f823fbd89d784b67f6e51be5100306ea1b39
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -4622,6 +4629,7 @@ __metadata:
     "@types/react": ^17.0.49
     autoprefixer: ^10.4.8
     classcat: ^5.0.4
+    elkjs: ^0.8.2
     eslint: ^8.20.0
     eslint-config-clarity: 1.0.0-beta.7
     eslint-import-resolver-typescript: ^2.7.1
