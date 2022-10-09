@@ -89,16 +89,16 @@ const generateModelNode = (
           // `isList` and `isRequired` are mutually exclusive as per the spec
           displayType: type + (isList ? "[]" : !isRequired ? "?" : ""),
           type,
-          defaultValue: !hasDefaultValue
-            ? null
-            : typeof def === "object"
-            ? // JSON.stringify gives us the quotes to show it's a string.
-              // Not a perfect thing but it works ¯\_(ツ)_/¯
-              // TODO: handle array type?
-              `${def.name}(${def.args
-                .map((x) => JSON.stringify(x))
-                .join(", ")})`
-            : def!.toString(),
+          defaultValue:
+            !hasDefaultValue || def === undefined
+              ? null
+              : typeof def === "object" && "name" in def
+              ? `${def.name}(${def.args
+                  .map((arg) => JSON.stringify(arg))
+                  .join(",")})`
+              : kind === "enum"
+              ? def
+              : JSON.stringify(def),
         })
       ),
     },
