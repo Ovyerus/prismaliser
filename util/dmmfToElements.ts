@@ -97,7 +97,7 @@ const generateModelNode = (
                   .map((arg) => JSON.stringify(arg))
                   .join(",")})`
               : kind === "enum"
-              ? def
+              ? def.toString()
               : JSON.stringify(def),
         })
       ),
