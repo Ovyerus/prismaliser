@@ -72,6 +72,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
             id="prismaliser-one"
             markerWidth="12.5"
             markerHeight="12.5"
+            // eslint-disable-next-line react/no-unknown-property
             viewBox="-10 -10 20 20"
             orient="auto-start-reverse"
             refX="0"
@@ -90,6 +91,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
             id="prismaliser-many"
             markerWidth="12.5"
             markerHeight="12.5"
+            // eslint-disable-next-line react/no-unknown-property
             viewBox="-10 -10 20 20"
             orient="auto-start-reverse"
             refX="0"
