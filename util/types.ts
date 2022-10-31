@@ -1,4 +1,4 @@
-import { Edge, Node } from "react-flow-renderer";
+import { Edge, Node } from "reactflow";
 
 export type RelationType = "1-1" | "1-n" | "m-n";
 

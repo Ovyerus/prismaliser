@@ -516,6 +516,70 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reactflow/background@npm:11.0.3":
+  version: 11.0.3
+  resolution: "@reactflow/background@npm:11.0.3"
+  dependencies:
+    "@babel/runtime": ^7.18.9
+    "@reactflow/core": 11.1.2
+    classcat: ^5.0.3
+    zustand: ^4.1.1
+  peerDependencies:
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 1823d9de0c8c8c5c74dc10cd3096a84098b6d8ba841ec6fdab340af3154e56bf74a9f20b40252f6f7db91d698c602fe4f9abca9c9abaa68356b9d0289c28a7ec
+  languageName: node
+  linkType: hard
+
+"@reactflow/controls@npm:11.0.3":
+  version: 11.0.3
+  resolution: "@reactflow/controls@npm:11.0.3"
+  dependencies:
+    "@babel/runtime": ^7.18.9
+    "@reactflow/core": 11.1.2
+    classcat: ^5.0.3
+  peerDependencies:
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 89f5fabce51979405b6ac13d66153686c11e9da27a2d0c97e4e09f464f300019dc0dc8be5d6d54048612a9bf3bcad359fd4dc6b87514ce44a1636910e760742c
+  languageName: node
+  linkType: hard
+
+"@reactflow/core@npm:11.1.2":
+  version: 11.1.2
+  resolution: "@reactflow/core@npm:11.1.2"
+  dependencies:
+    "@types/d3": ^7.4.0
+    "@types/d3-drag": ^3.0.1
+    "@types/d3-selection": ^3.0.3
+    "@types/d3-zoom": ^3.0.1
+    classcat: ^5.0.3
+    d3-drag: ^3.0.0
+    d3-selection: ^3.0.0
+    d3-zoom: ^3.0.0
+    zustand: ^4.1.1
+  peerDependencies:
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 741786792b1d944e9a42c06df3ab31f702843620fe06c4224613f0816ce071feb8030198ba87752f9c1cde640367dc4bc7653020596cbe28eea95c6269489c8f
+  languageName: node
+  linkType: hard
+
+"@reactflow/minimap@npm:11.0.3":
+  version: 11.0.3
+  resolution: "@reactflow/minimap@npm:11.0.3"
+  dependencies:
+    "@babel/runtime": ^7.18.9
+    "@reactflow/core": 11.1.2
+    classcat: ^5.0.3
+    zustand: ^4.1.1
+  peerDependencies:
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: bf0915c10facded3dda620b53ba66dbbf4fa135ae73598ffa9456ee057f961199f759842d0427dc3bda70aac769cf817f0a4d5b88e0a43c4abe9975aa8681fc7
+  languageName: node
+  linkType: hard
+
 "@rushstack/eslint-patch@npm:^1.1.3":
   version: 1.1.4
   resolution: "@rushstack/eslint-patch@npm:1.1.4"
@@ -611,7 +675,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-drag@npm:*":
+"@types/d3-drag@npm:*, @types/d3-drag@npm:^3.0.1":
   version: 3.0.1
   resolution: "@types/d3-drag@npm:3.0.1"
   dependencies:
@@ -726,7 +790,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-selection@npm:*":
+"@types/d3-selection@npm:*, @types/d3-selection@npm:^3.0.3":
   version: 3.0.3
   resolution: "@types/d3-selection@npm:3.0.3"
   checksum: 24d4ac0b8f76bfdf5d3d90e6724ff7703057375ba482d2924f8d959e5481eaab55e0e39b5ca68a6d4e99bce100561333dee4146f497c9fc3605f1a308a7e713c
@@ -772,7 +836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-zoom@npm:*":
+"@types/d3-zoom@npm:*, @types/d3-zoom@npm:^3.0.1":
   version: 3.0.1
   resolution: "@types/d3-zoom@npm:3.0.1"
   dependencies:
@@ -900,13 +964,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: e2e8001bb16fdf52dc92dbc2f64c8e49b1c6ab5d5da4725c0f27e3d925939e42b835554fecc306ca6b0951801eb784288b63c924bd703834662bbaccf89cb68a
-  languageName: node
-  linkType: hard
-
-"@types/resize-observer-browser@npm:^0.1.7":
-  version: 0.1.7
-  resolution: "@types/resize-observer-browser@npm:0.1.7"
-  checksum: 0377eaac8bb7a17b983b49a156006032380b459bfebefc54a5aa2f7f8a9786d2b60723e8837c61ef733330b478f4f26293e9edbdc8006238e4f80c878c56c988
   languageName: node
   linkType: hard
 
@@ -4663,8 +4720,8 @@ __metadata:
     rambda: ^7.2.1
     react: ^17.0.2
     react-dom: ^17.0.2
-    react-flow-renderer: ^10.3.16
     react-use: ^17.4.0
+    reactflow: ^11.1.2
     sass: ^1.54.8
     strip-ansi: 6.0.1
     tailwindcss: ^3.1.8
@@ -4766,25 +4823,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-flow-renderer@npm:^10.3.16":
-  version: 10.3.16
-  resolution: "react-flow-renderer@npm:10.3.16"
-  dependencies:
-    "@babel/runtime": ^7.18.9
-    "@types/d3": ^7.4.0
-    "@types/resize-observer-browser": ^0.1.7
-    classcat: ^5.0.3
-    d3-drag: ^3.0.0
-    d3-selection: ^3.0.0
-    d3-zoom: ^3.0.0
-    zustand: ^3.7.2
-  peerDependencies:
-    react: 16 || 17 || 18
-    react-dom: 16 || 17 || 18
-  checksum: a5d8fea26c4b5f52be6fc7e22bfc9a9ccb4f3f833d858254677e658dbe94c524789e95d133d71ea4d515a935e4dd3357e628068b86a007f5770f1fc54ba0c5c7
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -4834,6 +4872,21 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
+  languageName: node
+  linkType: hard
+
+"reactflow@npm:^11.1.2":
+  version: 11.1.2
+  resolution: "reactflow@npm:11.1.2"
+  dependencies:
+    "@reactflow/background": 11.0.3
+    "@reactflow/controls": 11.0.3
+    "@reactflow/core": 11.1.2
+    "@reactflow/minimap": 11.0.3
+  peerDependencies:
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 95a761ede3cdf21e9204e0b72c661dbbe1c77833801bbaff58b3ef092a07a40520cf2a0bda1566057412c5654ce178391a3b822f986aaea538f12d69ef48b307
   languageName: node
   linkType: hard
 
@@ -6157,14 +6210,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^3.7.2":
-  version: 3.7.2
-  resolution: "zustand@npm:3.7.2"
+"zustand@npm:^4.1.1":
+  version: 4.1.3
+  resolution: "zustand@npm:4.1.3"
+  dependencies:
+    use-sync-external-store: 1.2.0
   peerDependencies:
+    immer: ">=9.0"
     react: ">=16.8"
   peerDependenciesMeta:
+    immer:
+      optional: true
     react:
       optional: true
-  checksum: 18f025b1b666a311121d3855303ff58e6a21fd107920ca474307e86984c13338d6c4cfa5cdf13382a9e0f76821f2554a12d4d200a98a66b58637e729f149797b
+  checksum: e00c73723dfb87424d1c66028df18a0d700ec460c972dd397bdcd745ba424fcf588cd0ef9dfa28c17cfbf2e4c11d779bda366c539a933c4a35601b09de820332
   languageName: node
   linkType: hard

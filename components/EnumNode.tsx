@@ -1,6 +1,6 @@
 import cc from "classcat";
 import React, { useState } from "react";
-import { Handle, Position } from "react-flow-renderer";
+import { Handle, Position } from "reactflow";
 
 import styles from "./Node.module.scss";
 

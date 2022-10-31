@@ -1,12 +1,14 @@
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
+  applyNodeChanges,
   Background,
   BackgroundVariant,
   ControlButton,
   Controls,
-} from "react-flow-renderer";
+  OnNodesChange,
+} from "reactflow";
 
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
@@ -31,27 +33,40 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
   // Will be more complex but gives us better control over how they're handled, and makes storing locations EZ.
   // https://reactflow.dev/docs/guides/migrate-to-v10/#11-controlled-nodes-and-edges
   const [layout, setLayout] = useState<ElkNode | null>(null);
-  const { nodes, edges } = useMemo(
-    () =>
-      dmmf
-        ? dmmfToElements(dmmf, layout)
-        : ({ nodes: [], edges: [] } as DMMFToElementsResult),
-    [dmmf, layout]
-  );
+  const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
+  const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
+
+  useEffect(() => {
+    const { nodes, edges } = dmmf
+      ? dmmfToElements(dmmf, layout)
+      : ({ nodes: [], edges: [] } as DMMFToElementsResult);
+
+    // See if `applyNodeChanges` can work here?
+    setNodes(nodes);
+    setEdges(edges);
+  }, [dmmf, layout]);
 
   const refreshLayout = useCallback(async () => {
     const layout = await getLayout(nodes, edges);
     setLayout(layout);
   }, [nodes, edges]);
 
+  const onNodesChange: OnNodesChange = useCallback(
+    (changes) =>
+      setNodes((nodes) => applyNodeChanges(changes, nodes as any) as any),
+    [setNodes]
+  );
+
   return (
     <>
       <ReactFlow
-        defaultNodes={nodes}
-        defaultEdges={edges}
+        nodes={nodes}
+        edges={edges}
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.05}
+        onNodesChange={onNodesChange}
+        onEdgesChange={console.log}
       >
         <Background
           variant={BackgroundVariant.Dots}

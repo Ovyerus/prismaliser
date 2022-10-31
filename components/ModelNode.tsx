@@ -1,11 +1,6 @@
 import cc from "classcat";
 import React from "react";
-import {
-  Handle,
-  Position,
-  useReactFlow,
-  useStoreApi,
-} from "react-flow-renderer";
+import { Handle, Position, useReactFlow, useStoreApi } from "reactflow";
 
 import styles from "./Node.module.scss";
 

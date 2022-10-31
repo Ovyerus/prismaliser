@@ -1,6 +1,6 @@
 import { ElkNode } from "elkjs";
 import { groupBy } from "rambda";
-import { Edge, Node } from "react-flow-renderer";
+import { Edge, Node } from "reactflow";
 
 import {
   EnumNodeData,
@@ -216,7 +216,8 @@ export const dmmfToElements = (
         } as DMMF.Model)
     );
 
-  return {
+  // TODO: looks like the handle ids are incorrect, and also in the wrong spot. need to find out why.
+  const x = {
     nodes: [
       ...data.enums.map((enumData) => generateEnumNode(enumData, layout)),
       ...[...data.models, ...implicitManyToMany].map((model) =>
@@ -228,4 +229,6 @@ export const dmmfToElements = (
       ...Object.entries(relations).flatMap(generateRelationEdge),
     ],
   };
+  console.log(x);
+  return x;
 };

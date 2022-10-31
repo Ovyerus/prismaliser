@@ -1,5 +1,5 @@
 import Elk, { ElkExtendedEdge, ElkNode } from "elkjs/lib/elk.bundled";
-import { Edge, Node } from "react-flow-renderer";
+import { Edge, Node } from "reactflow";
 
 import { EnumNodeData, ModelNodeData } from "./types";
 

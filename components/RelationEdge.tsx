@@ -2,9 +2,9 @@ import React, { memo } from "react";
 import {
   EdgeProps,
   EdgeText,
-  getEdgeCenter,
+  // getEdgeCenter,
   getSmoothStepPath,
-} from "react-flow-renderer";
+} from "reactflow";
 
 import { RelationEdgeData } from "~/util/types";
 
@@ -23,15 +23,7 @@ const RelationEdge = ({
   labelBgStyle,
   data,
 }: EdgeProps<RelationEdgeData>) => {
-  const [centerX, centerY] = getEdgeCenter({
-    sourceX,
-    sourceY,
-    targetX,
-    targetY,
-    sourcePosition,
-    targetPosition,
-  });
-  const path = getSmoothStepPath({
+  const [path, centerX, centerY] = getSmoothStepPath({
     sourceX,
     sourceY,
     targetX,

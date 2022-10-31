@@ -24,8 +24,8 @@
     "rambda": "^7.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-flow-renderer": "^10.3.16",
     "react-use": "^17.4.0",
+    "reactflow": "^11.1.2",
     "sass": "^1.54.8",
     "strip-ansi": "6.0.1",
     "use-http": "^1.0.26"
