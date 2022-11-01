@@ -3055,6 +3055,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-to-image@npm:^1.10.8":
+  version: 1.10.8
+  resolution: "html-to-image@npm:1.10.8"
+  checksum: 05879b1b3e9f4222dfaa0dde803702cd59bcc500bce50ca16c4a556901c0167650a57136ebcec3213e9d9a85a086539748404035228270212d0d365a9f7b60e6
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.1.0":
   version: 4.1.0
   resolution: "http-cache-semantics@npm:4.1.0"
@@ -4656,6 +4663,7 @@ __metadata:
     eslint: ^8.20.0
     eslint-config-clarity: 1.0.0-beta.7
     eslint-import-resolver-typescript: ^2.7.1
+    html-to-image: ^1.10.8
     monaco-editor: ^0.34.0
     next: ^12.2.5
     postcss: ^8.4.16
