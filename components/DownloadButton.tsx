@@ -35,7 +35,7 @@ const generateImage = async () => {
   );
 
   // Generate the Image-Data from HTML-Element
-  const canvas = await html2canvas(element, {
+  const canvas = await html2canvas(element as HTMLElement, {
     width: element.scrollWidth + PADDING,
     height: element.scrollHeight + PADDING,
   });
@@ -43,7 +43,7 @@ const generateImage = async () => {
 
   // Resetting the CSS-Styles
   element.removeAttribute("style");
-  viewportElement.setAttribute("style", viewportOld);
+  viewportElement.setAttribute("style", viewportOld || "");
   controlsElement?.removeAttribute("style");
   attributionElement?.removeAttribute("style");
   backgroundElement?.setAttribute("style", "width:100%; height:100%;");
