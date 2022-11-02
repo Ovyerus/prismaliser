@@ -6,14 +6,14 @@ import ReactFlow, {
   BackgroundVariant,
   ControlButton,
   Controls,
-  ReactFlowInstance,
 } from "react-flow-renderer";
+
+import DownloadButton from "./DownloadButton";
 
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
 import { dmmfToElements } from "~/util/dmmfToElements";
-import { downloadAsImage } from "~/util/downloadImage";
 import { getLayout } from "~/util/layout";
 import { DMMFToElementsResult } from "~/util/types";
 
@@ -33,8 +33,6 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
   // Will be more complex but gives us better control over how they're handled, and makes storing locations EZ.
   // https://reactflow.dev/docs/guides/migrate-to-v10/#11-controlled-nodes-and-edges
   const [layout, setLayout] = useState<ElkNode | null>(null);
-  const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance | null>(null);
 
   const { nodes, edges } = useMemo(
     () =>
@@ -57,9 +55,6 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.05}
-        onInit={(rfInstance) => {
-          setReactFlowInstance(rfInstance);
-        }}
       >
         <Background
           variant={BackgroundVariant.Dots}
@@ -72,14 +67,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
             <Icon icon="icon-park-outline:chart-graph" />
           </ControlButton>
-          <ControlButton
-            title="Download as PNG"
-            onClick={() => {
-              if (reactFlowInstance) downloadAsImage(reactFlowInstance);
-            }}
-          >
-            <Icon icon="uil:image-download" />
-          </ControlButton>
+          <DownloadButton />
         </Controls>
       </ReactFlow>
       <svg width="0" height="0">
