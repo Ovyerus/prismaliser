@@ -20,6 +20,7 @@
     "@prisma/internals": "^4.3.1",
     "classcat": "^5.0.4",
     "elkjs": "^0.8.2",
+    "html2canvas": "^1.4.1",
     "next": "^12.2.5",
     "rambda": "^7.2.1",
     "react": "^17.0.2",

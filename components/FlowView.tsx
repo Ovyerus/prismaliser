@@ -10,6 +10,8 @@ import ReactFlow, {
   OnNodesChange,
 } from "reactflow";
 
+import DownloadButton from "./DownloadButton";
+
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
@@ -79,6 +81,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
             <Icon icon="icon-park-outline:chart-graph" />
           </ControlButton>
+          <DownloadButton />
         </Controls>
       </ReactFlow>
       <svg width="0" height="0">
