@@ -102,6 +102,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/icons-gg@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@iconify/icons-gg@npm:1.2.2"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: e75c9c02f45eb9ec92800750653a2bc8c6abdff5512345bf3dad872198eb609d30bae5434f76b67bdb3add46fee5ba66042c7ebc0b8e50c08e7a2bd17d1e08f3
+  languageName: node
+  linkType: hard
+
 "@iconify/icons-simple-icons@npm:^1.2.24":
   version: 1.2.24
   resolution: "@iconify/icons-simple-icons@npm:1.2.24"
@@ -4726,6 +4735,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prismaliser@workspace:."
   dependencies:
+    "@iconify/icons-gg": ^1.2.2
     "@iconify/icons-simple-icons": ^1.2.24
     "@iconify/react": ^3.2.2
     "@monaco-editor/react": ^4.4.5

@@ -1,7 +1,8 @@
+import downloadIcon from "@iconify/icons-gg/software-download";
 import { Icon } from "@iconify/react";
 import html2canvas from "html2canvas";
 import React from "react";
-import { ControlButton } from "react-flow-renderer";
+import { ControlButton } from "reactflow";
 
 const PADDING = 25;
 
@@ -63,7 +64,7 @@ const DownloadButton = () => {
 
   return (
     <ControlButton title="Download as PNG" onClick={download}>
-      <Icon icon="uil:image-download" />
+      <Icon icon={downloadIcon} />
     </ControlButton>
   );
 };

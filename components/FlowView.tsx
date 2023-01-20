@@ -1,3 +1,4 @@
+import listTree from "@iconify/icons-gg/list-tree";
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
 import React, { useCallback, useEffect, useState } from "react";
@@ -68,7 +69,6 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         nodeTypes={nodeTypes}
         minZoom={0.05}
         onNodesChange={onNodesChange}
-        onEdgesChange={console.log}
       >
         <Background
           variant={BackgroundVariant.Dots}
@@ -79,7 +79,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         />
         <Controls>
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
-            <Icon icon="icon-park-outline:chart-graph" />
+            <Icon icon={listTree} />
           </ControlButton>
           <DownloadButton />
         </Controls>
