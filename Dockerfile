@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:16-alpine3.17 AS builder
 
 WORKDIR /build
 
@@ -18,8 +18,8 @@ RUN yarn install --immutable
 COPY . .
 RUN yarn build
 # @prisma/nft doesn't pick up on the Prisma binaries so we need to manually include them
-RUN cp -r ./node_modules/@prisma/engines/libquery_engine-linux-musl.so.node ./.next/standalone/node_modules/@prisma/engines/
-RUN cp -r ./node_modules/@prisma/engines/prisma-fmt-linux-musl ./.next/standalone/node_modules/@prisma/engines/
+RUN cp -r ./node_modules/@prisma/engines/libquery_engine-linux-musl-openssl-3.0.x.so.node ./.next/standalone/node_modules/@prisma/engines/
+RUN cp -r ./node_modules/@prisma/engines/prisma-fmt-linux-musl-openssl-3.0.x ./.next/standalone/node_modules/@prisma/engines/
 
 FROM node:16-alpine AS runner
 
