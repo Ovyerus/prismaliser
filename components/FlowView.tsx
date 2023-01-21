@@ -11,7 +11,7 @@ import ReactFlow, {
   OnNodesChange,
 } from "reactflow";
 
-import DownloadButton from "./DownloadButton";
+// import DownloadButton from "./DownloadButton";
 
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
@@ -81,7 +81,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
             <Icon icon={listTree} />
           </ControlButton>
-          <DownloadButton />
+          {/* <DownloadButton /> */}
         </Controls>
       </ReactFlow>
       <svg width="0" height="0">
