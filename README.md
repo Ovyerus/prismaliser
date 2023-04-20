@@ -12,7 +12,7 @@ your models, by showing links between the different types of relations in the
 schema (many-to-many, one-to-many, one-to-one), similar to an
 [Entity-relationship model](https://en.wikipedia.org/wiki/Entity-relationship_model).
 
-Prisma is a fully open-source Next.js application and is easily self-hostable if
+Prismaliser is a fully open-source Next.js application and is easily self-hostable if
 you wish to, but a hosted version is also available at
 [prismaliser.app](https://prismaliser.app) if you just want to use it instead.
 
