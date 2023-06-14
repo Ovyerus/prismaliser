@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Visualise your Prisma Schema as an ER digram.",
   "main": "index.js",
-  "author": "Ovyerus <iamovyerus@gmail.com>",
+  "author": "Ovyerus <ovy@ovyerus.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
