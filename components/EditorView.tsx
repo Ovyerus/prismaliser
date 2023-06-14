@@ -30,7 +30,7 @@ const EditorView = ({ value, onChange }: EditorViewProps) => {
       options={{
         minimap: { enabled: false },
         smoothScrolling: true,
-        cursorSmoothCaretAnimation: true,
+        cursorSmoothCaretAnimation: "on",
         scrollBeyondLastLine: true,
       }}
       value={value}
