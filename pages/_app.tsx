@@ -2,13 +2,15 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 
+// eslint-disable-next-line import/no-unassigned-import
+import "@fontsource/inter";
+
 import "reactflow/dist/style.css";
 import "~/assets/style/global.css";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       <title>Prismaliser</title>
       <meta name="description" content="Visualise your Prisma schema!" />
       <meta
