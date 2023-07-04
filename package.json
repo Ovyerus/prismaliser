@@ -16,7 +16,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.0.4",
     "@iconify/icons-gg": "^1.2.4",
-    "@iconify/icons-simple-icons": "^1.2.57",
+    "@iconify/icons-simple-icons": "^1.2.58",
     "@iconify/react": "^4.1.1",
     "@monaco-editor/react": "^4.5.1",
     "@prisma/internals": "^4.16.2",

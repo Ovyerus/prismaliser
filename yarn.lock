@@ -153,12 +153,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/icons-simple-icons@npm:^1.2.57":
-  version: 1.2.57
-  resolution: "@iconify/icons-simple-icons@npm:1.2.57"
+"@iconify/icons-simple-icons@npm:^1.2.58":
+  version: 1.2.58
+  resolution: "@iconify/icons-simple-icons@npm:1.2.58"
   dependencies:
     "@iconify/types": "*"
-  checksum: d150df343cf26eed2ea232e86169daf9efd860074e78e33a6426202aa7f9ee78beca5681b5050a316374511dd4bf15b40480074324ac22158d07af3eb1bdbf9b
+  checksum: 37f9ee1ee2934e65ce2acceb03f8236f6db81aa86a79825776b3d1c6a8f832bd6163873cd4937a5f0144dd69737a819e64991f70cf68bdb50b9cb53ca832468b
   languageName: node
   linkType: hard
 
@@ -5067,7 +5067,7 @@ __metadata:
   dependencies:
     "@fontsource/inter": ^5.0.4
     "@iconify/icons-gg": ^1.2.4
-    "@iconify/icons-simple-icons": ^1.2.57
+    "@iconify/icons-simple-icons": ^1.2.58
     "@iconify/react": ^4.1.1
     "@monaco-editor/react": ^4.5.1
     "@prisma/generator-helper": ~4.16.2

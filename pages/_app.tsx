@@ -47,6 +47,12 @@ const App = ({ Component, pageProps }: AppProps) => (
         property="twitter:image:alt"
         content="Visualise your Prisma schema - Prismaliser"
       />
+      <script
+        data-domain={process.env.PLAUSIBLE_SITE}
+        data-api="/api/event"
+        src="/js/script.js"
+        defer
+      />
     </Head>
     <Component {...pageProps} />
   </>
