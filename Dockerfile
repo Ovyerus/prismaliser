@@ -1,5 +1,9 @@
 FROM node:16-alpine3.17 AS builder
 
+ARG PLAUSIBLE_SITE
+ARG PLAUSIBLE_HOST
+ENV PLAUSIBLE_SITE=${PLAUSIBLE_SITE}
+ENV PLAUSIBLE_HOST=${PLAUSIBLE_HOST}
 WORKDIR /build
 
 # Docker is hell and won't respect the `!` lines in dockerignore for some reason :D
