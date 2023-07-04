@@ -17,6 +17,9 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY .yarnrc.yml ./
 
+RUN echo $PLAUSIBLE_HOST
+RUN echo $PLAUSIBLE_SITE
+
 RUN yarn install --immutable
 
 COPY . .
