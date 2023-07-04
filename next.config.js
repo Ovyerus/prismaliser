@@ -8,25 +8,20 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  async redirects() {
+  async rewrites() {
     if (!process.env.PLAUSIBLE_HOST) return [];
 
     return [
       {
         source: plausibleScript,
         destination: new URL(plausibleScript, process.env.PLAUSIBLE_HOST).href,
-        permanent: true,
         basePath: false,
-        locale: false,
       },
-
       {
         source: plausibleEndpoint,
         destination: new URL(plausibleEndpoint, process.env.PLAUSIBLE_HOST)
           .href,
-        permanent: true,
         basePath: false,
-        locale: false,
       },
     ];
   },
