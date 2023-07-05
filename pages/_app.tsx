@@ -48,7 +48,7 @@ const App = ({ Component, pageProps }: AppProps) => (
         content="Visualise your Prisma schema - Prismaliser"
       />
       <script
-        data-domain={process.env.PLAUSIBLE_SITE}
+        data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_SITE || "what"}
         data-api="/api/event"
         src="/js/script.js"
         defer

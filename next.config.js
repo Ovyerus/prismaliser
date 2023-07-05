@@ -1,5 +1,4 @@
 const plausibleScript = "/js/script.js";
-const plausibleEndpoint = "/api/event";
 
 /** @type import('next').NextConfig */
 module.exports = {
@@ -15,12 +14,6 @@ module.exports = {
       {
         source: plausibleScript,
         destination: new URL(plausibleScript, process.env.PLAUSIBLE_HOST).href,
-        basePath: false,
-      },
-      {
-        source: plausibleEndpoint,
-        destination: new URL(plausibleEndpoint, process.env.PLAUSIBLE_HOST)
-          .href,
         basePath: false,
       },
     ];
