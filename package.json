@@ -34,7 +34,7 @@
     "use-http": "^1.0.28"
   },
   "devDependencies": {
-    "@prisma/generator-helper": "~4.16.2",
+    "@prisma/generator-helper": "~5.0.0",
     "@types/node": "^20.3.3",
     "@types/react": "^18.2.14",
     "autoprefixer": "^10.4.14",
