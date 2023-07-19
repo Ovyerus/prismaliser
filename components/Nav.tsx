@@ -1,6 +1,6 @@
 import github from "@iconify/icons-simple-icons/github";
+import mastodon from "@iconify/icons-simple-icons/mastodon";
 import prisma from "@iconify/icons-simple-icons/prisma";
-import twitter from "@iconify/icons-simple-icons/twitter";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import React from "react";
@@ -18,8 +18,8 @@ const Nav = () => (
       <a
         className="button icon light"
         href="https://prisma.io"
-        title="Prisma"
-        aria-label="Prisma"
+        title="Prisma website"
+        aria-label="Prisma website"
       >
         <Icon icon={prisma} height={24} />
       </a>
@@ -27,18 +27,18 @@ const Nav = () => (
       <a
         className="button icon light"
         href="https://github.com/Ovyerus/prismaliser"
-        title="Prismaliser GitHub"
-        aria-label="Prismaliser GitHub"
+        title="Prismaliser GitHub repository"
+        aria-label="Prismaliser GitHub repository"
       >
         <Icon icon={github} height={24} />
       </a>
       <a
         className="button icon light"
-        href="https://twitter.com/Ovyerus"
-        title="Prismaliser Twitter"
-        aria-label="Prismaliser Twitter"
+        href="https://aus.social/@ovyerus"
+        title="Author's Mastodon account"
+        aria-label="Author's Mastodon account"
       >
-        <Icon icon={twitter} height={24} />
+        <Icon icon={mastodon} height={24} />
       </a>
     </div>
   </nav>
