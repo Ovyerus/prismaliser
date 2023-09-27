@@ -13,7 +13,7 @@ const generateImage = async () => {
   const controlsElement = document.querySelector(".react-flow__controls");
   const attributionElement = document.querySelector(".react-flow__attribution");
   const backgroundElement = document.querySelector(
-    "svg.react-flow__background"
+    "svg.react-flow__background",
   );
   const edgesElement = document.querySelector("svg.react-flow__edges");
 
@@ -28,11 +28,11 @@ const generateImage = async () => {
   attributionElement?.setAttribute("style", "display:none;");
   backgroundElement?.setAttribute(
     "style",
-    `width:${element.scrollWidth}px; height:${element.scrollHeight}px;`
+    `width:${element.scrollWidth}px; height:${element.scrollHeight}px;`,
   );
   edgesElement?.setAttribute(
     "style",
-    `z-index: 0; width:${element.scrollWidth}px; height:${element.scrollHeight}px;`
+    `z-index: 0; width:${element.scrollWidth}px; height:${element.scrollHeight}px;`,
   );
 
   // Generate the Image-Data from HTML-Element

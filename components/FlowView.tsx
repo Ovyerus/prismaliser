@@ -57,7 +57,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
   const onNodesChange: OnNodesChange = useCallback(
     (changes) =>
       setNodes((nodes) => applyNodeChanges(changes, nodes as any) as any),
-    [setNodes]
+    [setNodes],
   );
 
   return (

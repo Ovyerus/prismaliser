@@ -52,7 +52,7 @@ const IndexPage = () => {
   // TODO: multiple save states.
   const [storedText, setStoredText] = useLocalStorage(
     "prismaliser.text",
-    initial
+    initial,
   );
   const [text, setText] = useState(storedText!);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);

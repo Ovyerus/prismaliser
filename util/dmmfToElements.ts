@@ -21,10 +21,10 @@ const letters = ["A", "B"];
 
 const generateEnumNode = (
   { name, dbName, documentation, values }: DMMF.DatamodelEnum,
-  layout: ElkNode | null
+  layout: ElkNode | null,
 ): Node<EnumNodeData> => {
   const positionedNode = layout?.children?.find(
-    (layoutNode) => layoutNode.id === name
+    (layoutNode) => layoutNode.id === name,
   );
 
   return {
@@ -46,10 +46,10 @@ const generateEnumNode = (
 const generateModelNode = (
   { name, dbName, documentation, fields }: DMMF.Model,
   relations: Readonly<Record<string, Relation>>,
-  layout: ElkNode | null
+  layout: ElkNode | null,
 ): Node<ModelNodeData> => {
   const positionedNode = layout?.children?.find(
-    (layoutNode) => layoutNode.id === name
+    (layoutNode) => layoutNode.id === name,
   );
 
   return {
@@ -99,7 +99,7 @@ const generateModelNode = (
               : kind === "enum"
               ? def.toString()
               : JSON.stringify(def),
-        })
+        }),
       ),
     },
   };
@@ -116,7 +116,7 @@ const generateEnumEdge = (col: FieldWithTable): Edge => ({
 
 const generateRelationEdge = ([relationName, { type, fields }]: [
   string,
-  Relation
+  Relation,
 ]): Edge[] => {
   const base = {
     id: `e${relationName}`,
@@ -162,13 +162,13 @@ const generateRelationEdge = ([relationName, { type, fields }]: [
 // issue, need to look into it a bit better at some point.
 export const dmmfToElements = (
   data: DMMF.Datamodel,
-  layout: ElkNode | null
+  layout: ElkNode | null,
 ): DMMFToElementsResult => {
   const filterFields = (kind: DMMF.FieldKind) =>
     data.models.flatMap(({ name: tableName, fields }) =>
       fields
         .filter((col) => col.kind === kind)
-        .map((col) => ({ ...col, tableName }))
+        .map((col) => ({ ...col, tableName })),
     );
 
   const relationFields = filterFields("object");
@@ -179,7 +179,7 @@ export const dmmfToElements = (
   const intermediate1: Readonly<Record<string, readonly FieldWithTable[]>> =
     groupBy((col) => col.relationName!, relationFields);
   const intermediate2: ReadonlyArray<[string, Relation]> = Object.entries(
-    intermediate1
+    intermediate1,
   ).map(([key, [one, two]]) => {
     if (one.isList && two.isList)
       return [key, { type: "m-n", fields: [one, two] }];
@@ -213,7 +213,7 @@ export const dmmfToElements = (
               .find((m) => m.name === field.type)
               ?.fields.find((x) => x.isId)?.type,
           })),
-        } as DMMF.Model)
+        }) as DMMF.Model,
     );
 
   // TODO: looks like the handle ids are incorrect, and also in the wrong spot. need to find out why.
@@ -221,7 +221,7 @@ export const dmmfToElements = (
     nodes: [
       ...data.enums.map((enumData) => generateEnumNode(enumData, layout)),
       ...[...data.models, ...implicitManyToMany].map((model) =>
-        generateModelNode(model, relations, layout)
+        generateModelNode(model, relations, layout),
       ),
     ],
     edges: [

@@ -11,11 +11,11 @@ const EditorView = ({ value, onChange }: EditorViewProps) => {
       monaco.languages.register({ id: "prisma" });
       monaco.languages.setLanguageConfiguration(
         "prisma",
-        prismaLanguage.config
+        prismaLanguage.config,
       );
       monaco.languages.setMonarchTokensProvider(
         "prisma",
-        prismaLanguage.language
+        prismaLanguage.language,
       );
     }
   }, [monaco]);
