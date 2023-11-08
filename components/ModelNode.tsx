@@ -4,27 +4,16 @@ import { Handle, Position, useReactFlow, useStoreApi } from "reactflow";
 
 import styles from "./Node.module.scss";
 
+import {
+  enumEdgeTargetHandleId,
+  relationEdgeSourceHandleId,
+  relationEdgeTargetHandleId,
+} from "~/util/prismaToFlow";
 import { ModelNodeData } from "~/util/types";
 
 type ColumnData = ModelNodeData["columns"][number];
 
-const isTarget = ({
-  kind,
-  isList,
-  relationFromFields,
-  relationName,
-  relationType,
-}: ColumnData) =>
-  kind === "enum" ||
-  ((relationType === "1-n" || relationType === "m-n") && !isList) ||
-  (relationType === "1-1" && !relationFromFields?.length) ||
-  // Fallback for implicit m-n tables (maybe they should act like the child in a
-  // 1-n instead)
-  (kind === "scalar" && !!relationName);
-
-const isSource = ({ isList, relationFromFields, relationType }: ColumnData) =>
-  ((relationType === "1-n" || relationType === "m-n") && isList) ||
-  (relationType === "1-1" && !!relationFromFields?.length);
+const isRelationed = ({ relationData }: ColumnData) => !!relationData?.side;
 
 const ModelNode = ({ data }: ModelNodeProps) => {
   const store = useStoreApi();
@@ -68,55 +57,89 @@ const ModelNode = ({ data }: ModelNodeProps) => {
         </tr>
       </thead>
       <tbody>
-        {data.columns.map((col) => (
-          <tr key={col.name} className={styles.row} title={col.documentation}>
-            <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
-              <button
-                type="button"
-                className={cc([
-                  "relative",
-                  "p-2",
-                  { "cursor-pointer": isTarget(col) || isSource(col) },
-                ])}
-                onClick={() => {
-                  if (!isTarget(col) && !isSource(col)) return;
+        {data.columns.map((col) => {
+          const reled = isRelationed(col);
+          let targetHandle: JSX.Element | null = null;
+          let sourceHandle: JSX.Element | null = null;
 
-                  focusNode(col.type);
-                }}
-              >
-                {col.name}
-                {isTarget(col) && (
-                  <Handle
-                    key={`${data.name}-${col.relationName || col.name}`}
-                    className={cc([styles.handle, styles.left])}
-                    type="target"
-                    id={`${data.name}-${col.relationName || col.name}`}
-                    position={Position.Left}
-                    isConnectable={false}
-                  />
-                )}
-              </button>
-            </td>
-            <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300">
-              {col.displayType}
-            </td>
-            <td className="font-mono border-t-2 border-gray-300">
-              <div className="relative p-2">
-                {col.defaultValue || ""}
-                {isSource(col) && (
-                  <Handle
-                    key={`${data.name}-${col.relationName}-${col.name}`}
-                    className={cc([styles.handle, styles.right])}
-                    type="source"
-                    id={`${data.name}-${col.relationName}-${col.name}`}
-                    position={Position.Right}
-                    isConnectable={false}
-                  />
-                )}
-              </div>
-            </td>
-          </tr>
-        ))}
+          if (col.kind === "enum") {
+            const handleId = enumEdgeTargetHandleId(data.name, col.name);
+            targetHandle = (
+              <Handle
+                key={handleId}
+                className={cc([styles.handle, styles.left])}
+                type="target"
+                id={handleId}
+                position={Position.Left}
+                isConnectable={false}
+              />
+            );
+          } else if (col.relationData) {
+            const targetHandleId = relationEdgeTargetHandleId(
+              data.name,
+              col.relationData.name,
+            );
+            const sourceHandleId = relationEdgeSourceHandleId(
+              data.name,
+              col.relationData.name,
+              col.name,
+            );
+
+            targetHandle =
+              col.relationData.side === "target" ? (
+                <Handle
+                  key={targetHandleId}
+                  className={cc([styles.handle, styles.left])}
+                  type="target"
+                  id={targetHandleId}
+                  position={Position.Left}
+                  isConnectable={false}
+                />
+              ) : null;
+            sourceHandle =
+              col.relationData.side === "source" ? (
+                <Handle
+                  key={sourceHandleId}
+                  className={cc([styles.handle, styles.right])}
+                  type="source"
+                  id={sourceHandleId}
+                  position={Position.Right}
+                  isConnectable={false}
+                />
+              ) : null;
+          }
+
+          return (
+            <tr key={col.name} className={styles.row} title={col.documentation}>
+              <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
+                <button
+                  type="button"
+                  className={cc([
+                    "relative",
+                    "p-2",
+                    { "cursor-pointer": reled },
+                  ])}
+                  onClick={() => {
+                    if (!reled) return;
+                    focusNode(col.type);
+                  }}
+                >
+                  {col.name}
+                  {targetHandle}
+                </button>
+              </td>
+              <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300">
+                {col.displayType}
+              </td>
+              <td className="font-mono border-t-2 border-gray-300">
+                <div className="relative p-2">
+                  {col.defaultValue || ""}
+                  {sourceHandle}
+                </div>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

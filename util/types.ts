@@ -1,10 +1,17 @@
 import { Edge, Node } from "reactflow";
 
 export type RelationType = "1-1" | "1-n" | "m-n";
+export type RelationSide = "source" | "target";
 
 export interface SchemaError {
   reason: string;
   row: string;
+}
+
+export interface ModelRelationData {
+  side: RelationSide;
+  type: RelationType;
+  name: string;
 }
 
 export interface EnumNodeData {
@@ -28,11 +35,8 @@ export interface ModelNodeData {
     documentation?: string;
     isList: boolean;
     isRequired: boolean;
-    relationName?: string | null;
-    relationFromFields?: string[] | null;
-    relationToFields?: string[] | null;
     defaultValue?: string | null;
-    relationType?: RelationType | null;
+    relationData: ModelRelationData | null;
   }>;
 }
 

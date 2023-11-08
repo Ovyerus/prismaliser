@@ -92,7 +92,7 @@ const IndexPage = () => {
     }));
     const [model] = monaco.editor.getModels();
 
-    monaco.editor.setModelMarkers(model, "prismaliser", markers);
+    monaco.editor.setModelMarkers(model!, "prismaliser", markers);
   }, [monaco, schemaErrors]);
 
   useEffect(() => {

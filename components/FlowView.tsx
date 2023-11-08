@@ -1,7 +1,7 @@
 import listTree from "@iconify/icons-gg/list-tree";
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactFlow, {
   applyNodeChanges,
   Background,
@@ -16,8 +16,8 @@ import ReactFlow, {
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
 import RelationEdge from "~/components/RelationEdge";
-import { dmmfToElements } from "~/util/dmmfToElements";
 import { getLayout } from "~/util/layout";
+import { generateFlowFromDMMF } from "~/util/prismaToFlow";
 import { DMMFToElementsResult } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
@@ -32,33 +32,30 @@ const edgeTypes = {
 };
 
 const FlowView = ({ dmmf }: FlowViewProps) => {
-  // TODO: move to controlled nodes/edges, and change this to generate a NodeChanges[] as a diff so that positions gets preserved.
-  // Will be more complex but gives us better control over how they're handled, and makes storing locations EZ.
-  // https://reactflow.dev/docs/guides/migrate-to-v10/#11-controlled-nodes-and-edges
-  const [layout, setLayout] = useState<ElkNode | null>(null);
   const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
   const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
 
-  useEffect(() => {
-    const { nodes, edges } = dmmf
-      ? dmmfToElements(dmmf, layout)
+  const regenerateNodes = (layout: ElkNode | null) => {
+    const { nodes: newNodes, edges: newEdges } = dmmf
+      ? generateFlowFromDMMF(dmmf, nodes, layout)
       : ({ nodes: [], edges: [] } as DMMFToElementsResult);
 
     // See if `applyNodeChanges` can work here?
-    setNodes(nodes);
-    setEdges(edges);
-  }, [dmmf, layout]);
+    setNodes(newNodes);
+    setEdges(newEdges);
+  };
 
-  const refreshLayout = useCallback(async () => {
+  const refreshLayout = async () => {
     const layout = await getLayout(nodes, edges);
-    setLayout(layout);
-  }, [nodes, edges]);
+    regenerateNodes(layout);
+  };
 
-  const onNodesChange: OnNodesChange = useCallback(
-    (changes) =>
-      setNodes((nodes) => applyNodeChanges(changes, nodes as any) as any),
-    [setNodes],
-  );
+  const onNodesChange: OnNodesChange = (changes) =>
+    setNodes((nodes) => applyNodeChanges(changes, nodes as any) as any);
+
+  useEffect(() => {
+    regenerateNodes(null);
+  }, [dmmf]);
 
   return (
     <>
