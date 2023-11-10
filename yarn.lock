@@ -401,17 +401,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:5.5.0":
-  version: 5.5.0
-  resolution: "@prisma/debug@npm:5.5.0"
-  dependencies:
-    "@types/debug": 4.1.9
-    debug: 4.3.4
-    strip-ansi: 6.0.1
-  checksum: c577aee8c92ac1cf13c7636c92e2085d29381d4cc141b54a61aac8bad40b62818ad788165fa74ba90162e7316cda70e12b28dd183c7ac2172d14848c39bcf340
-  languageName: node
-  linkType: hard
-
 "@prisma/debug@npm:5.5.2":
   version: 5.5.2
   resolution: "@prisma/debug@npm:5.5.2"
@@ -455,7 +444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:5.5.2":
+"@prisma/generator-helper@npm:5.5.2, @prisma/generator-helper@npm:~5.5.0":
   version: 5.5.2
   resolution: "@prisma/generator-helper@npm:5.5.2"
   dependencies:
@@ -464,18 +453,6 @@ __metadata:
     cross-spawn: 7.0.3
     kleur: 4.1.5
   checksum: 4aef64ba4bcf3211358148fc1dc782541a33129154e5bb86687b60aff41674e1578ac8ccadee5a9e719d4d9b304963395ae7276d8b59760dec93bfa4517dff34
-  languageName: node
-  linkType: hard
-
-"@prisma/generator-helper@npm:~5.5.0":
-  version: 5.5.0
-  resolution: "@prisma/generator-helper@npm:5.5.0"
-  dependencies:
-    "@prisma/debug": 5.5.0
-    "@types/cross-spawn": 6.0.3
-    cross-spawn: 7.0.3
-    kleur: 4.1.5
-  checksum: 319f17bcc8ede7b77b0df50cc40f4501ea081f4549f9826774ba9c622309eacd837a25fb55e80e6e8d94737b6e0a8dcdd350d772179e1626a0965b2d286827cd
   languageName: node
   linkType: hard
 
