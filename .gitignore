@@ -10,3 +10,5 @@ dist
 !.yarn/versions
 .env
 .env.local
+.direnv
+.envrc
