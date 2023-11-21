@@ -387,7 +387,6 @@ const positionNodes = (
     const positionedNode = layout?.children?.find(
       (layoutNode) => layoutNode.id === n.name,
     );
-    console.log(positionedNode, n.name);
     const previousNode = previousNodes.find((prev) => prev.id === n.name);
 
     return {
