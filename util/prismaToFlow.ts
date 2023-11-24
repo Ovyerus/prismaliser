@@ -70,9 +70,11 @@ export const relationEdgeSourceHandleId = (
   column: string,
 ) => `${table}-${relation}-${column}`;
 
-// TODO: might need to include column name for multiple relations of same type??
-export const relationEdgeTargetHandleId = (table: string, relation: string) =>
-  `${table}-${relation}`;
+export const relationEdgeTargetHandleId = (
+  table: string,
+  relation: string,
+  column: string,
+) => `${table}-${relation}-${column}`;
 
 const virtualTableName = (relation: string, table: string) =>
   `${relation}-${table}`;
@@ -231,7 +233,12 @@ const relationsToEdges = (
     };
 
     const source = rel.fields.find((f) => f.side === "source")!;
-    const target = rel.fields.find((f) => f.side === "target")!;
+    let target = rel.fields.find((f) => f.side === "target");
+
+    if (!target && rel.virtual)
+      target = rel.fields.find((f) => f.tableName === rel.virtual?.name);
+
+    if (!target) throw new Error("Invalid target");
 
     result.push({
       ...base,
@@ -242,9 +249,12 @@ const relationsToEdges = (
         rel.name,
         source.name,
       ),
-      targetHandle: relationEdgeTargetHandleId(target.tableName, rel.name),
+      targetHandle: relationEdgeTargetHandleId(
+        target.tableName,
+        rel.name,
+        target.name,
+      ),
     });
-    // }
   }
 
   return result;

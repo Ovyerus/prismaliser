@@ -78,6 +78,7 @@ const ModelNode = ({ data }: ModelNodeProps) => {
             const targetHandleId = relationEdgeTargetHandleId(
               data.name,
               col.relationData.name,
+              col.name,
             );
             const sourceHandleId = relationEdgeSourceHandleId(
               data.name,
