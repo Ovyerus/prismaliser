@@ -9,6 +9,8 @@ import {
   getViewportForBounds,
 } from "reactflow";
 
+import styles from "./FlowView.module.css";
+
 const downloadImage = (dataUrl: string) => {
   const a = document.createElement("a");
 
@@ -52,7 +54,11 @@ const DownloadButton = () => {
   };
 
   return (
-    <ControlButton title="Download as PNG" onClick={onClick}>
+    <ControlButton
+      className={styles.noShrinkIcon}
+      title="Download as PNG"
+      onClick={onClick}
+    >
       <Icon icon={downloadIcon} />
     </ControlButton>
   );

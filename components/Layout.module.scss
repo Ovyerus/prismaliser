@@ -6,5 +6,11 @@
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
     "nav nav"
-    "left right";
+    "editor flow";
+}
+
+.noEditor {
+  grid-template-areas:
+    "nav nav"
+    "flow flow";
 }

@@ -57,6 +57,8 @@ const IndexPage = () => {
   const [text, setText] = useState(storedText!);
   const [schemaErrors, setSchemaErrors] = useState<SchemaError[]>([]);
   const [dmmf, setDMMF] = useState<DMMF.Datamodel | null>(null);
+  const [editorVisible, setEditorVisible] = useState(true);
+
   const { post, response, loading } = useFetch("/api");
   const monaco = useMonaco();
 
@@ -108,28 +110,29 @@ const IndexPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const toggleEditor = () => setEditorVisible((v) => !v);
+
   return (
-    <Layout>
-      <section className="relative flex flex-col items-start border-r-2">
-        <EditorView value={text} onChange={(val) => setText(val!)} />
+    <Layout noEditor={!editorVisible}>
+      {/* eslint-disable-next-line react/jsx-no-leaked-render */}
+      {editorVisible && (
+        <section className="relative flex flex-col items-start border-r-2">
+          <EditorView value={text} onChange={(val) => setText(val!)} />
 
-        <div className="absolute flex gap-2 left-4 bottom-4">
-          <CopyButton input={text} />
+          <div className="absolute flex gap-2 left-4 bottom-4">
+            <CopyButton input={text} />
 
-          <button type="button" className="button floating" onClick={format}>
-            Format
-          </button>
-        </div>
+            <button type="button" className="button floating" onClick={format}>
+              Format
+            </button>
+          </div>
 
-        {loading ? (
-          <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
-        ) : null}
-      </section>
-      <pre className="overflow-auto border-l-2">
-        <FlowView dmmf={dmmf} />
-        {/* TODO: add a toggleable "debug" view that shows the raw data? */}
-        {/* {JSON.stringify(data, null, 4)} */}
-      </pre>
+          {loading ? (
+            <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
+          ) : null}
+        </section>
+      )}
+      <FlowView dmmf={dmmf} toggleEditor={toggleEditor} />
     </Layout>
   );
 };

@@ -1,12 +1,13 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
 import React from "react";
 
 // eslint-disable-next-line import/no-unassigned-import
 import "@fontsource/inter";
 
-import "reactflow/dist/style.css";
 import "~/assets/style/global.css";
+import "reactflow/dist/style.css";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -47,7 +48,7 @@ const App = ({ Component, pageProps }: AppProps) => (
         property="twitter:image:alt"
         content="Visualise your Prisma schema - Prismaliser"
       />
-      <script
+      <Script
         data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_SITE || "what"}
         data-api="/api/event"
         src="/js/script.js"

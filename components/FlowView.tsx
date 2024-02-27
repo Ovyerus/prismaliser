@@ -1,3 +1,4 @@
+import doubleChevron from "@iconify/icons-gg/chevron-double-left";
 import listTree from "@iconify/icons-gg/list-tree";
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
@@ -12,6 +13,7 @@ import ReactFlow, {
 } from "reactflow";
 
 import DownloadButton from "./DownloadButton";
+import styles from "./FlowView.module.css";
 
 import EnumNode from "~/components/EnumNode";
 import ModelNode from "~/components/ModelNode";
@@ -31,7 +33,7 @@ const edgeTypes = {
   relation: RelationEdge,
 };
 
-const FlowView = ({ dmmf }: FlowViewProps) => {
+const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
   const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
   const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
 
@@ -55,7 +57,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
 
   useEffect(() => {
     regenerateNodes(null);
-  }, [dmmf]);
+  }, [dmmf]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -65,6 +67,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.05}
+        style={{ gridArea: "flow" }}
         onNodesChange={onNodesChange}
       >
         <Background
@@ -80,7 +83,23 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
           </ControlButton>
           <DownloadButton />
         </Controls>
+
+        <Controls
+          position="top-left"
+          showZoom={false}
+          showFitView={false}
+          showInteractive={false}
+        >
+          <ControlButton
+            className={styles.noShrinkIcon}
+            title="Hide editor"
+            onClick={toggleEditor}
+          >
+            <Icon icon={doubleChevron} height={24} width={24} />
+          </ControlButton>
+        </Controls>
       </ReactFlow>
+
       <svg width="0" height="0">
         <defs>
           <marker
@@ -129,6 +148,7 @@ const FlowView = ({ dmmf }: FlowViewProps) => {
 
 export interface FlowViewProps {
   dmmf: DMMF.Datamodel | null;
+  toggleEditor(): void;
 }
 
 export default FlowView;
