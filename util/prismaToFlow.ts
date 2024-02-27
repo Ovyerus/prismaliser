@@ -277,7 +277,9 @@ const generateNodes = (
   return nodes;
 };
 
-const generateEnumNodes = (enums: DMMF.DatamodelEnum[]): EnumNodeData[] =>
+const generateEnumNodes = (
+  enums: readonly DMMF.DatamodelEnum[],
+): EnumNodeData[] =>
   enums.map(({ name, dbName, documentation, values }) => ({
     type: "enum",
     name,
@@ -287,7 +289,7 @@ const generateEnumNodes = (enums: DMMF.DatamodelEnum[]): EnumNodeData[] =>
   }));
 
 const generateModelNodes = (
-  models: DMMF.Model[],
+  models: readonly DMMF.Model[],
   relations: Record<string, GotModelRelations>,
 ): ModelNodeData[] =>
   models.map(({ name, dbName, documentation, fields }) => {
