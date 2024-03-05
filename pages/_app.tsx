@@ -1,6 +1,5 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
-import Script from "next/script";
 import React from "react";
 
 // eslint-disable-next-line import/no-unassigned-import
@@ -48,7 +47,7 @@ const App = ({ Component, pageProps }: AppProps) => (
         property="twitter:image:alt"
         content="Visualise your Prisma schema - Prismaliser"
       />
-      <Script
+      <script
         data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_SITE || "what"}
         data-api="/api/event"
         src="/js/script.js"
