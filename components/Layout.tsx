@@ -14,7 +14,7 @@ const Layout = ({ children, noEditor = false }: LayoutProps) => (
       { [styles.noEditor as any]: noEditor },
     ])}
   >
-    <Nav />
+    <Nav noEditor={noEditor} />
     {children}
   </main>
 );

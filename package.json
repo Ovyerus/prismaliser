@@ -21,6 +21,7 @@
     "@monaco-editor/react": "^4.6.0",
     "@prisma/internals": "^5.7.0",
     "classcat": "^5.0.4",
+    "classnames": "^2.5.1",
     "elkjs": "^0.8.2",
     "html-to-image": "^1.11.11",
     "next": "^13.5.6",

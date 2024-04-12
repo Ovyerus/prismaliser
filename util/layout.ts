@@ -6,7 +6,7 @@ import { EnumNodeData, ModelNodeData } from "./types";
 const elk = new Elk({
   defaultLayoutOptions: {
     "elk.algorithm": "layered",
-    "elk.direction": "RIGHT",
+    "elk.direction": "DOWN", // Change direction to DOWN for left to right layout
     "elk.spacing.nodeNode": "75",
     "elk.layered.spacing.nodeNodeBetweenLayers": "75",
   },
