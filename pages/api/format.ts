@@ -8,7 +8,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 
   const schema = req.body.schema as string;
-  const formatted = await formatSchema({ schema });
+  const output = await formatSchema({
+    schemas: [["schema.prisma", schema]],
+  });
 
-  res.json({ formatted });
+  res.json({ formatted: output[0]![1] });
 }
