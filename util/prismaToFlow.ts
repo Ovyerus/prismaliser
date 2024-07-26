@@ -150,7 +150,8 @@ const getModelRelations = ({
     if (curr.type === "m-n")
       for (const [i, field] of curr.fields.entries()) {
         const newName = virtualTableName(curr.name, field.tableName);
-        const virtualLetter = letters[i]!;
+        // There's probably a better way around this
+        const virtualLetter = letters[i] || "";
 
         acc[newName] = {
           name: newName,
