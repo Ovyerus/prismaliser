@@ -6,12 +6,7 @@ ENV NEXT_PUBLIC_PLAUSIBLE_SITE=${PLAUSIBLE_SITE}
 ENV PLAUSIBLE_HOST=${PLAUSIBLE_HOST}
 WORKDIR /build
 
-# Docker is hell and won't respect the `!` lines in dockerignore for some reason :D
-COPY .yarn/plugins ./.yarn/plugins
 COPY .yarn/releases ./.yarn/releases
-# COPY .yarn/sdks ./.yarn/sdks
-# COPY .yarn/patches ./.yarn/patches
-# COPY .yarn/versions ./.yarn/versions
 
 COPY package.json ./
 COPY yarn.lock ./
