@@ -16,8 +16,6 @@ RUN yarn install --immutable
 
 COPY . .
 RUN yarn build
-# @vercel/nft doesn't pick up on the Prisma binaries so we need to manually include them
-RUN cp -r ./node_modules/@prisma/engines/libquery_engine-* ./.next/standalone/node_modules/@prisma/engines/
 
 FROM node:20-alpine3.20 AS runner
 
