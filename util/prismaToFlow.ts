@@ -1,4 +1,3 @@
-import type { DMMF } from "@prisma/generator-helper";
 import { ElkNode } from "elkjs";
 import {
   concat,
@@ -21,6 +20,8 @@ import {
   RelationSide,
   RelationType,
 } from "./types";
+
+import type { DMMF } from "@prisma/generator-helper";
 
 const letters = ["A", "B"];
 
