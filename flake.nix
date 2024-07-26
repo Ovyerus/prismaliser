@@ -18,7 +18,7 @@
         devShells.default = with pkgs;
           mkShell {
             buildInputs = [
-              nodejs_18
+              nodejs_20
               yarn
             ];
           };
