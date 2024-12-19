@@ -19,7 +19,7 @@
     "@iconify/icons-simple-icons": "^1.2.74",
     "@iconify/react": "^5.0.2",
     "@monaco-editor/react": "^4.6.0",
-    "@prisma/internals": "^5.17.0",
+    "@prisma/internals": "^6.0.0",
     "classcat": "^5.0.5",
     "elkjs": "^0.9.3",
     "html-to-image": "^1.11.11",
