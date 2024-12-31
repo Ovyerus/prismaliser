@@ -6,10 +6,9 @@ export const config = {
 
 export function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);
-  const x = headers.get("X-Forwarded-For");
-
-  headers.set("X-Forwarded-For", x ? `${x}, ${request.ip}` : request.ip!);
+  const xForwardedFor = headers.get("X-Forwarded-For");
+  const clientIp = xForwardedFor ? xForwardedFor.split(",")[0] : "";
+  headers.set("X-Forwarded-For", ` ${clientIp}`);
   request.nextUrl.href = new URL("/api/event", process.env.PLAUSIBLE_HOST).href;
-
   return NextResponse.rewrite(request.nextUrl, { request: { headers } });
 }
