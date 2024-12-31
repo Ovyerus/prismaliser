@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && copyfiles -u 1 public/**/* .next/standalone/ && copyfiles -u 1 .next/static/**/* .next/standalone/.next/static",
+    "build": "next build && node copy-files.ts",
     "start": "node .next/standalone/server.js",
     "lint": "eslint --ext ts,tsx .",
     "lint:fix": "eslint --ext ts,tsx --fix ."
@@ -35,11 +35,9 @@
   },
   "devDependencies": {
     "@prisma/generator-helper": "~6.1.0",
-    "@types/copyfiles": "^2",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "autoprefixer": "^10.4.19",
-    "copyfiles": "^2.4.1",
     "eslint": "^8.57.0",
     "eslint-config-clarity": "1.0.6",
     "eslint-import-resolver-typescript": "^3.6.1",
