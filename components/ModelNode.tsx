@@ -38,13 +38,13 @@ const ModelNode = ({ data }: ModelNodeProps) => {
 
   return (
     <table
-      className="font-sans bg-white border-2 border-separate border-black rounded-lg"
+      className="font-sans bg-white dark:bg-gray-800 border-2 border-separate border-black dark:border-gray-600 rounded-lg"
       style={{ minWidth: 200, maxWidth: 500, borderSpacing: 0 }}
     >
       <thead title={data.documentation}>
         <tr>
           <th
-            className="p-2 font-extrabold bg-gray-200 border-b-2 border-black rounded-t-md"
+            className="p-2 font-extrabold bg-gray-200 dark:bg-gray-700 border-b-2 border-black dark:border-gray-600 rounded-t-md"
             colSpan={4}
           >
             {data.name}
@@ -112,13 +112,14 @@ const ModelNode = ({ data }: ModelNodeProps) => {
 
           return (
             <tr key={col.name} className={styles.row} title={col.documentation}>
-              <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300">
+              <td className="font-mono font-semibold border-t-2 border-r-2 border-gray-300 dark:border-gray-600">
                 <button
                   type="button"
                   className={cc([
                     "relative",
                     "p-2",
                     { "cursor-pointer": reled },
+                    "text-gray-700 dark:text-gray-300",
                   ])}
                   onClick={() => {
                     if (!reled) return;
@@ -129,10 +130,10 @@ const ModelNode = ({ data }: ModelNodeProps) => {
                   {targetHandle}
                 </button>
               </td>
-              <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300">
+              <td className="p-2 font-mono border-t-2 border-r-2 border-gray-300 dark:border-gray-600">
                 {col.displayType}
               </td>
-              <td className="font-mono border-t-2 border-gray-300">
+              <td className="font-mono border-t-2 border-gray-300 dark:border-gray-600">
                 <div className="relative p-2">
                   {col.defaultValue || ""}
                   {sourceHandle}
@@ -145,6 +146,7 @@ const ModelNode = ({ data }: ModelNodeProps) => {
     </table>
   );
 };
+
 export interface ModelNodeProps {
   data: ModelNodeData;
 }

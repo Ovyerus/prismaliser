@@ -23,6 +23,7 @@ import { generateFlowFromDMMF } from "~/util/prismaToFlow";
 import { DMMFToElementsResult } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
+import { useTheme } from "~/context/ThemeContext";
 
 const nodeTypes = {
   model: ModelNode,
@@ -34,8 +35,15 @@ const edgeTypes = {
 };
 
 const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
+  const { theme } = useTheme();
   const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
   const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
+
+  const darkThemeStyles = {
+    background: '#1a1a1a',
+    color: '#fff',
+    gridArea: "flow"
+  };
 
   const regenerateNodes = (layout: ElkNode | null) => {
     const { nodes: newNodes, edges: newEdges } = dmmf
@@ -67,19 +75,19 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.05}
-        style={{ gridArea: "flow" }}
+        style={theme === 'dark' ? darkThemeStyles : { gridArea: "flow" }}
         onNodesChange={onNodesChange}
       >
         <Background
           variant={BackgroundVariant.Dots}
           gap={24}
           size={2}
-          color="currentColor"
+          // color="currentColor"
           className="text-gray-200"
         />
         <Controls>
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
-            <Icon icon={listTree} />
+            <Icon className={theme === "dark" ? "text-black" : ""} icon={listTree} />
           </ControlButton>
           <DownloadButton />
         </Controls>
@@ -95,10 +103,10 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
             title="Hide editor"
             onClick={toggleEditor}
           >
-            <Icon icon={doubleChevron} height={24} width={24} />
+            <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevron} height={24} width={24} />
           </ControlButton>
         </Controls>
-      </ReactFlow>
+      </ReactFlow >
 
       <svg width="0" height="0">
         <defs>

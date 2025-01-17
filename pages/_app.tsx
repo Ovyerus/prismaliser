@@ -7,6 +7,7 @@ import "@fontsource/inter";
 
 import "~/assets/style/global.css";
 import "reactflow/dist/style.css";
+import { ThemeProvider } from "~/context/ThemeContext";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -54,7 +55,9 @@ const App = ({ Component, pageProps }: AppProps) => (
         defer
       />
     </Head>
-    <Component {...pageProps} />
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
   </>
 );
 

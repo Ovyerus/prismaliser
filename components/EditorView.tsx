@@ -1,10 +1,12 @@
 import Editor, { useMonaco } from "@monaco-editor/react";
 import React, { useEffect } from "react";
+import { useTheme } from "~/context/ThemeContext";
 
 import * as prismaLanguage from "~/util/prisma-language";
 
 const EditorView = ({ value, onChange }: EditorViewProps) => {
   const monaco = useMonaco();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (monaco) {
@@ -24,7 +26,7 @@ const EditorView = ({ value, onChange }: EditorViewProps) => {
     <Editor
       height="100%"
       language="prisma"
-      theme="light"
+      theme={`vs-${theme}`}
       loading="Loading..."
       path="schema.prisma"
       options={{

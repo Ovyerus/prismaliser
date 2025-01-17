@@ -16,10 +16,12 @@
   "dependencies": {
     "@fontsource/inter": "^5.0.19",
     "@iconify/icons-gg": "^1.2.4",
+    "@iconify/icons-mdi": "^1.2.48",
     "@iconify/icons-simple-icons": "^1.2.74",
     "@iconify/react": "^5.0.2",
     "@monaco-editor/react": "^4.6.0",
     "@prisma/internals": "^6.0.0",
+    "@types/react-dom": "^19.0.3",
     "classcat": "^5.0.5",
     "elkjs": "^0.9.3",
     "html-to-image": "^1.11.11",
@@ -36,7 +38,7 @@
   "devDependencies": {
     "@prisma/generator-helper": "~6.2.0",
     "@types/node": "^20.14.12",
-    "@types/react": "^18.3.3",
+    "@types/react": "^19.0.7",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-clarity": "1.0.6",
