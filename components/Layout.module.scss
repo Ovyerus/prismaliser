@@ -3,13 +3,14 @@
   max-height: 100vh;
   overflow-y: hidden;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto 1fr;
   grid-template-areas:
     "nav nav"
     "editor flow";
 }
 
 .noEditor {
+  grid-template-columns: 1fr;
   grid-template-areas:
     "nav nav"
     "flow flow";

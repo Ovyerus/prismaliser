@@ -1,4 +1,5 @@
 import doubleChevron from "@iconify/icons-gg/chevron-double-left";
+import doubleChevronRight from "@iconify/icons-gg/chevron-double-right";
 import listTree from "@iconify/icons-gg/list-tree";
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
@@ -34,7 +35,7 @@ const edgeTypes = {
   relation: RelationEdge,
 };
 
-const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
+const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
   const { theme } = useTheme();
   const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
   const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
@@ -103,7 +104,9 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
             title="Hide editor"
             onClick={toggleEditor}
           >
-            <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevron} height={24} width={24} />
+            {
+              visible ? <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevron} height={24} width={24} /> : <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevronRight} height={24} width={24} />
+            }
           </ControlButton>
         </Controls>
       </ReactFlow >
@@ -157,6 +160,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
 export interface FlowViewProps {
   dmmf: DMMF.Datamodel | null;
   toggleEditor(): void;
+  visible: boolean;
 }
 
 export default FlowView;
