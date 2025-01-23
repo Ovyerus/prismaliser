@@ -110,7 +110,7 @@ const EditorView = ({ value, onChange }: EditorViewProps) => {
           cursor: "ew-resize",
           width: "5px",
           height: "100%",
-          backgroundColor: "#000000",
+          backgroundColor: theme === "light" ? "#e0e0e0" : "#333333",
         }}
         onMouseDown={handleMouseDown}
       />

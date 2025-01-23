@@ -83,7 +83,7 @@ const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
           variant={BackgroundVariant.Dots}
           gap={24}
           size={2}
-          // color="currentColor"
+          color="currentColor"
           className="text-gray-200"
         />
         <Controls>
@@ -94,6 +94,7 @@ const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
         </Controls>
 
         <Controls
+          className={theme === "dark" ? styles["controls-dark"] : styles["controls-light"]}
           position="top-left"
           showZoom={false}
           showFitView={false}
@@ -105,7 +106,18 @@ const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
             onClick={toggleEditor}
           >
             {
-              visible ? <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevron} height={24} width={24} /> : <Icon className={theme === "dark" ? "text-black" : ""} icon={doubleChevronRight} height={24} width={24} />
+              visible ? (
+                <Icon className={theme === "dark" ? "text-black" : ""}
+                  icon={doubleChevron}
+                  height={24}
+                  width={24} />
+              ) : (
+                <Icon
+                  className={theme === "dark" ? "text-black" : ""}
+                  icon={doubleChevronRight}
+                  height={24}
+                  width={24} />
+              )
             }
           </ControlButton>
         </Controls>
