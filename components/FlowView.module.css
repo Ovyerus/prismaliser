@@ -7,13 +7,3 @@
     max-height: 100%;
   }
 }
-
-.controls-light {
-  background-color: #f9f9f9; /* Light theme */
-  color: #333;
-}
-
-.controls-dark {
-  background-color: #1a1a1a; /* Dark theme */
-  color: #fff;
-}

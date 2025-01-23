@@ -94,7 +94,6 @@ const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
         </Controls>
 
         <Controls
-          className={theme === "dark" ? styles["controls-dark"] : styles["controls-light"]}
           position="top-left"
           showZoom={false}
           showFitView={false}
@@ -105,20 +104,11 @@ const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
             title="Hide editor"
             onClick={toggleEditor}
           >
-            {
-              visible ? (
-                <Icon className={theme === "dark" ? "text-black" : ""}
-                  icon={doubleChevron}
-                  height={24}
-                  width={24} />
-              ) : (
-                <Icon
-                  className={theme === "dark" ? "text-black" : ""}
-                  icon={doubleChevronRight}
-                  height={24}
-                  width={24} />
-              )
-            }
+            <Icon className={theme === "dark" ? "text-black" : ""}
+              icon={visible ? doubleChevron : doubleChevronRight}
+              height={24}
+              width={24}
+            />
           </ControlButton>
         </Controls>
       </ReactFlow >

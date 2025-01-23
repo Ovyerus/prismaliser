@@ -355,15 +355,7 @@ const generateImplicitModelNodes = (
   relations: Record<string, GotModelRelations>,
 ): ModelNodeData[] => {
   const hasVirtuals = Object.values(relations).filter((rel) => rel.virtual);
-  // const grouped = map(
-  //   (rel: GotModelRelations[]) => {
-  //     const fields = rel.map((r) => r.virtual!.field);
-  //     return { relationName: rel[0]!.dbName!, fields };
-  //   },
-  //   groupBy((rel) => rel.virtual!.name, hasVirtuals),
-  // );
   const grouped = Object.values(groupBy((rel) => rel.virtual!.name, hasVirtuals)).map((rel: GotModelRelations[] | undefined) => {
-    // if (!rel) return null;
     const fields = rel!.map((r) => r.virtual!.field);
     return { relationName: rel![0]!.dbName!, fields };
   });
