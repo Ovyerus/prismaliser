@@ -363,6 +363,8 @@ const generateImplicitModelNodes = (
     groupBy((rel) => rel.virtual!.name, hasVirtuals),
   );
 
+  console.log("grouped: ", grouped);
+
   return Object.entries(grouped).map(([name, { relationName, fields }]) => {
     const columns: ModelNodeData["columns"] = fields.map((col, i) => ({
       name: letters[i]!,
