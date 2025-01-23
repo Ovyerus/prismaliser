@@ -6,7 +6,7 @@ import * as prismaLanguage from "~/util/prisma-language";
 
 const EditorView = ({ value, onChange }: EditorViewProps) => {
   const monaco = useMonaco();
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (monaco) {

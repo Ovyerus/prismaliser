@@ -319,11 +319,11 @@ const generateModelNodes = (
 
       const relationData: ModelRelationData | null = relData
         ? {
-            name: relData.name,
-            type: relData.type,
-            // If we can't find the matching field, sucks to suck I guess.
-            side: thisRel?.side || ("" as any),
-          }
+          name: relData.name,
+          type: relData.type,
+          // If we can't find the matching field, sucks to suck I guess.
+          side: thisRel?.side || ("" as any),
+        }
         : null;
 
       return {
