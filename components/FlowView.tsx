@@ -1,4 +1,5 @@
 import doubleChevron from "@iconify/icons-gg/chevron-double-left";
+import doubleChevronRight from "@iconify/icons-gg/chevron-double-right";
 import listTree from "@iconify/icons-gg/list-tree";
 import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
@@ -23,6 +24,7 @@ import { generateFlowFromDMMF } from "~/util/prismaToFlow";
 import { DMMFToElementsResult } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
+import { useTheme } from "~/context/ThemeContext";
 
 const nodeTypes = {
   model: ModelNode,
@@ -33,9 +35,16 @@ const edgeTypes = {
   relation: RelationEdge,
 };
 
-const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
+const FlowView = ({ dmmf, toggleEditor, visible }: FlowViewProps) => {
+  const { theme } = useTheme();
   const [nodes, setNodes] = useState<DMMFToElementsResult["nodes"]>([]);
   const [edges, setEdges] = useState<DMMFToElementsResult["edges"]>([]);
+
+  const darkThemeStyles = {
+    background: '#1a1a1a',
+    color: '#fff',
+    gridArea: "flow"
+  };
 
   const regenerateNodes = (layout: ElkNode | null) => {
     const { nodes: newNodes, edges: newEdges } = dmmf
@@ -67,7 +76,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
         edgeTypes={edgeTypes}
         nodeTypes={nodeTypes}
         minZoom={0.05}
-        style={{ gridArea: "flow" }}
+        style={theme === 'dark' ? darkThemeStyles : { gridArea: "flow" }}
         onNodesChange={onNodesChange}
       >
         <Background
@@ -79,7 +88,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
         />
         <Controls>
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
-            <Icon icon={listTree} />
+            <Icon className={theme === "dark" ? "text-black" : ""} icon={listTree} />
           </ControlButton>
           <DownloadButton />
         </Controls>
@@ -95,10 +104,14 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
             title="Hide editor"
             onClick={toggleEditor}
           >
-            <Icon icon={doubleChevron} height={24} width={24} />
+            <Icon className={theme === "dark" ? "text-black" : ""}
+              icon={visible ? doubleChevron : doubleChevronRight}
+              height={24}
+              width={24}
+            />
           </ControlButton>
         </Controls>
-      </ReactFlow>
+      </ReactFlow >
 
       <svg width="0" height="0">
         <defs>
@@ -149,6 +162,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
 export interface FlowViewProps {
   dmmf: DMMF.Datamodel | null;
   toggleEditor(): void;
+  visible: boolean;
 }
 
 export default FlowView;

@@ -116,7 +116,8 @@ const IndexPage = () => {
     <Layout noEditor={!editorVisible}>
       {/* eslint-disable-next-line react/jsx-no-leaked-render */}
       {editorVisible && (
-        <section className="relative flex flex-col items-start border-r-2">
+        // <section className="relative flex flex-col items-start border-r-2 w-full">
+        <section className="relative flex flex-col items-start w-full">
           <EditorView value={text} onChange={(val) => setText(val!)} />
 
           <div className="absolute flex gap-2 left-4 bottom-4">
@@ -132,7 +133,7 @@ const IndexPage = () => {
           ) : null}
         </section>
       )}
-      <FlowView dmmf={dmmf} toggleEditor={toggleEditor} />
+      <FlowView dmmf={dmmf} toggleEditor={toggleEditor} visible={editorVisible} />
     </Layout>
   );
 };

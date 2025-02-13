@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import {
   EdgeProps,
   EdgeText,
-  // getEdgeCenter,
   getSmoothStepPath,
 } from "reactflow";
 
@@ -53,13 +52,10 @@ const RelationEdge = ({
     "1-1": ["url(#prismaliser-one)", "url(#prismaliser-one)"],
   }[relationType];
 
-  // TODO: markers look weird when the edge needs to rotate perpendicular to the
-  // start or end. Maybe need to edit `getSmoothStepPath` so it adds some sort
-  // of padding at start and end to make it look nicer?
   return (
     <>
       <path
-        className="text-gray-400 stroke-current stroke-2 fill-none"
+        className="text-gray-400 stroke-current stroke-2 fill-none dark:text-gray-600"
         d={path}
         markerStart={markerStart}
         markerEnd={markerEnd}

@@ -10,6 +10,7 @@ import {
 } from "reactflow";
 
 import styles from "./FlowView.module.css";
+import { useTheme } from "~/context/ThemeContext";
 
 const downloadImage = (dataUrl: string) => {
   const a = document.createElement("a");
@@ -22,6 +23,8 @@ const downloadImage = (dataUrl: string) => {
 // Mostly a copy from the React Flow example: https://reactflow.dev/examples/misc/download-image
 const DownloadButton = () => {
   const { getNodes } = useReactFlow();
+  const { theme } = useTheme();
+
   const onClick = () => {
     // we calculate a transform for the nodes so that all nodes are visible
     // we then overwrite the transform of the `.react-flow__viewport` element
@@ -59,7 +62,7 @@ const DownloadButton = () => {
       title="Download as PNG"
       onClick={onClick}
     >
-      <Icon icon={downloadIcon} />
+      <Icon className={theme === "dark" ? "text-black" : "text-black"} icon={downloadIcon} />
     </ControlButton>
   );
 };
