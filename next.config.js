@@ -1,4 +1,4 @@
-const plausibleScript = "/js/script.js";
+const umamiScript = "/script.js";
 
 /** @type import('next').NextConfig */
 module.exports = {
@@ -8,12 +8,12 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   async rewrites() {
-    if (!process.env.PLAUSIBLE_HOST) return [];
+    if (!process.env.UMAMI_HOST) return [];
 
     return [
       {
-        source: plausibleScript,
-        destination: new URL(plausibleScript, process.env.PLAUSIBLE_HOST).href,
+        source: umamiScript,
+        destination: new URL(umamiScript, process.env.UMAMI_HOST).href,
         basePath: false,
       },
     ];
