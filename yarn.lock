@@ -728,6 +728,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:6.6.0":
+  version: 6.6.0
+  resolution: "@prisma/debug@npm:6.6.0"
+  checksum: 10/55c9817a43aaa34eac8388b866a75a113dc2109b45bbb735a82ad2b74ee312d840df95058fed1225f48ba21aa8f0b2b441bbc9e50eaea0329ed5b614d71d54b5
+  languageName: node
+  linkType: hard
+
+"@prisma/dmmf@npm:6.6.0":
+  version: 6.6.0
+  resolution: "@prisma/dmmf@npm:6.6.0"
+  checksum: 10/e55931206d475d9de21de5655a1cb55a54e9c7f848112c8150529fdef54ee5a31f0ea57bd0b1e750eb7f81ba1d21c285f60bce0a26d4ec8ea967f3feac245e9b
+  languageName: node
+  linkType: hard
+
 "@prisma/engines-version@npm:6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60":
   version: 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
   resolution: "@prisma/engines-version@npm:6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60"
@@ -758,12 +772,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:6.5.0, @prisma/generator-helper@npm:~6.5.0":
+"@prisma/generator-helper@npm:6.5.0":
   version: 6.5.0
   resolution: "@prisma/generator-helper@npm:6.5.0"
   dependencies:
     "@prisma/debug": "npm:6.5.0"
   checksum: 10/4229875b0adb865c6a1be9cd38858578a3f06ff8e71d0e5575debeefd6361a2d24fda3c51780051a21ea88a0cdf002f54f41a5b4901abdac49a7c8435ed49ecf
+  languageName: node
+  linkType: hard
+
+"@prisma/generator-helper@npm:~6.6.0":
+  version: 6.6.0
+  resolution: "@prisma/generator-helper@npm:6.6.0"
+  dependencies:
+    "@prisma/debug": "npm:6.6.0"
+    "@prisma/dmmf": "npm:6.6.0"
+    "@prisma/generator": "npm:6.6.0"
+  checksum: 10/b68aa199275a15769b7195e2850f9ef14c2185cb8e0849381323d1650c919909129cb5bdea9f3ca109d8874f4116321479c0ef9cb48cffb7e5b745fcf07bb341
+  languageName: node
+  linkType: hard
+
+"@prisma/generator@npm:6.6.0":
+  version: 6.6.0
+  resolution: "@prisma/generator@npm:6.6.0"
+  checksum: 10/0bf7ee567d176c539f9803fc5c12b4704ce5511d5ecbcffc0769e6c63cac326d29dc508461c42b3884b85299e6e6aae23239b51a63b03a8d89526a8daff58b0d
   languageName: node
   linkType: hard
 
@@ -5010,7 +5042,7 @@ __metadata:
     "@iconify/icons-simple-icons": "npm:^1.2.74"
     "@iconify/react": "npm:^5.0.2"
     "@monaco-editor/react": "npm:^4.6.0"
-    "@prisma/generator-helper": "npm:~6.5.0"
+    "@prisma/generator-helper": "npm:~6.6.0"
     "@prisma/internals": "npm:^6.0.0"
     "@types/node": "npm:^20.14.12"
     "@types/react": "npm:^18.3.3"
