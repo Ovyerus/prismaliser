@@ -555,10 +555,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:6.16.3":
+  version: 6.16.3
+  resolution: "@prisma/debug@npm:6.16.3"
+  checksum: 10/8db2b878b6311772431813ffe9e0864f8ec8efbd616630fa513e934822dda90be8c3c7279e558820e799e1c088de2c83ce218f092e9bd7d3b9c2ad2152eb695e
+  languageName: node
+  linkType: hard
+
 "@prisma/dmmf@npm:6.16.2":
   version: 6.16.2
   resolution: "@prisma/dmmf@npm:6.16.2"
   checksum: 10/9541d22f4a11ee6df17232693866b1303a504ecf78a7c46b2d1137d83afd9597e1e37fb7e8bd376d20b86452251c109977ac57fa51ea6c815300f05587a94e67
+  languageName: node
+  linkType: hard
+
+"@prisma/dmmf@npm:6.16.3":
+  version: 6.16.3
+  resolution: "@prisma/dmmf@npm:6.16.3"
+  checksum: 10/898502e8be538524aa97a961d5d09094fd34159cb96f43c75a2b354b504a767f1045549d878025cba08ecac0357924996e9ea999aab02721e4e63dd6ecd232d9
   languageName: node
   linkType: hard
 
@@ -601,7 +615,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:6.16.2, @prisma/generator-helper@npm:~6.16.0":
+"@prisma/generator-helper@npm:6.16.2":
   version: 6.16.2
   resolution: "@prisma/generator-helper@npm:6.16.2"
   dependencies:
@@ -612,10 +626,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/generator-helper@npm:~6.16.0":
+  version: 6.16.3
+  resolution: "@prisma/generator-helper@npm:6.16.3"
+  dependencies:
+    "@prisma/debug": "npm:6.16.3"
+    "@prisma/dmmf": "npm:6.16.3"
+    "@prisma/generator": "npm:6.16.3"
+  checksum: 10/e1fa58b4f35d50b5120e0ca284519bcba447b680fa2e817b8d2e5acf3eaefa2bf6a47f1eef5b8801a07cc2fb1a8d0a0077ee985b9279fad40da340c39f7505f0
+  languageName: node
+  linkType: hard
+
 "@prisma/generator@npm:6.16.2":
   version: 6.16.2
   resolution: "@prisma/generator@npm:6.16.2"
   checksum: 10/961062d8a15e88333516ed69be8ddd07b171ebfa6fbe7f4d32f51f834c2324dc81aeef7094775f0bb16b07c0c7ccf3361a67b34c25d71893a3e31431fd2ef994
+  languageName: node
+  linkType: hard
+
+"@prisma/generator@npm:6.16.3":
+  version: 6.16.3
+  resolution: "@prisma/generator@npm:6.16.3"
+  checksum: 10/fa7b271a7857464cb780cb0b57f755bc843143c4240d4b4ec6846670ddfdecec229473bd2c828a57f6a9c7e4614bcf5d9001070477085894b9c016dd6ebe8422
   languageName: node
   linkType: hard
 
