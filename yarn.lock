@@ -548,24 +548,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@prisma/debug@npm:6.18.0"
-  checksum: 10/ffe93506f6830a9ab5670bf27473c0b346780d74f559cdcccc59c117f368c3799bbf2d1916dfa551e53771dd940ee929e52129f92fcc4f2a3dddafcf2226b89d
-  languageName: node
-  linkType: hard
-
 "@prisma/debug@npm:6.19.0":
   version: 6.19.0
   resolution: "@prisma/debug@npm:6.19.0"
   checksum: 10/3fa8545889d86d48729ed10e39bdb4f55258085fa12a5fd6509657e4423b598dbcae40456e6678f4729a0af6b01701b79f7b54ebdc0e7830a6b34d3fb20d3aef
-  languageName: node
-  linkType: hard
-
-"@prisma/dmmf@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@prisma/dmmf@npm:6.18.0"
-  checksum: 10/eb61a4d5fad3b8c01852afa0f9193683a00e26338e4c4a058f16acffffe96e62da61722ffba72f3fb3b011efbe7401f4ef353d85d0afa12aab34063c23437b92
   languageName: node
   linkType: hard
 
@@ -615,7 +601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:6.19.0":
+"@prisma/generator-helper@npm:6.19.0, @prisma/generator-helper@npm:~6.19.0":
   version: 6.19.0
   resolution: "@prisma/generator-helper@npm:6.19.0"
   dependencies:
@@ -623,24 +609,6 @@ __metadata:
     "@prisma/dmmf": "npm:6.19.0"
     "@prisma/generator": "npm:6.19.0"
   checksum: 10/3a87906abf184d791e018274e3661c3315b102834deda810959570b16d8d85e5ce245c8da6299f61c172f747a926e459ca04c94d431cdeb33a3fb0cea1ddd395
-  languageName: node
-  linkType: hard
-
-"@prisma/generator-helper@npm:~6.18.0":
-  version: 6.18.0
-  resolution: "@prisma/generator-helper@npm:6.18.0"
-  dependencies:
-    "@prisma/debug": "npm:6.18.0"
-    "@prisma/dmmf": "npm:6.18.0"
-    "@prisma/generator": "npm:6.18.0"
-  checksum: 10/327106026de4735936c4e0b57963e64b3c2f84fac9021cd90b3baaf98ffbda6b39f2bcd4c308fdd340482074c13e6450e10dca1207a8d600161c1a1508103e27
-  languageName: node
-  linkType: hard
-
-"@prisma/generator@npm:6.18.0":
-  version: 6.18.0
-  resolution: "@prisma/generator@npm:6.18.0"
-  checksum: 10/977d30e2bea478facdbd5919c68ea3959f569d821332401284ab66cf10e8218f2feac790aedf683d20b625a77331321153d4a17ffa0d9bb83672283dbbd22134
   languageName: node
   linkType: hard
 
@@ -5012,7 +4980,7 @@ __metadata:
     "@iconify/icons-simple-icons": "npm:^1.2.74"
     "@iconify/react": "npm:^5.0.2"
     "@monaco-editor/react": "npm:^4.6.0"
-    "@prisma/generator-helper": "npm:~6.18.0"
+    "@prisma/generator-helper": "npm:~6.19.0"
     "@prisma/internals": "npm:^6.0.0"
     "@types/node": "npm:^20.14.12"
     "@types/react": "npm:^18.3.3"
