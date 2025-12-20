@@ -360,7 +360,10 @@ const generateImplicitModelNodes = (
       const fields = rel.map((r) => r.virtual!.field);
       return { relationName: rel[0]!.dbName!, fields };
     },
-    groupBy((rel) => rel.virtual!.name, hasVirtuals),
+    groupBy((rel) => rel.virtual!.name, hasVirtuals) as Record<
+      string,
+      GotModelRelations[]
+    >,
   );
 
   return Object.entries(grouped).map(([name, { relationName, fields }]) => {

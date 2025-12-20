@@ -16,7 +16,6 @@ import type { editor } from "monaco-editor";
 const initial = `
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
