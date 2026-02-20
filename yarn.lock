@@ -786,10 +786,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:7.4.1":
+  version: 7.4.1
+  resolution: "@prisma/debug@npm:7.4.1"
+  checksum: 10/f6de579974c193c7f47a9a18e2ce92bf50060a8458317ebacc4338f3cac3d67678e24947b8ec60589ed17dff4149665c808099fac8d6d4841361b887589eb235
+  languageName: node
+  linkType: hard
+
 "@prisma/dmmf@npm:7.4.0":
   version: 7.4.0
   resolution: "@prisma/dmmf@npm:7.4.0"
   checksum: 10/2717bdb2c54805dba8412424b428cae808d4c449b9518f95f4a4d3d17fad1b5b4c8d45181d1fec472e7c599059326268c7c58faee05fa486c59851f72d5f3bc5
+  languageName: node
+  linkType: hard
+
+"@prisma/dmmf@npm:7.4.1":
+  version: 7.4.1
+  resolution: "@prisma/dmmf@npm:7.4.1"
+  checksum: 10/f560447ac4a87224fedda7a729a44643dc3aa835aa10a8e98ddb10b8a9aacbe070ce672850fc4dbbc85a26805fca017a738ba696194bbdfde8abe70804ff3d5c
   languageName: node
   linkType: hard
 
@@ -832,7 +846,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:7.4.0, @prisma/generator-helper@npm:~7.4.0":
+"@prisma/generator-helper@npm:7.4.0":
   version: 7.4.0
   resolution: "@prisma/generator-helper@npm:7.4.0"
   dependencies:
@@ -843,10 +857,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/generator-helper@npm:~7.4.0":
+  version: 7.4.1
+  resolution: "@prisma/generator-helper@npm:7.4.1"
+  dependencies:
+    "@prisma/debug": "npm:7.4.1"
+    "@prisma/dmmf": "npm:7.4.1"
+    "@prisma/generator": "npm:7.4.1"
+  checksum: 10/75fb13e82a657dae12220ed1015211cf84ed9ad1a830cb0ac11d25a84b18565925986b504eaa77b614e81cb9d1fa5a74432c5d1ade6bea82c817611e8d439df8
+  languageName: node
+  linkType: hard
+
 "@prisma/generator@npm:7.4.0":
   version: 7.4.0
   resolution: "@prisma/generator@npm:7.4.0"
   checksum: 10/0cb1fe6740a5cc4a25c2b1152458c4394791725408edd29f1cfc5bcb4b9a25a1e6669665ecfa84262219026f049d22b13c56e8cee2bfada57873b14f1802e0a5
+  languageName: node
+  linkType: hard
+
+"@prisma/generator@npm:7.4.1":
+  version: 7.4.1
+  resolution: "@prisma/generator@npm:7.4.1"
+  checksum: 10/ece9171841ba9ab455f1d1c929d3e6887b53c77d29bbd52a8d02eb783d32c72d759ee45bd15a720425b8b410bd21362eda80b8ce51c8963303bec6efcf11280f
   languageName: node
   linkType: hard
 
