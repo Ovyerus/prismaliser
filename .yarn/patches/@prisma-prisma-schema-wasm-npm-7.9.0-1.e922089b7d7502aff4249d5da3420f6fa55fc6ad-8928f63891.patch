@@ -1,0 +1,41 @@
+diff --git a/src/prisma_schema_build.d.ts b/src/prisma_schema_build.d.ts
+index fdfa35de273a1eccf9205e8c77695bdd919265db..fa4c0d8ac93f5539dcdbdd17ae1740c5851189a7 100644
+--- a/src/prisma_schema_build.d.ts
++++ b/src/prisma_schema_build.d.ts
+@@ -1,5 +1,10 @@
+ /* tslint:disable */
+ /* eslint-disable */
++/**
++ * Instantiate the wasm module from its raw bytes (browser-compatible init).
++ * Must be called exactly once before any other export is used.
++ */
++export function __init(wasmBytes: Uint8Array | ArrayBuffer): void;
+ export function merge_schemas(input: string): string;
+ export function native_types(input: string): string;
+ export function lint(input: string): string;
+diff --git a/src/prisma_schema_build.js b/src/prisma_schema_build.js
+index 24ec75dc517f32e0b7a42fbeb62416b964bb3e0f..07b186d716bb086d9d81ceccbe2883a471d1dd0e 100644
+--- a/src/prisma_schema_build.js
++++ b/src/prisma_schema_build.js
+@@ -531,10 +531,15 @@ exports.__wbindgen_init_externref_table = function() {
+     ;
+ };
+ 
+-const wasmPath = `${__dirname}/prisma_schema_build_bg.wasm`;
+-const wasmBytes = require('fs').readFileSync(wasmPath);
+-const wasmModule = new WebAssembly.Module(wasmBytes);
+-const wasm = exports.__wasm = new WebAssembly.Instance(wasmModule, imports).exports;
+-
+-wasm.__wbindgen_start();
++// Browser-compatible init: the original nodejs-target tail read the wasm from
++// disk with `fs.readFileSync(__dirname + ...)` and self-instantiated at import
++// time. Instead, export an explicit init that accepts the wasm bytes (fetched
++// by the host app) and instantiates on demand.
++let wasm;
++
++exports.__init = function (wasmBytes) {
++    const wasmModule = new WebAssembly.Module(wasmBytes);
++    wasm = exports.__wasm = new WebAssembly.Instance(wasmModule, imports).exports;
++    wasm.__wbindgen_start();
++};
+ 

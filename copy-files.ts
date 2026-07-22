@@ -2,7 +2,7 @@ const fs = require("fs/promises");
 
 async function copyFiles() {
   try {
-    await fs.cp("public", ".next/standalone", { recursive: true });
+    await fs.cp("public", ".next/standalone/public", { recursive: true });
     await fs.cp(".next/static", ".next/standalone/.next/static", {
       recursive: true,
     });

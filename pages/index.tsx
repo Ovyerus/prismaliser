@@ -1,14 +1,14 @@
 import { useMonaco } from "@monaco-editor/react";
 import React, { useEffect, useState } from "react";
 import { useDebounce, useLocalStorage } from "react-use";
-import useFetch from "use-http";
 
 import CopyButton from "~/components/CopyButton";
 import EditorView from "~/components/EditorView";
 import FlowView from "~/components/FlowView";
 import Layout from "~/components/Layout";
 import { fromUrlSafeB64 } from "~/util";
-import { ErrorTypes, SchemaError } from "~/util/types";
+import { formatSchema, getDMMF, PrismaSchemaError } from "~/util/prisma";
+import { SchemaError } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
 import type { editor } from "monaco-editor";
@@ -58,23 +58,26 @@ const IndexPage = () => {
   const [dmmf, setDMMF] = useState<DMMF.Datamodel | null>(null);
   const [editorVisible, setEditorVisible] = useState(true);
 
-  const { post, response, loading } = useFetch("/api");
+  const [parsing, setParsing] = useState(false);
   const monaco = useMonaco();
 
   const submit = async () => {
     setStoredText(text);
-    const resp = await post({ schema: text });
+    setParsing(true);
 
-    if (response.ok) {
-      setDMMF(resp);
+    try {
+      setDMMF(await getDMMF(text));
       setSchemaErrors([]);
-    } else if (resp.type === ErrorTypes.Prisma) setSchemaErrors(resp.errors);
-    else console.error(resp);
+    } catch (err) {
+      if (err instanceof PrismaSchemaError) setSchemaErrors(err.errors);
+      else console.error(err);
+    } finally {
+      setParsing(false);
+    }
   };
 
   const format = async () => {
-    const resp = await post("/format", { schema: text });
-    if (response.ok) setText(resp.formatted);
+    setText(await formatSchema(text));
   };
 
   useDebounce(submit, 1000, [text]);
@@ -126,7 +129,7 @@ const IndexPage = () => {
             </button>
           </div>
 
-          {loading ? (
+          {parsing ? (
             <div className="absolute w-4 h-4 border-2 border-b-0 border-l-0 border-blue-500 rounded-full right-4 bottom-4 animate-spin" />
           ) : null}
         </section>
