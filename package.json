@@ -19,7 +19,7 @@
     "@iconify/icons-simple-icons": "^1.2.74",
     "@iconify/react": "^5.2.1",
     "@monaco-editor/react": "^4.7.0",
-    "@prisma/internals": "^7.2.0",
+    "@prisma/internals": "^7.9.0",
     "classcat": "^5.0.5",
     "elkjs": "^0.11.0",
     "html-to-image": "^1.11.13",
@@ -34,8 +34,8 @@
     "use-http": "^1.0.28"
   },
   "devDependencies": {
-    "@prisma/generator-helper": "~7.8.0",
-    "@types/node": "^20.19.27",
+    "@prisma/generator-helper": "~7.9.0",
+    "@types/node": "^20.19.43",
     "@types/react": "^18.3.27",
     "autoprefixer": "^10.4.23",
     "eslint": "^8.57.1",
