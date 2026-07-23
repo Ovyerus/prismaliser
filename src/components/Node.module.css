@@ -1,0 +1,29 @@
+@reference "tailwindcss";
+
+.row {
+  &:first-child {
+    & > * {
+      border-top-width: 0 !important;
+    }
+  }
+}
+
+.handle {
+  @apply border-4! h-4! w-4! bg-gray-700!;
+
+  &.bottom {
+    @apply -bottom-2!;
+  }
+
+  &.left {
+    left: calc(-2px - var(--spacing) * 2) !important;
+  }
+
+  &.right {
+    right: calc(-2px - var(--spacing) * 2) !important;
+  }
+
+  &.top {
+    @apply -top-2!;
+  }
+}

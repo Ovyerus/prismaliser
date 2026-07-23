@@ -18,6 +18,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "vite.config.ts", "tailwind.config.ts"],
+  "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules"]
 }

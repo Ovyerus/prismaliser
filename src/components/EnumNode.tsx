@@ -2,7 +2,7 @@ import cc from "classcat";
 import React, { useState } from "react";
 import { Handle, Position } from "reactflow";
 
-import styles from "./Node.module.scss";
+import styles from "./Node.module.css";
 
 import { EnumNodeData } from "~/util/types";
 
@@ -53,7 +53,7 @@ const EnumNode = ({ data }: EnumNodeProps) => {
             <td className="flex">
               <button
                 type="button"
-                className="w-full px-4 py-2 font-semibold bg-blue-200 rounded"
+                className="w-full px-4 py-2 font-semibold bg-blue-200 rounded-sm"
                 onClick={() => setExpanded(!expanded)}
               >
                 {expanded ? "Fold" : "Expand"}

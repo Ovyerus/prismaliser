@@ -1,14 +1,5 @@
 import { ElkNode } from "elkjs";
-import {
-  concat,
-  count,
-  filter,
-  groupBy,
-  map,
-  mergeWith,
-  pick,
-  reduce,
-} from "rambda";
+import { count, groupBy, pick } from "rambda";
 import { Edge, Node } from "reactflow";
 
 import {
@@ -109,41 +100,57 @@ const getModelRelations = ({
   const groupedRelations: Record<
     string,
     Array<DMMF.Field & { tableName: string }>
-  > = filter(
-    (_: any, prop: string) => prop !== "undefined",
-    // Match both ends of relation together, and collapse everything into the
-    // same object. (relation names should be unique so this is safe).
-    reduce(
-      mergeWith(concat),
-      {},
-      models.map((m) =>
-        // Create a object mapping `relationName: field[]`.
-        groupBy(
-          (f) => f.relationName!,
-          m.fields
-            // Don't bother processing any fields that aren't part of a relationship.
-            .filter((f) => f.relationName)
-            .map((f) => ({ ...f, tableName: m.name })),
+  > = Object.fromEntries(
+    Object.entries(
+      // Match both ends of relation together, and collapse everything into the
+      // same object. (relation names should be unique so this is safe).
+      models
+        .map((m) =>
+          // Create a object mapping `relationName: field[]`.
+          groupBy((f: DMMF.Field & { tableName: string }) => f.relationName!)(
+            m.fields
+              // Don't bother processing any fields that aren't part of a relationship.
+              .filter((f) => f.relationName)
+              .map((f) => ({ ...f, tableName: m.name })),
+          ),
+        )
+        .reduce<Record<string, Array<DMMF.Field & { tableName: string }>>>(
+          (acc, relations) => {
+            for (const [relationName, fields] of Object.entries(relations))
+              acc[relationName] = [
+                ...(acc[relationName] ?? []),
+                ...(fields ?? []),
+              ];
+
+            return acc;
+          },
+          {},
         ),
-      ),
-    ),
+    ).filter(([relationName]) => relationName !== "undefined"),
   );
 
-  const output = map((fields, key) => {
-    const listCount = count((f) => f.isList, fields);
-    const type = relationType(listCount);
-
-    return {
-      name: key,
-      type,
-      fields: fields.map((f) => ({
-        name: f.name,
-        tableName: f.tableName,
-        side: relationSide(f),
-        type: f.type,
-      })),
-    };
-  }, groupedRelations);
+  const output = Object.fromEntries(
+    Object.entries(groupedRelations).map(
+      ([key, fields]) =>
+        [
+          key,
+          {
+            name: key,
+            type: relationType(
+              count((f: DMMF.Field & { tableName: string }) => f.isList)(
+                fields,
+              ),
+            ),
+            fields: fields.map((f) => ({
+              name: f.name,
+              tableName: f.tableName,
+              side: relationSide(f),
+              type: f.type,
+            })),
+          },
+        ] as const,
+    ),
+  );
 
   const withVirtuals = Object.values(output).reduce<
     Record<string, GotModelRelations>
@@ -212,16 +219,14 @@ const relationsToEdges = (
 
   // Enum edges are dead shrimple
   for (const rel of enumRelations) {
-    const edges = rel.relations.map(
-      (r): Edge => ({
-        id: edgeId(rel.name, r.enum, r.column),
-        type: "smoothstep",
-        source: r.enum,
-        target: rel.name,
-        sourceHandle: r.enum,
-        targetHandle: enumEdgeTargetHandleId(rel.name, r.column),
-      }),
-    );
+    const edges = rel.relations.map((r): Edge => ({
+      id: edgeId(rel.name, r.enum, r.column),
+      type: "smoothstep",
+      source: r.enum,
+      target: rel.name,
+      sourceHandle: r.enum,
+      targetHandle: enumEdgeTargetHandleId(rel.name, r.column),
+    }));
 
     result = result.concat(edges);
   }
@@ -327,10 +332,14 @@ const generateModelNodes = (
         : null;
 
       return {
-        ...pick(
-          ["name", "kind", "documentation", "isList", "isRequired", "type"],
-          f,
-        ),
+        ...pick([
+          "name",
+          "kind",
+          "documentation",
+          "isList",
+          "isRequired",
+          "type",
+        ])(f),
         displayType,
         defaultValue,
         relationData,
@@ -355,18 +364,15 @@ const generateImplicitModelNodes = (
   relations: Record<string, GotModelRelations>,
 ): ModelNodeData[] => {
   const hasVirtuals = Object.values(relations).filter((rel) => rel.virtual);
-  const grouped = map(
-    (rel: GotModelRelations[]) => {
-      const fields = rel.map((r) => r.virtual!.field);
-      return { relationName: rel[0]!.dbName!, fields };
-    },
-    groupBy((rel) => rel.virtual!.name, hasVirtuals) as Record<
-      string,
-      GotModelRelations[]
-    >,
-  );
+  const grouped = Object.entries(
+    groupBy((rel: GotModelRelations) => rel.virtual!.name)(hasVirtuals),
+  ).map(([name, rel]) => ({
+    name,
+    relationName: rel![0]!.dbName!,
+    fields: rel!.map((r) => r.virtual!.field),
+  }));
 
-  return Object.entries(grouped).map(([name, { relationName, fields }]) => {
+  return grouped.map(({ name, relationName, fields }) => {
     const columns: ModelNodeData["columns"] = fields.map((col, i) => ({
       name: letters[i]!,
       kind: "scalar",

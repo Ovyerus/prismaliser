@@ -2,7 +2,7 @@ import cc from "classcat";
 import React from "react";
 import { Handle, Position, useReactFlow, useStoreApi } from "reactflow";
 
-import styles from "./Node.module.scss";
+import styles from "./Node.module.css";
 
 import {
   enumEdgeTargetHandleId,
@@ -59,8 +59,8 @@ const ModelNode = ({ data }: ModelNodeProps) => {
       <tbody>
         {data.columns.map((col) => {
           const reled = isRelationed(col);
-          let targetHandle: JSX.Element | null = null;
-          let sourceHandle: JSX.Element | null = null;
+          let targetHandle: React.JSX.Element | null = null;
+          let sourceHandle: React.JSX.Element | null = null;
 
           if (col.kind === "enum") {
             const handleId = enumEdgeTargetHandleId(data.name, col.name);

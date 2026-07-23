@@ -1,19 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  .focusable {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black;
-    /* @apply dark:focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-900; */
-  }
+@theme {
+  --font-sans: "Inter var", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font-family: var(--font-sans);
+}
+
+@utility focusable {
+  @apply focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black;
 }
 
 @layer components {
   .button {
     @apply px-4 py-2;
     @apply bg-indigo-400 text-white hover:bg-indigo-500 focus-visible:bg-indigo-500;
-    /* @apply dark:bg-opacity-[15%] dark:hover:bg-opacity-30 dark:focus-visible:bg-opacity-30 dark:text-gray-50; */
     @apply sm:text-sm font-medium;
     @apply rounded-lg focusable;
 
