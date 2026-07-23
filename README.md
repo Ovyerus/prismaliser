@@ -12,14 +12,13 @@ your models, by showing links between the different types of relations in the
 schema (many-to-many, one-to-many, one-to-one), similar to an
 [Entity-relationship model](https://en.wikipedia.org/wiki/Entity-relationship_model).
 
-Prismaliser is a fully open-source Next.js application and is easily self-hostable if
-you wish to, but a hosted version is also available at
+Prismaliser is a fully open-source, fully client-side web application — parsing and rendering all happen in your browser via Prisma's schema WASM module. It's easily self-hostable as plain static files if you wish to, but a hosted version is also available at
 [prismaliser.app](https://prismaliser.app) if you just want to use it instead.
 
 ## Installation
 
-Prismaliser is a Next.js application, and as such it requires
-[Node.js](https://nodejs.org) to be installed in order to run.
+Prismaliser is a Vite single-page application, and as such it requires
+[Node.js](https://nodejs.org) (24+) to be installed in order to build it.
 [Yarn](https://yarnpkg.com) is also recommended as it has a (subjectively) nicer
 CLI interface.
 
@@ -28,19 +27,20 @@ commands to get it running:
 
 ```bash
 yarn install  # or `npm install`
-yarn build  # or `npm run build`
-yarn start  # or `npm start`
+yarn build    # or `npm run build`
+yarn start    # or `npm start`
 ```
 
-The latter command can be run in anything like PM2, systemd or any other process
-daemon of your choice.
+The build outputs plain static files to `dist/`, so you can also serve that
+directory with any static file server of your choice instead of `yarn start`
+(which uses `vite preview`).
 
 Or if you're looking to run it for development purposes, you can use the
 following commands instead:
 
 ```bash
 yarn install  # or `npm install`
-yarn dev  # or `npm run dev`
+yarn dev      # or `npm run dev`
 ```
 
 ### Docker
@@ -50,13 +50,13 @@ A
 is also available if that's more your thing.
 
 ```bash
-$ docker run -p 3000:3000 ghcr.io/ovyerus/prismaliser
+$ docker run -p 3000:80 ghcr.io/ovyerus/prismaliser
 ```
 
 or if you wanna live on the edge and run the dev branch
 
 ```bash
-$ docker run -p 3000:3000 ghcr.io/ovyerus/prismaliser:dev
+$ docker run -p 3000:80 ghcr.io/ovyerus/prismaliser:dev
 ```
 
 ## Roadmap

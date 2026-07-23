@@ -13,6 +13,6 @@
       ] (system: fn nixpkgs.legacyPackages.${system});
     defaultForSystems = fn: forSystems (pkgs: {default = fn pkgs;});
   in {
-    devShells = defaultForSystems (pkgs: with pkgs; mkShell {buildInputs = [nodejs_20 yarn];});
+    devShells = defaultForSystems (pkgs: with pkgs; mkShell {buildInputs = [nodejs_24 yarn];});
   };
 }

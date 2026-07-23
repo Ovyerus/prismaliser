@@ -1,16 +1,15 @@
-import Elk, { ElkExtendedEdge, ElkNode } from "elkjs/lib/elk.bundled";
 import { Edge, Node } from "reactflow";
 
 import { EnumNodeData, ModelNodeData } from "./types";
 
-const elk = new Elk({
-  defaultLayoutOptions: {
-    "elk.algorithm": "layered",
-    "elk.direction": "DOWN",
-    "elk.spacing.nodeNode": "75",
-    "elk.layered.spacing.nodeNodeBetweenLayers": "75",
-  },
-});
+import type { ElkExtendedEdge, ElkNode } from "elkjs/lib/elk.bundled";
+import type Elk from "elkjs/lib/elk.bundled";
+
+type ElkInstance = InstanceType<typeof Elk>;
+
+// elkjs is ~1.6MB and only needed when dispersing nodes — load it on demand
+// instead of in the initial bundle.
+let elkPromise: Promise<ElkInstance> | null = null;
 
 const MAX_ENUM_HEIGHT = 600;
 const FIELD_HEIGHT = 50;
@@ -85,6 +84,19 @@ export const getLayout = async (
   nodes: Array<Node<EnumNodeData> | Node<ModelNodeData>>,
   edges: Edge[],
 ) => {
+  elkPromise ??= import("elkjs/lib/elk.bundled").then(
+    ({ default: ElkConstructor }) =>
+      new ElkConstructor({
+        defaultLayoutOptions: {
+          "elk.algorithm": "layered",
+          "elk.direction": "DOWN",
+          "elk.spacing.nodeNode": "75",
+          "elk.layered.spacing.nodeNodeBetweenLayers": "75",
+        },
+      }),
+  );
+  const elk = await elkPromise;
+
   const elkNodes: ElkNode[] = [];
   const elkEdges: ElkExtendedEdge[] = [];
 

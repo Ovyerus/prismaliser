@@ -47,7 +47,7 @@ enum Role {
 }
 `.trim();
 
-const IndexPage = () => {
+const App = () => {
   // TODO: multiple save states.
   const [storedText, setStoredText] = useLocalStorage(
     "prismaliser.text",
@@ -139,4 +139,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default App;

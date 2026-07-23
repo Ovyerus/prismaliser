@@ -1,12 +1,13 @@
-FROM node:20-alpine3.20 AS builder
+FROM node:24-alpine AS builder
 
 ARG UMAMI_SITE
 ARG UMAMI_HOST
-ENV NEXT_PUBLIC_UMAMI_SITE=${UMAMI_SITE}
-ENV UMAMI_HOST=${UMAMI_HOST}
+ENV VITE_UMAMI_SITE=${UMAMI_SITE}
+ENV VITE_UMAMI_HOST=${UMAMI_HOST}
 WORKDIR /build
 
 COPY .yarn/releases ./.yarn/releases
+COPY .yarn/patches ./.yarn/patches
 
 COPY package.json ./
 COPY yarn.lock ./
@@ -17,23 +18,9 @@ RUN yarn install --immutable
 COPY . .
 RUN yarn build
 
-FROM node:20-alpine3.20 AS runner
+FROM caddy:alpine
 
-RUN apk add dumb-init
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY --from=builder /build/dist /srv
 
-USER node
-WORKDIR /app
-ENV NODE_ENV production
-
-COPY --from=builder /build/next.config.js ./
-COPY --from=builder /build/public ./public
-COPY --from=builder /build/package.json ./package.json
-
-COPY --from=builder /build/.next/standalone ./
-COPY --from=builder /build/.next/static ./.next/static
-
-EXPOSE 3000
-ENV PORT 3000
-
-ENTRYPOINT ["dumb-init", "--"]
-CMD ["node", "server.js"]
+EXPOSE 80

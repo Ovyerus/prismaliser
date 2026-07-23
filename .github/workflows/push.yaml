@@ -18,6 +18,9 @@ jobs:
       - name: yarn lint
         run: nix develop --command yarn lint
 
+      - name: yarn test
+        run: nix develop --command yarn test
+
       - name: yarn build
         run: nix develop --command yarn build
 

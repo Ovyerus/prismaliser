@@ -1,8 +1,9 @@
 .git
+.jj
 .github
-.nuxt
 .vscode
 node_modules
+dist
 .pnp.*
 .yarn
 !.yarn/patches

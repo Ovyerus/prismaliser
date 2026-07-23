@@ -1,6 +1,3 @@
-next-env.d.ts
-.next
+dist
 .eslintrc.js
 *.config.js
-# next.config.js
-# tailwind.config.js
