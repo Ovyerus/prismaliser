@@ -15,9 +15,6 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
-    "@iconify/icons-gg": "^1.2.4",
-    "@iconify/icons-simple-icons": "^1.2.74",
-    "@iconify/react": "^5.2.1",
     "@monaco-editor/react": "^4.7.0",
     "@prisma/prisma-schema-wasm": "patch:@prisma/prisma-schema-wasm@npm%3A7.9.0-1.e922089b7d7502aff4249d5da3420f6fa55fc6ad#~/.yarn/patches/@prisma-prisma-schema-wasm-npm-7.9.0-1.e922089b7d7502aff4249d5da3420f6fa55fc6ad-8928f63891.patch",
     "classcat": "^5.0.5",
@@ -32,7 +29,11 @@
     "sass": "^1.97.1"
   },
   "devDependencies": {
+    "@iconify-json/gg": "^1.2.2",
+    "@iconify-json/simple-icons": "^1.2.91",
     "@prisma/generator-helper": "~7.9.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@types/node": "^24",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.0",
@@ -45,6 +46,7 @@
     "prettier": "^3.7.4",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
+    "unplugin-icons": "^23.0.1",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },

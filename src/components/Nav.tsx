@@ -1,8 +1,8 @@
-import github from "@iconify/icons-simple-icons/github";
-import mastodon from "@iconify/icons-simple-icons/mastodon";
-import prisma from "@iconify/icons-simple-icons/prisma";
-import { Icon } from "@iconify/react";
 import React from "react";
+
+import BlueskyIcon from "~icons/simple-icons/bluesky";
+import GithubIcon from "~icons/simple-icons/github";
+import PrismaIcon from "~icons/simple-icons/prisma";
 
 const Nav = () => (
   <nav
@@ -20,7 +20,7 @@ const Nav = () => (
         title="Prisma website"
         aria-label="Prisma website"
       >
-        <Icon icon={prisma} height={24} />
+        <PrismaIcon height={24} width={24} />
       </a>
 
       <a
@@ -29,15 +29,15 @@ const Nav = () => (
         title="Prismaliser GitHub repository"
         aria-label="Prismaliser GitHub repository"
       >
-        <Icon icon={github} height={24} />
+        <GithubIcon height={24} width={24} />
       </a>
       <a
         className="button icon light"
-        href="https://aus.social/@ovyerus"
-        title="Author's Mastodon account"
-        aria-label="Author's Mastodon account"
+        href="https://bsky.app/profile/ovyerus.com"
+        title="Author's Bluesky account"
+        aria-label="Author's Bluesky account"
       >
-        <Icon icon={mastodon} height={24} />
+        <BlueskyIcon height={24} width={24} />
       </a>
     </div>
   </nav>

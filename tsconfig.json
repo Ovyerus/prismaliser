@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
     "jsx": "react-jsx",
-    "types": ["vite/client"],
+    "types": ["vite/client", "unplugin-icons/types/react"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]

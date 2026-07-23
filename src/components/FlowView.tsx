@@ -1,6 +1,3 @@
-import doubleChevron from "@iconify/icons-gg/chevron-double-left";
-import listTree from "@iconify/icons-gg/list-tree";
-import { Icon } from "@iconify/react";
 import { ElkNode } from "elkjs/lib/elk.bundled";
 import React, { useEffect, useState } from "react";
 import ReactFlow, {
@@ -23,6 +20,9 @@ import { generateFlowFromDMMF } from "~/util/prismaToFlow";
 import { DMMFToElementsResult } from "~/util/types";
 
 import type { DMMF } from "@prisma/generator-helper";
+
+import ChevronDoubleLeftIcon from "~icons/gg/chevron-double-left";
+import ListTreeIcon from "~icons/gg/list-tree";
 
 const nodeTypes = {
   model: ModelNode,
@@ -79,7 +79,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
         />
         <Controls>
           <ControlButton title="Disperse nodes" onClick={refreshLayout}>
-            <Icon icon={listTree} />
+            <ListTreeIcon />
           </ControlButton>
           <DownloadButton />
         </Controls>
@@ -95,7 +95,7 @@ const FlowView = ({ dmmf, toggleEditor }: FlowViewProps) => {
             title="Hide editor"
             onClick={toggleEditor}
           >
-            <Icon icon={doubleChevron} height={24} width={24} />
+            <ChevronDoubleLeftIcon height={24} width={24} />
           </ControlButton>
         </Controls>
       </ReactFlow>

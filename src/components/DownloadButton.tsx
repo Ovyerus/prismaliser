@@ -1,5 +1,3 @@
-import downloadIcon from "@iconify/icons-gg/software-download";
-import { Icon } from "@iconify/react";
 import { toPng } from "html-to-image";
 import React from "react";
 import {
@@ -10,6 +8,8 @@ import {
 } from "reactflow";
 
 import styles from "./FlowView.module.css";
+
+import DownloadIcon from "~icons/gg/software-download";
 
 const downloadImage = (dataUrl: string) => {
   const a = document.createElement("a");
@@ -59,7 +59,7 @@ const DownloadButton = () => {
       title="Download as PNG"
       onClick={onClick}
     >
-      <Icon icon={downloadIcon} />
+      <DownloadIcon />
     </ControlButton>
   );
 };
