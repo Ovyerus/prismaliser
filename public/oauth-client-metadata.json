@@ -1,0 +1,12 @@
+{
+  "client_id": "https://prismaliser.app/oauth-client-metadata.json",
+  "client_name": "Prismaliser",
+  "client_uri": "https://prismaliser.app",
+  "redirect_uris": ["https://prismaliser.app/"],
+  "scope": "atproto repo:app.prismaliser.schema?action=create&action=delete blob?accept=text/plain",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "dpop_bound_access_tokens": true
+}

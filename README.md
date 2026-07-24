@@ -12,8 +12,11 @@ your models, by showing links between the different types of relations in the
 schema (many-to-many, one-to-many, one-to-one), similar to an
 [Entity-relationship model](https://en.wikipedia.org/wiki/Entity-relationship_model).
 
-Prismaliser is a fully open-source, fully client-side web application — parsing and rendering all happen in your browser via Prisma's schema WASM module. It's easily self-hostable as plain static files if you wish to, but a hosted version is also available at
-[prismaliser.app](https://prismaliser.app) if you just want to use it instead.
+Prismaliser is a fully open-source, fully client-side web application — parsing
+and rendering all happen in your browser via Prisma's schema WASM module. It's
+easily self-hostable as plain static files if you wish to, but a hosted version
+is also available at [prismaliser.app](https://prismaliser.app) if you just want
+to use it instead.
 
 ## Installation
 
@@ -47,17 +50,37 @@ yarn dev      # or `npm run dev`
 
 A
 [Docker image](https://github.com/Ovyerus/prismaliser/pkgs/container/prismaliser)
-is also available if that's more your thing.
+is also available if that's more your thing. Set the public HTTPS origin so the
+container can serve valid AT Protocol OAuth metadata:
 
 ```bash
-$ docker run -p 3000:80 ghcr.io/ovyerus/prismaliser
+$ docker run -p 3000:80 \
+    -e PRISMALISER_ORIGIN=https://your-public-origin.example \
+    ghcr.io/ovyerus/prismaliser
 ```
 
-or if you wanna live on the edge and run the dev branch
+The value must be the exact public HTTPS origin without a trailing slash. If it
+is omitted or invalid, account connection is disabled; local editing,
+schema-only links, and legacy links remain available.
 
-```bash
-$ docker run -p 3000:80 ghcr.io/ovyerus/prismaliser:dev
-```
+### AT Protocol sharing
+
+When you publish a diagram, Prismaliser creates a public immutable record in
+your own AT Protocol repository and uploads the Prisma schema as a public
+`text/plain` blob. Shared records contain the blob reference and node
+positions, so anyone with the link can view the same diagram. Both the record
+and schema blob are public; check for passwords, connection strings, and other
+secrets first.
+
+Schema-only links require no account and remain supported for old links. To
+self-host on plain static hosting, replace `oauth-client-metadata.json` with the
+same metadata values using your exact HTTPS origin for `client_id`,
+`client_uri`, and `redirect_uris`. Docker hosts should use `PRISMALISER_ORIGIN`
+as shown above.
+
+Prismaliser never asks for a password or an app password. Account connection
+uses the AT Protocol browser OAuth flow and the provider's own authorisation
+page.
 
 ## Roadmap
 
@@ -69,10 +92,9 @@ working on the same thing.
 I'm also open to PRs for other features not listed here, but also please open a
 corresponding issue to discuss it, just like above.
 
-- [ ] Multi-history support (user defined saves).
-- [x] Sharing a schema with other users via a generated link (similar to
-      TypeScript's [playground](https://www.typescriptlang.org/play/)).
-- [ ] Saving node positions across page resets.
+- [x] Multi-history support through the My shares manager.
+- [x] Sharing schema-only links and immutable public AT Protocol snapshots.
+- [x] Saving and restoring node positions in shared snapshots.
 - [ ] Autocomplete for the editor (very big, Monaco is a bit fiddly at times,
       would probably need to do some looking at the VSCode plugin for Prisma to
       figure out some stuff).

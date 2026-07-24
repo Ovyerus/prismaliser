@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter var", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter var", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --default-font-family: var(--font-sans);
 }
 
@@ -15,7 +16,7 @@
     @apply px-4 py-2;
     @apply bg-indigo-400 text-white hover:bg-indigo-500 focus-visible:bg-indigo-500;
     @apply sm:text-sm font-medium;
-    @apply rounded-lg focusable;
+    @apply rounded-lg focusable cursor-pointer;
 
     &.floating {
       @apply shadow-md hover:shadow-lg;

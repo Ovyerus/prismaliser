@@ -1,3 +1,4 @@
 dist
 .eslintrc.js
 *.config.js
+src/lexicons/**

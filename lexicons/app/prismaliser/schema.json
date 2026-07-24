@@ -1,0 +1,63 @@
+{
+  "lexicon": 1,
+  "id": "app.prismaliser.schema",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A Prismaliser Prisma schema and graph layout snapshot.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["schema", "positions", "prismaVersion", "createdAt"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "maxGraphemes": 80
+          },
+          "schema": {
+            "type": "blob",
+            "accept": ["text/plain"],
+            "maxSize": 500000
+          },
+          "positions": {
+            "type": "array",
+            "maxLength": 5000,
+            "items": {
+              "type": "ref",
+              "ref": "#position"
+            }
+          },
+          "prismaVersion": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          }
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "required": ["id", "x", "y"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -10000000,
+          "maximum": 10000000
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -10000000,
+          "maximum": 10000000
+        }
+      }
+    }
+  }
+}

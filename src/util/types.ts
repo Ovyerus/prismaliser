@@ -48,3 +48,9 @@ export interface DMMFToElementsResult {
   nodes: Array<Node<EnumNodeData> | Node<ModelNodeData>>;
   edges: Edge[];
 }
+
+export interface NodePosition {
+  id: string;
+  x: number;
+  y: number;
+}

@@ -1,0 +1,20 @@
+@reference "tailwindcss";
+
+.dialog {
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+}
+
+.dialog::backdrop {
+  @apply bg-gray-950/60;
+}
+
+.panel {
+  max-height: calc(100vh - 2rem);
+  @apply overflow-y-auto rounded-xl bg-white text-gray-950 shadow-2xl;
+}

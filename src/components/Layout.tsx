@@ -4,24 +4,40 @@ import React from "react";
 import styles from "./Layout.module.css";
 import Nav from "./Nav";
 
-const Layout = ({ children, noEditor = false }: LayoutProps) => (
+import type { NavProps } from "./Nav";
+
+export interface LayoutProps extends NavProps {
+  children: React.ReactNode;
+  noEditor?: boolean;
+}
+
+const Layout = ({
+  account,
+  atprotoAvailable,
+  children,
+  noEditor = false,
+  onConnect,
+  onDisconnect,
+  onOpenShares,
+}: LayoutProps) => (
   <main
     className={cc([
       styles.grid,
       "relative",
       "h-screen",
       "w-screen",
-      { [styles.noEditor as any]: noEditor },
+      { [styles.noEditor!]: noEditor },
     ])}
   >
-    <Nav />
+    <Nav
+      account={account}
+      atprotoAvailable={atprotoAvailable}
+      onConnect={onConnect}
+      onDisconnect={onDisconnect}
+      onOpenShares={onOpenShares}
+    />
     {children}
   </main>
 );
-
-interface LayoutProps {
-  children: React.ReactNode;
-  noEditor?: boolean;
-}
 
 export default Layout;

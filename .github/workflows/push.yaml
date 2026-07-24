@@ -15,6 +15,9 @@ jobs:
       - name: yarn install
         run: nix develop --command yarn install --immutable
 
+      - name: generated lexicons are current
+        run: nix develop --command yarn lex:check
+
       - name: yarn lint
         run: nix develop --command yarn lint
 

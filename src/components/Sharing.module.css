@@ -1,0 +1,209 @@
+@reference "tailwindcss";
+
+.dialogBody {
+  @apply p-6 flex flex-col gap-6;
+}
+
+.headingRow {
+  @apply flex items-start gap-4;
+}
+
+.headingCopy {
+  @apply min-w-0 flex-1;
+}
+
+.title {
+  @apply text-xl font-semibold text-gray-950;
+}
+
+.description {
+  @apply mt-1 text-sm leading-6 text-gray-600;
+}
+
+.closeButton {
+  @apply -mt-1 -mr-1 shrink-0 rounded-lg p-2 text-gray-500 cursor-pointer hover:bg-gray-100 hover:text-gray-950 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
+}
+
+.form {
+  @apply flex flex-col gap-5;
+}
+
+.field {
+  @apply flex flex-col gap-2;
+}
+
+.label {
+  @apply block text-sm font-semibold text-gray-900;
+}
+
+.input {
+  @apply block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-950 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/30;
+}
+
+.helper {
+  @apply text-sm leading-5 text-gray-600;
+}
+
+.alert {
+  @apply rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm leading-5 text-red-800;
+}
+
+.warning {
+  @apply flex flex-col gap-1 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm leading-5 text-amber-950;
+}
+
+.warningTitle {
+  @apply font-semibold;
+}
+
+.manualLink {
+  @apply flex flex-col gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3;
+}
+
+.details {
+  @apply rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700;
+}
+
+.summary {
+  @apply cursor-pointer font-semibold text-gray-900 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
+}
+
+.detailsBody {
+  @apply flex flex-col mt-3 gap-3 leading-6;
+
+  & a {
+    @apply underline text-indigo-500;
+  }
+}
+
+.actions {
+  @apply flex flex-col gap-3;
+}
+
+.actionsSeparator {
+  @apply relative flex items-center gap-2 cursor-default;
+  @apply before:block before:h-px before:bg-gray-300 before:w-full;
+  @apply after:block after:h-px after:bg-gray-300 after:w-full;
+}
+
+.primary,
+.secondary {
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-60;
+}
+
+.primary {
+  @apply bg-indigo-500 text-white hover:bg-indigo-600 focus-visible:ring-indigo-500;
+}
+
+.secondary {
+  @apply border border-gray-300 bg-white text-gray-900 hover:bg-gray-100 focus-visible:ring-gray-700;
+}
+
+.account {
+  @apply relative;
+}
+
+.accountButton,
+.connectButton {
+  @apply max-w-64 truncate rounded-lg bg-white px-4 py-2 text-sm font-semibold text-gray-950 cursor-pointer hover:bg-gray-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500;
+}
+
+.menu {
+  @apply absolute right-0 top-full z-20 mt-2 w-72 overflow-hidden rounded-xl border border-gray-200 bg-white text-gray-950 shadow-xl;
+}
+
+.identity {
+  @apply flex flex-col gap-1 border-b border-gray-200 px-4 py-3;
+}
+
+/*.identityLabel {
+  @apply text-xs font-semibold tracking-wide text-gray-500 uppercase;
+}*/
+
+.identityValue {
+  @apply truncate text-sm font-semibold text-gray-950;
+}
+
+.identityLabel {
+  @apply truncate text-xs text-gray-500;
+}
+
+.menuActions {
+  @apply p-1.5 *:w-full;
+}
+
+.menuAction {
+  @apply block rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-800 cursor-pointer hover:bg-gray-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500;
+}
+
+.danger {
+  @apply text-red-700 hover:bg-red-50;
+}
+
+.srOnly {
+  @apply sr-only;
+}
+.snapshotBar {
+  @apply absolute left-4 right-4 top-4 z-10 flex items-center justify-between gap-4 rounded-xl border border-indigo-200 bg-white/95 px-4 py-3 text-sm text-gray-900 shadow-lg backdrop-blur;
+  grid-area: flow;
+}
+
+.snapshotActions {
+  @apply flex shrink-0 gap-2;
+}
+
+.snapshotCopy {
+  @apply flex min-w-0 flex-col gap-0.5;
+}
+
+.snapshotCopy span {
+  @apply text-xs text-gray-600;
+}
+
+.snapshotCopy em {
+  @apply text-xs font-semibold not-italic text-amber-700;
+}
+
+.snapshotAction {
+  @apply inline-flex shrink-0 items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-semibold text-gray-900 cursor-pointer  hover:bg-gray-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500;
+}
+
+.shareList {
+  @apply max-h-96 divide-y divide-gray-200 overflow-y-auto rounded-lg border border-gray-200;
+}
+
+.shareRow {
+  @apply flex gap-3 bg-white px-4 py-3 items-start justify-between;
+}
+
+.shareRowCol {
+  @apply flex-col;
+}
+
+.shareRowCopy {
+  @apply flex min-w-0 flex-col gap-1 text-sm;
+}
+
+.shareRowCopy strong {
+  @apply truncate text-gray-950;
+}
+
+.shareRowCopy span {
+  @apply text-xs text-gray-600;
+}
+
+.shareActions {
+  @apply flex shrink-0 items-center gap-1;
+}
+
+.shareConfirmation {
+  @apply flex flex-wrap items-center justify-end gap-2 rounded-lg border border-red-200 bg-red-50 p-2 text-xs text-red-900;
+
+  & p {
+    @apply w-full;
+  }
+}
+
+.dangerAction {
+  @apply rounded-lg px-3 py-2 text-xs font-semibold text-red-700 cursor-pointer hover:bg-red-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500 disabled:cursor-wait disabled:opacity-60;
+}

@@ -11,9 +11,16 @@
     "start": "vite preview",
     "test": "vitest run",
     "lint": "eslint --ext ts,tsx .",
-    "lint:fix": "eslint --ext ts,tsx --fix ."
+    "lint:fix": "eslint --ext ts,tsx --fix .",
+    "lex:generate": "lex-cli generate",
+    "lex:check": "lex-cli generate && git diff --exit-code -- src/lexicons"
   },
   "dependencies": {
+    "@atcute/atproto": "4.0.3",
+    "@atcute/client": "5.1.1",
+    "@atcute/identity-resolver": "2.0.1",
+    "@atcute/lexicons": "2.0.3",
+    "@atcute/oauth-browser-client": "4.0.1",
     "@fontsource/inter": "^5.3.0",
     "@monaco-editor/react": "^4.7.0",
     "@prisma/prisma-schema-wasm": "patch:@prisma/prisma-schema-wasm@npm%3A7.9.0-1.e922089b7d7502aff4249d5da3420f6fa55fc6ad#~/.yarn/patches/@prisma-prisma-schema-wasm-npm-7.9.0-1.e922089b7d7502aff4249d5da3420f6fa55fc6ad-8928f63891.patch",
@@ -28,6 +35,7 @@
     "reactflow": "^11.11.4"
   },
   "devDependencies": {
+    "@atcute/lex-cli": "3.2.1",
     "@iconify-json/gg": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.91",
     "@prisma/generator-helper": "~7.9.0",

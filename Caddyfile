@@ -1,4 +1,23 @@
-:80
+:80 {
+  @oauthMetadata path /oauth-client-metadata.json
+  handle @oauthMetadata {
+    header Content-Type application/json
+    respond `{
+      "client_id":"{$PRISMALISER_ORIGIN}/oauth-client-metadata.json",
+      "client_name":"Prismaliser",
+      "client_uri":"{$PRISMALISER_ORIGIN}",
+      "redirect_uris":["{$PRISMALISER_ORIGIN}/"],
+      "scope":"atproto repo:app.prismaliser.schema?action=create&action=delete blob?accept=text/plain",
+      "grant_types":["authorization_code","refresh_token"],
+      "response_types":["code"],
+      "token_endpoint_auth_method":"none",
+      "application_type":"web",
+      "dpop_bound_access_tokens":true
+    }` 200
+  }
 
-root * /srv
-file_server
+  handle {
+    root * /srv
+    file_server
+  }
+}
