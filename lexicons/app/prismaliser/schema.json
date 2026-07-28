@@ -12,16 +12,19 @@
         "properties": {
           "name": {
             "type": "string",
+            "description": "An optional name for the shared diagram.",
             "maxLength": 160,
             "maxGraphemes": 80
           },
           "schema": {
             "type": "blob",
+            "description": "The Prisma schema text used to render the diagram.",
             "accept": ["text/plain"],
             "maxSize": 500000
           },
           "positions": {
             "type": "array",
+            "description": "The saved positions of the diagram's nodes.",
             "maxLength": 5000,
             "items": {
               "type": "ref",
@@ -30,10 +33,12 @@
           },
           "prismaVersion": {
             "type": "string",
+            "description": "The Prisma version used to parse the schema.",
             "maxLength": 64
           },
           "createdAt": {
             "type": "string",
+            "description": "The time at which this snapshot was created.",
             "format": "datetime"
           }
         }
@@ -41,19 +46,23 @@
     },
     "position": {
       "type": "object",
+      "description": "The saved canvas position of one diagram node.",
       "required": ["id", "x", "y"],
       "properties": {
         "id": {
           "type": "string",
+          "description": "The identifier of the diagram node.",
           "maxLength": 512
         },
         "x": {
           "type": "integer",
+          "description": "The horizontal node position in canvas coordinates.",
           "minimum": -10000000,
           "maximum": 10000000
         },
         "y": {
           "type": "integer",
+          "description": "The vertical node position in canvas coordinates.",
           "minimum": -10000000,
           "maximum": 10000000
         }

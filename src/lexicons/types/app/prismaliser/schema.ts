@@ -7,8 +7,12 @@ const _mainSchema = /*#__PURE__*/ v.record(
 	/*#__PURE__*/ v.object(
 		{
 			"$type": /*#__PURE__*/ v.literal("app.prismaliser.schema"),
+			/**
+			 * The time at which this snapshot was created.
+			 */
 			"createdAt": /*#__PURE__*/ v.datetimeString(),
 			/**
+			 * An optional name for the shared diagram.
 			 * @maxLength 160
 			 * @maxGraphemes 80
 			 */
@@ -20,6 +24,7 @@ const _mainSchema = /*#__PURE__*/ v.record(
 				]
 			)),
 			/**
+			 * The saved positions of the diagram's nodes.
 			 * @maxLength 5000
 			 */
 			get "positions"() {
@@ -29,6 +34,7 @@ const _mainSchema = /*#__PURE__*/ v.record(
 				)
 			},
 			/**
+			 * The Prisma version used to parse the schema.
 			 * @maxLength 64
 			 */
 			"prismaVersion": /*#__PURE__*/ v.constrain(
@@ -36,6 +42,7 @@ const _mainSchema = /*#__PURE__*/ v.record(
 				[/*#__PURE__*/ v.stringLength(0, 64)]
 			),
 			/**
+			 * The Prisma schema text used to render the diagram.
 			 * @accept text/plain
 			 * @maxSize 500000
 			 */
@@ -53,6 +60,7 @@ const _positionSchema = /*#__PURE__*/ v.object(
 	{
 		"$type": /*#__PURE__*/ v.optional(/*#__PURE__*/ v.literal("app.prismaliser.schema#position")),
 		/**
+		 * The identifier of the diagram node.
 		 * @maxLength 512
 		 */
 		"id": /*#__PURE__*/ v.constrain(
@@ -60,6 +68,7 @@ const _positionSchema = /*#__PURE__*/ v.object(
 			[/*#__PURE__*/ v.stringLength(0, 512)]
 		),
 		/**
+		 * The horizontal node position in canvas coordinates.
 		 * @minimum -10000000
 		 * @maximum 10000000
 		 */
@@ -68,6 +77,7 @@ const _positionSchema = /*#__PURE__*/ v.object(
 			[/*#__PURE__*/ v.integerRange(-10000000, 10000000)]
 		),
 		/**
+		 * The vertical node position in canvas coordinates.
 		 * @minimum -10000000
 		 * @maximum 10000000
 		 */
